@@ -309,10 +309,11 @@ var autoGEO = (function ($, my) {
 	function initChart() {
 		my.data.uiElt$['ChartTable'].hover(
 			function() {
-				$(this).addClass('chartHover');
+				$(this).addClass('chartHover').addClass('transpt');
+
 			},
 			function() {
-				$(this).removeClass('chartHover');
+				$(this).removeClass('chartHover').removeClass('transpt');
 			}
 		);
 
