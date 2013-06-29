@@ -1,0 +1,114 @@
+{"figs" : [
+		{
+			"name" : "Populus",	
+			"src" : "img/fig0.gif",
+			"quality": "stable",
+			"planet": "moon",
+			"sign": "cancer"		
+		},
+		{
+			"name" : "Laeticia",	
+			"src" : "img/fig1.gif",
+			"quality": "mobile",
+			"planet": "jupiter",
+			"sign": "pisces"
+		},
+		{
+			"name" : "Rubeus",	
+			"src" : "img/fig2.gif",
+			"quality": "mobile",
+			"planet": "mars",
+			"sign": "scorpio"
+		},
+		{
+			"name" : "Fortuna Minor",	
+			"src" : "img/fig3.gif",
+			"quality": "mobile",
+			"planet": "sun",
+			"sign": "leo"
+		},
+		{
+			"name" : "Albus",	
+			"src" : "img/fig4.gif",
+			"quality": "stable",
+			"planet": "mercury",
+			"sign": "gemini"
+		},
+		{
+			"name" : "Amissio",	
+			"src" : "img/fig5.gif",
+			"quality": "mobile",
+			"planet": "venus",
+			"sign": "taurus"
+		},
+		{
+			"name" : "Conjunctio",	
+			"src" : "img/fig6.gif",
+			"quality": "mobile",
+			"planet": "mercury",
+			"sign": "virgo"
+		},
+		{
+			"name" : "Cauda Draconis",	
+			"src" : "img/fig7.gif",
+			"quality": "mobile",
+			"planet": "south node",
+			"sign": "Sagittarius"
+		},
+		{
+			"name" : "Tristicia",	
+			"src" : "img/fig8.gif",
+			"quality": "stable",
+			"planet": "Saturn",
+			"sign": "Aquarius"
+		},
+		{
+			"name" : "Carcer",	
+			"src" : "img/fig9.gif",
+			"quality": "stable",
+			"planet": "Saturn",
+			"sign": "Capricorn"
+		},
+		{
+			"name" : "Acquisitio",	
+			"src" : "img/fig10.gif",
+			"quality": "stable",
+			"planet": "Jupiter",
+			"sign": "Sagittarius"
+		},
+		{
+			"name" : "Puer",	
+			"src" : "img/fig11.gif",
+			"quality": "mobile",
+			"planet": "Mars",
+			"sign": "Aries"
+		},
+		{
+			"name" : "Fortuna Major",	
+			"src" : "img/fig12.gif",
+			"quality": "stable",
+			"planet": "Sun",
+			"sign": "Leo"
+		},
+		{
+			"name" : "Puella",	
+			"src" : "img/fig13.gif",
+			"quality": "stable",
+			"planet": "Venus",
+			"sign": "Libra"
+		},
+		{
+			"name" : "Caput Draconis",	
+			"src" : "img/fig14.gif",
+			"quality": "stable",
+			"planet": "North node",
+			"sign": "Virgo"
+		},
+		{
+			"name" : "Via",	
+			"src" : "img/fig15.gif",
+			"quality": "mobile",
+			"planet": "Moon",
+			"sign": "Cancer"
+		}		
+]}

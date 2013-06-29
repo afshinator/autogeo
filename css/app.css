@@ -1,0 +1,292 @@
+/*
+**/
+.filler { background-color: grey;}
+
+body { background: url(../img/bkgd.jpg) repeat;}
+
+a { color: #b5451d;}
+
+.container {
+    outline: none;  /* get rid of outlines that are left behind when you click on a link or other element */
+}
+
+
+#bkgd {
+    background: url(../img/hdr.png) top left no-repeat;
+}
+
+#appTitle { display: none; }
+
+.hideIt { display: none; }          /* for hiding geolocation btn after its pressed */
+
+header { height: 250px; }
+header .span2 { outline:none; }
+
+#home { height: 300px;}
+#figTab { height: 300px;}
+#houseTab { height: 300px;}
+#time { height: 300px;}
+#questions { height: 300px;}
+#settings { height: 300px;}
+
+#geoFigures { height: 60px;}
+
+.collapsible {
+    -webkit-border-radius: 4px;
+    border-radius: 4px; 
+
+    /* prevents text selection*/
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.collpaseBtn {
+    color: white;
+}
+
+.figlist, .planetlist {
+    display: block;
+    float: right;
+    left:0;
+    position: relative;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.planetlist > li {
+    float: left;
+    margin-top: 7px;
+    margin-bottom:7px;
+    margin-right: 6px;
+    margin-left:6px;
+}
+
+.figlist > li { 
+    float: left;
+    margin-top: 7px;
+    margin-bottom:7px;
+    margin-right: 0.4em;
+    margin-left:0.4em;
+}              
+
+.accordion a {
+    outline:none;
+}
+
+
+.log-stats {                /* The log messages counts */
+    display: block;
+    float:right;
+    width: 40px;
+    padding-top:5px;
+}
+
+/*
+#currenttime { 
+    font-size: small;
+}
+
+#currentlocation {
+    font-size: small;
+}
+
+#appSettingsForm {
+    font-size: small;
+}
+*/
+
+
+.timetable th {
+    width : 80px;
+    vertical-align: top;   
+}
+
+.timetable td {
+    text-align:center;
+    vertical-align: middle;
+}
+
+
+
+.tabtable td {
+    vertical-align: top;
+}
+
+
+
+
+
+
+#placeholder {
+    background: #eeeeee; /* Old browsers */
+    background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+
+}
+
+#ChartTable {
+
+    background: none;
+
+    border: none; /* 2px solid white; */
+
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+
+    /* prevents text selection*/
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    margin-left: 5px;   /* makes it align with the background picture nicely */
+}
+
+/*
+#sChartTable tr {
+    height: 50px;
+}
+
+#sChartTable td {
+    padding: 3px;
+}
+*/
+
+
+
+
+.outline1 {
+    outline: 2px double #f0b318;
+    outline-offset: 4px; /*Delete if you don't want an offset*/
+}
+
+.outline2 {
+    outline: 3px groove #f02805;
+        outline-offset: 10px; /*Delete if you don't want an offset*/
+}
+
+.outline3 {
+    outline: 1px outset #a37321;
+        outline-offset: 10px; /*Delete if you don't want an offset*/
+}
+
+.vspacer1 {
+    height: 40px;
+}
+
+#testpic {
+
+}
+
+
+.gradient1 {
+    background: -moz-linear-gradient(45deg,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */ 
+}
+
+.gradient2 {
+    background: black;
+    color: yellow;
+}
+
+.gradient3 {
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 85%, rgba(255,255,255,0) 99%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(85%,rgba(255,255,255,0)), color-stop(99%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 85%,rgba(255,255,255,0) 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 85%,rgba(255,255,255,0) 99%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 85%,rgba(255,255,255,0) 99%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 85%,rgba(255,255,255,0) 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.gradient4 {
+background: rgb(254,191,1); /* Old browsers */
+background: -moz-linear-gradient(-45deg,  rgba(254,191,1,1) 0%, rgba(254,191,1,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(254,191,1,1)), color-stop(100%,rgba(254,191,1,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  rgba(254,191,1,1) 0%,rgba(254,191,1,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  rgba(254,191,1,1) 0%,rgba(254,191,1,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  rgba(254,191,1,1) 0%,rgba(254,191,1,1) 100%); /* IE10+ */
+background: linear-gradient(135deg,  rgba(254,191,1,1) 0%,rgba(254,191,1,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febf01', endColorstr='#febf01',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.gradient5 {
+background: rgb(234,239,181); /* Old browsers */
+background: -moz-linear-gradient(-45deg,  rgba(234,239,181,1) 0%, rgba(225,233,160,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(234,239,181,1)), color-stop(100%,rgba(225,233,160,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  rgba(234,239,181,1) 0%,rgba(225,233,160,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  rgba(234,239,181,1) 0%,rgba(225,233,160,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  rgba(234,239,181,1) 0%,rgba(225,233,160,1) 100%); /* IE10+ */
+background: linear-gradient(135deg,  rgba(234,239,181,1) 0%,rgba(225,233,160,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+}
+
+.bshadow1{
+    -moz-box-shadow:10px 10px 5px #000000;
+-webkit-box-shadow:10px 10px 5px #000000;
+box-shadow:10px 10px 5px #000000;
+}
+
+.overEffect1 {
+    outline: 1px dotted #a37321;
+    outline-offset: 4px; /*Delete if you don't want an offset*/;
+}
+
+.myoverEffect2{
+    background: rgb(96,108,136); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(96,108,136,1)), color-stop(100%,rgba(63,76,107,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* IE10+ */
+    background: linear-gradient(135deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.mxxxyOverEffect {
+    background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+.transform1{
+    -moz-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -webkit-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -o-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        -ms-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+}
+
+.blowUp120 {
+    -moz-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -webkit-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -o-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    -ms-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+    transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);    
+}
+
+.chartHover {
+    -webkit-box-shadow:  1px 1px 3px 1px rgba(0, 0, 0, .3);
+    box-shadow:  1px 1px 3px 1px rgba(0, 0, 0, .3);
+}

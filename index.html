@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AutoGEO 1b - work in progress</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/app.css" rel="stylesheet" media="screen">
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="bkgd">
+        <header>
+            <div class="row">
+                <div class="span5">
+                    <h1 id="appTitle">AutoGEO </h1>
+
+                    <img src="img/filler1.png" height="100px"></img>  <!-- make room for image -->
+                    <table>
+                        <tr>
+                            <td width="30px"></td>
+                            <td width="280px">                    
+                                By <strong>Afshin Mokhtari</strong>, v1b
+                            </td>
+                            <td>
+                                <form id="appSettingsForm">                 
+                                    <input id="audio_toggle" type="checkbox" name="setting" value="audio" />
+                                    Audio<br>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="currenttime"></span> 
+                                <span id="currentlocation"></span>
+                                <span id="suntimes"></span> 
+                            </td>
+                            <td>
+                                <button id="geoloc_btn" class="btn btn-small">Geolocation</button>
+                            </td>
+                        </tr>
+                    </table> 
+                </div>
+                <div  id="geoPlanets" class="gradient1 span3">
+                    <span class="content">
+                        <ul class="planetlist">
+                            <li data-id="0"><img src="img/sun.gif" width="18px"></img></li>
+                            <li data-id="1"><img src="img/moon.gif" width="18px"></img></li>
+                            <li data-id="2"><img src="img/mars.gif" width="18px"></img></li>
+                            <li data-id="3"><img src="img/mercury.gif" width="18px"></img></li>
+                            <li data-id="4"><img src="img/jupiter.gif" width="18px"></img></li>
+                            <li data-id="5"><img src="img/venus.gif" width="18px"></img></li>
+                            <li data-id="6"><img src="img/saturn.gif" width="18px"></img></li>           
+                        </ul>
+                    </span>
+                    <div id="geoFigures">
+                        <span class="content">
+                            <ul class="figlist"></ul>
+                        </span>              
+                    </div>                      
+                </div>
+                <div class="span4">
+                    <div id="shieldChart"></div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="row">   
+            <div class="span12">
+                <ul class="nav nav-tabs" id="appTabs">
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#figtab">The Figures</a></li>
+                    <li><a href="#housetab">The Houses</a><li>                    
+                    <li><a href="#time">Time transits and Rulers</a></li>
+                    <li><a href="#questions">Questions and Houses</a></li>
+                    <li><a href="#settings">Program Options</a></li>
+                </ul>
+                 
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <div class="row">
+                            <div class="span4">                       
+                                <span id="testpic"></span>                    
+                            </div>
+                            <div class="span8">
+                                <p>Once you select the Geolocation button, your current location will appear to the left</p>
+                                <p>To do a session, you have to have a question you want answered.</p>
+
+                                <p>If you already have a question in mind, find which house in the chart the question belongs to and double click to select that house.</p>
+
+                                <p>Some times it is better to ask some questions that others.  Take a look at what the ruler of the day and current time is for the type of question that is favorable to ask right now.</p>
+
+                                shift-mouse click on any house in the chart to get details.<br>
+                                shift-mouse click on any geomantic figure to get details.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="figtab"><h4>About the Figures</h4></div> 
+                    <div class="tab-pane" id="housetab"><h4>About the Houses</h4></div>
+                    <div class="tab-pane" id="time">...</div>
+                    <div class="tab-pane" id="questions">...</div>
+                    <div class="tab-pane" id="settings">
+                        
+                        <button class="btn btn-large" type="button">Save Presets</button>
+                    </div>
+                </div>
+            </div>
+        </div>                      <!-- row -->
+        <hr>
+        <div class="row">
+            <div class="accordion span12" id="accordion1">      <!-- The Logs -->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <span class="log-stats"><span class="badge">0</span></span>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+                        Geomancy Log
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse in">
+                        <div id="logInfo" class="accordion-inner">
+                        </div>
+                    </div>
+                </div>         <!-- accordion group -->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <span class="log-stats"><span class="badge badge-info">0</span></span>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+                        Application Events and Log
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <div id="logSys" class="accordion-inner">
+                        </div>
+                    </div>
+                </div>         <!-- accordion group -->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <span class="log-stats"><span class="badge badge-important">0</span></span>             
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">
+                        Error Log
+                        </a>
+                    </div>
+                    <div id="collapseThree" class="accordion-body collapse">
+                        <div id="logErr" class="accordion-inner">
+                        </div>
+                    </div>
+                </div>         <!-- accordion group -->                
+            </div>            <!-- <div class="accordion span12" id="accordion2"> -->    
+        </div>              <!-- row -->
+      </div>               <!-- for bkgd picture -->
+    </div>                  <!-- container -->
+
+
+   
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>    
+    <script src="js/bootstrap.js"></script>
+    <script src="js/moment.min.js"></script>            <!-- Date and Time -->
+    <script src="js/moment-range.js"></script>           <!-- Extends moment for date ranges... -->
+
+    <script src="js/jquery.browser.js"></script>        <!-- Browser detection -->
+    <script src="js/jquery.slimscroll.min.js"></script> <!-- mini scroll bars -->
+    <script src="js/store.min.js"></script>             <!-- Local Storage -->
+    <script src="js/howler.min.js"></script>            <!-- Sounds -->
+
+
+    <script src="app/debounce.js"></script>
+    <script src="app/ag_sunrisesunset.js"></script>     <!-- Sunrise & Sunset times from geolocation -->
+    <script src="app/ag_rulers.js"></script>
+    <script src="app/ag_questions.js"></script>     
+    <script src="app/ag_view.js"></script> 
+    <script src="app/ag_chart.js"></script>
+    <script src="app/ag_browser_utils.js"></script>
+    <script src="app/ag_load_html.js"></script> 
+    <script src="app/app.js"></script>  
+ 
+  </body>
+  </html>
