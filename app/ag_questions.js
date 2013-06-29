@@ -29,10 +29,10 @@ var autoGEO = (function ($, my) {
 						$(this).removeClass('gradient1');
 					}
 					).dblclick(function() {
+						var house = $(this).closest('ul').data('id');
 						if (my.data.knownMothers < 4) {				// dont do if chart is already derived
-							my.data.quesitedHouse = $(this).closest('ul').data('id');
-							my.playAudio('whoosh1', 0.2);
-							my.log('l', 'House of Quesited chosen: ' + my.data.quesitedHouse);
+							my.log('l', 'Question chosen from house: ' + house + ", setting house of quesited.");
+							my.setQuesitedHouse( house );
 						}
 					}
 				);

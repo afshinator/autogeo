@@ -47,8 +47,12 @@ var autoGEO = (function ($, my) {
 
 			msg = '<p>' + msg + '</p>';
 
-			// Add the augmented msg to the beginning of the list so latest info is at top
-			(logPanel[which].txt$).prepend(msg);
+			if (which === 1 ) {
+				// for log, Add the augmented msg to the beginning of the list so latest info is at top
+				(logPanel[which].txt$).prepend(msg);
+			} else {
+				(logPanel[which].txt$).append(msg);
+			}
 
 			// use the counter itself to keep track of count of msgs in collapsible
 			count = ((logPanel[which].count$).text()) * 1;	// multiply casts it to number
@@ -252,7 +256,6 @@ var autoGEO = (function ($, my) {
 			my.data.figs[i].selector$ = geoFiguresList$.find('img[alt="' +  my.data.figs[i].name + '"]');
 		}
 
-		//my.data.uiElt$['figtab'].load('ajax/figinfo.html');
 
 		// Add handler to shift-click on a figure brings up info about it.
 		geoFiguresList$.find('.figureImg')
@@ -313,6 +316,7 @@ var autoGEO = (function ($, my) {
 			}
 		);
 
+
 		my.data.uiElt$['ChartTable'].find('.house').hover(
 			function() {
 				$(this).addClass('overEffect1');
@@ -332,6 +336,17 @@ var autoGEO = (function ($, my) {
 				}
 			});
 
+
+		my.data.uiElt$['ChartTable'].on("dblclick", '.house', function() {
+			var house = ( $(this).attr('id').slice(5) ) * 1;	// get which house, turn into number
+
+			if ( my.data.knownMothers < 4 ) {				// dont do if chart is already derived
+				if ( house < 13 ) {
+					my.log('l', 'House of chosen double click on : ' + house);
+					my.setQuesitedHouse(house, $(this));
+				}
+			}
+		});
 	}
 
 

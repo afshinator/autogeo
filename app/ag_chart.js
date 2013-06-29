@@ -85,6 +85,9 @@ var autoGEO = (function ($, my) {
 	};
 
 
+
+
+	//
 	// called upon double-click of one of the figures in the figure list
 	my.figSelected = function(i) {
 		// build image tag for geo figure passed in 
@@ -121,6 +124,31 @@ var autoGEO = (function ($, my) {
 			//my.log('err', 'Stop doubleclicking on figures fool!');
 		}
 	};
+
+
+	// setQuesitedHouse(house, house$) - called by dblclick handler of chart or click on questions list
+	//			house - number of house selected for house of quested to set.
+	//			house$ - optional argument;  (for quesited house selection from questions list)
+	my.setQuesitedHouse = function(house, house$) {
+		my.playAudio('whoosh1', 0.2);
+
+		// If quesited House has been previously set, get rid of UI effect
+		if ( my.data.quesitedHouse !== 0 ) {
+			var $t = my.data.uiElt$['ChartTable'].find('#chart' + my.data.quesitedHouse );
+			$t.removeClass('gradient4');
+		}
+
+		// if 2nd arg is not passed in, search for and find the html element of the house selected
+		if ( house$ === undefined ) {
+			house$ = my.data.uiElt$['ChartTable'].find('#chart' + house );
+		}
+
+		house$.addClass('gradient4');
+		my.data.quesitedHouse = house;
+		// my.log('i', 'House of Quesited set: ' + house);
+	};
+
+
     return my;
 
 }(jQuery, autoGEO || {}));
