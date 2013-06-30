@@ -51,43 +51,12 @@ var autoGEO = (function ($, my) {
 		}
 
 		divideTimeIntoTwelveSlots(secsInOneDayHour, 1, moment(a));	// 'day' hours - from sunrise to sunset
-		divideTimeIntoTwelveSlots(secsInOneDayHour, 13, moment(b));	// 'night' hours - from sunset today until sunrise the next day
+		divideTimeIntoTwelveSlots(secsInOneNightHour, 13, moment(b));	// 'night' hours - from sunset today until sunrise the next day
 
-/*
-		// 'day' hours - from sunrise to sunset
-		for ( i = 0 ; i < 12 ; i +=1 ) {
-			timeholder$ = my.data.uiElt$['time'].find('#geoTime_timeHolder' + (i+1));
-			tempMoment.add( 'seconds', ( i * secsInOneDayHour ) );		// starts at sunrise; gets set to beginning time of current slot
-			rangeEnd = tempMoment.clone();								// set initially to beginning time of current slot, 
-			rangeEnd.add( 'seconds', secsInOneDayHour - 60);			// add one minute less than range-end
-			timeholder$.html( tempMoment.format("h:mm a") + ' - ' + rangeEnd.format("h:mm a") ) ;
-
-			if ( now.isBefore(rangeEnd) && now.isAfter(tempMoment) ) {
-				currentTimeSlot$ = timeholder$.closest('tr');
-				currentTimeSlot$.addClass('gradient3');
-			}
-
-			tempMoment.subtract( 'seconds', ( i * secsInOneDayHour ) ); // reset it to sunrise time
+		// currentTimeSlot$ should have been set in either the day or night divisions...
+		if ( currentTimeSlot$ === null ) {
+			my.log('e', 'currentTimeSlot$===null --> Edge case/Bug in initGeoTimeDivisions() where current time is between time slots?');
 		}
-
-		// 'night' hours - from sunset today until sunrise the next day
-		tempMoment = moment(b);
-		for ( i = 0 ; i < 12 ; i +=1 ) {
-			timeholder$ = my.data.uiElt$['time'].find('#geoTime_timeHolder' + (i+13));
-			tempMoment.add( 'seconds', ( i * secsInOneNightHour ) );
-			rangeEnd = tempMoment.clone();
-			rangeEnd.add( 'seconds', secsInOneNightHour - 60);
-			timeholder$.html( tempMoment.format("h:mm a") + ' - ' + rangeEnd.format("h:mm a") ) ;
-
-			if ( now.isBefore(rangeEnd) && now.isAfter(tempMoment) ) {
-				currentTimeSlot$ = timeholder$.closest('tr');
-				currentTimeSlot$.addClass('gradient3');
-			}
-
-			tempMoment.subtract( 'seconds', ( i * secsInOneNightHour ) ); // reset
-		}
-*/
-
 
 		// highlight the day of week column in time transits table;  This should be the planetary ruler of geotoday
 		// The planetary ruler of the hour is set in getAndDisplayRulers()
