@@ -60,7 +60,7 @@ var autoGEO = (function ($, my) {
 
 		// highlight the day of week column in time transits table;  This should be the planetary ruler of geotoday
 		// The planetary ruler of the hour is set in getAndDisplayRulers()
-		(my.data.uiElt$['time']).find( '.geoTime_Col' + (a.day()+1)%7  ).addClass("gradient3");
+		(my.data.uiElt$['time']).find( '.geoTime_Col' + (a.day()+1)  ).addClass("gradient3");
 	}
 
 
