@@ -50,7 +50,7 @@ var autoGEO = (function ($, my) {
 			}
 		}
 
-		divideTimeIntoTwelveSlots(secsInOneDayHour, 1, moment(a));	// 'day' hours - from sunrise to sunset
+		divideTimeIntoTwelveSlots(secsInOneDayHour, 1, moment(a));		// 'day' hours - from sunrise to sunset
 		divideTimeIntoTwelveSlots(secsInOneNightHour, 13, moment(b));	// 'night' hours - from sunset today until sunrise the next day
 
 		// currentTimeSlot$ should have been set in either the day or night divisions...

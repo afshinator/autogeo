@@ -128,26 +128,23 @@ header .span2 { outline:none; }
 
 }
 
+#shieldChart {
+    margin-top: 5px;
+}
+
+
 #ChartTable {
-
-  /* background: none;
- */
-    border: none; /* 2px solid white; */
-
     -webkit-border-radius: 4px;
     border-radius: 4px;
-
 
     /* prevents text selection*/
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-
-    margin-left: 5px;   /* makes it align with the background picture nicely */
 }
 
-/*
+
 #sChartTable tr {
     height: 50px;
 }
@@ -155,7 +152,7 @@ header .span2 { outline:none; }
 #sChartTable td {
     padding: 3px;
 }
-*/
+
 
 
 

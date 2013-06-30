@@ -76,6 +76,7 @@ var autoGEO = (function ($, my) {
 	// Some html elements will be accessed over and over again, and across the app, so get the
 	// referece to them now and store it away so it can provide quick acess later.
 	my.data.uiElt$['ChartTable'] = $('#ChartTable');
+	my.data.uiElt$['shieldChart'] = $('#shieldChart');	
 	my.data.uiElt$['geoloc_btn'] = $('#geoloc_btn');
 	my.data.uiElt$['planetlist'] = $('.planetlist');
 	my.data.uiElt$['audio_toggle'] = $("#audio_toggle");
