@@ -77,9 +77,9 @@ var autoGEO = (function ($, my) {
 
 		if ( my.isNowWithinRealToday() === false ) {
 			geoToday = my.mod( ( geoToday - 1 ), 7 );		// my.mod deals with modulus negative numbers well
-			my.log('l', 'Right now we are in geo-today, not real-today! Day #' + geoToday);
+			my.log('l', 'Right now we are in geo-today, not real-today! (0 is sunday) Day #' + geoToday);
 		} else {
-			my.log('l', 'Right now we are in real-today, not geo-today. Day #' + geoToday);
+			my.log('l', 'Right now we are in real-today, not geo-today. (0 is sunday) Day #' + geoToday);
 		}
 
 		// Mark the planetary ruler of the day in planetlist in header, based on todays date,
@@ -92,15 +92,18 @@ var autoGEO = (function ($, my) {
 		} else {
 			// the first td found after the tr referred to by currentTimeSlot$ holds the time range info instead of
 			// the rulers, so at this point we have to add 1 to geoToday to get the right index.
-			geoToday = ( geoToday + 1 ) % 7;
+			geoToday = ( geoToday + 1 );
 			rulerStr = ( currentTimeSlot$.find('td:eq(' + geoToday + ')').data('ruler') ) + "";  // convert to string
 
 			planetaryRulerForHour = (rulerStr.charAt(0));
 			geofigureRulerForHour = (rulerStr.slice(1)) * 1;
 
-			my.log('l', 'planetaryRulerForHour : ' +  planetaryRulerForHour + ' -- geofigureRulerForHour : ' +  geofigureRulerForHour);
+			my.log('l', 'planetaryRulerForHour : ' +  planetaryRulerForHour + ' -- geofigureRulerForHour : ' +  my.data.figs[geofigureRulerForHour].name);
 
 			my.data.uiElt$['planetlist'].find('li:eq(' + planetaryRulerForHour + ')').addClass('gradient5');
+
+			// Highlight geomantic figure that rules this hour by adding same class we used for planetary ruler of the hour
+			my.data.figs[geofigureRulerForHour].selector$.addClass('gradient5');
 
 			// TODO: save the hourly rulers info
 		}
