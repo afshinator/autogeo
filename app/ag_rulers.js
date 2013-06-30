@@ -6,6 +6,7 @@ var autoGEO = (function ($, my) {
 	var nightHours = [];
 
 	var currentTimeSlot$ = null;		// Will be set in initGeoTimeDivisions() to indicate the 'hour' we are in now
+	var currentTSlot = 0;				// same as above but indexed 1-12 for day, 13-24 for night hours
 
 
 	//
@@ -20,17 +21,45 @@ var autoGEO = (function ($, my) {
 		var secsInOneDayHour = ( b.diff(a, 'seconds') ) / 12;
 		var secsInOneNightHour = ( c.diff(b, 'seconds') ) / 12;
 
-		var timeholder$;							// selector for html elt
-		var tempMoment = moment(a);					// will be manipulated to find range
-		var rangeEnd = moment();
-		var now = moment();
 
+		// Find & mark the 12 ranges of time for night or day based on parameters
+		//  secsInHour - either seconds in a day hour or seconds in a night hour (which differ)
+		//  offset - either 1 or 13, depends on classes in the html and whether doing day or night
+		//  tempMoment - either sunrise or sunset time, will be manipulated to find range
+		function divideTimeIntoTwelveSlots(secsInHour, offset, tempMoment) {
+			var timeholder$;							// selector for html elt
+			var rangeEnd = moment();
+			var now = moment();
+
+			for ( i = 0 ; i < 12 ; i +=1 ) {
+				timeholder$ = my.data.uiElt$['time'].find('#geoTime_timeHolder' + (i + offset));
+
+				tempMoment.add( 'seconds', ( i * secsInHour ) );	// starts at sunrise/sunset; gets set to beginning time of current slot
+				rangeEnd = tempMoment.clone();						// set initially to beginning time of current slot,
+				rangeEnd.add( 'seconds', secsInHour - 60);			// add to mark end of this time slot minus one minute
+				timeholder$.html( tempMoment.format("h:mm a") + ' - ' + rangeEnd.format("h:mm a") );
+				rangeEnd.add( 'seconds', 59);					// add that minute back so next check is accurate
+
+				// If current time happens to be within the time range we are prcoessing, add class to html
+				if ( now.isBefore(rangeEnd) && now.isAfter(tempMoment) ) {
+					currentTimeSlot$ = timeholder$.closest('tr');
+					currentTimeSlot$.addClass('gradient3');
+				}
+
+				tempMoment.subtract( 'seconds', ( i * secsInHour ) );	// reset to beginning of sunrise/sunset time
+			}
+		}
+
+		divideTimeIntoTwelveSlots(secsInOneDayHour, 1, moment(a));	// 'day' hours - from sunrise to sunset
+		divideTimeIntoTwelveSlots(secsInOneDayHour, 13, moment(b));	// 'night' hours - from sunset today until sunrise the next day
+
+/*
 		// 'day' hours - from sunrise to sunset
 		for ( i = 0 ; i < 12 ; i +=1 ) {
 			timeholder$ = my.data.uiElt$['time'].find('#geoTime_timeHolder' + (i+1));
-			tempMoment.add( 'seconds', ( i * secsInOneDayHour ) );
-			rangeEnd = tempMoment.clone();
-			rangeEnd.add( 'seconds', secsInOneDayHour - 60);
+			tempMoment.add( 'seconds', ( i * secsInOneDayHour ) );		// starts at sunrise; gets set to beginning time of current slot
+			rangeEnd = tempMoment.clone();								// set initially to beginning time of current slot, 
+			rangeEnd.add( 'seconds', secsInOneDayHour - 60);			// add one minute less than range-end
 			timeholder$.html( tempMoment.format("h:mm a") + ' - ' + rangeEnd.format("h:mm a") ) ;
 
 			if ( now.isBefore(rangeEnd) && now.isAfter(tempMoment) ) {
@@ -38,7 +67,7 @@ var autoGEO = (function ($, my) {
 				currentTimeSlot$.addClass('gradient3');
 			}
 
-			tempMoment.subtract( 'seconds', ( i * secsInOneDayHour ) ); // reset
+			tempMoment.subtract( 'seconds', ( i * secsInOneDayHour ) ); // reset it to sunrise time
 		}
 
 		// 'night' hours - from sunset today until sunrise the next day
@@ -57,6 +86,8 @@ var autoGEO = (function ($, my) {
 
 			tempMoment.subtract( 'seconds', ( i * secsInOneNightHour ) ); // reset
 		}
+*/
+
 
 		// highlight the day of week column in time transits table;  This should be the planetary ruler of geotoday
 		// The planetary ruler of the hour is set in getAndDisplayRulers()

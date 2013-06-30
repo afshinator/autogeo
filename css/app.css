@@ -109,13 +109,9 @@ header .span2 { outline:none; }
     vertical-align: middle;
 }
 
-
-
-.tabtable td {
-    vertical-align: top;
+.timetable tr {
+        height: 65px;   
 }
-
-
 
 
 
