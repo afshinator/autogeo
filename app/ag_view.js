@@ -142,6 +142,9 @@ var autoGEO = (function ($, my) {
 
 		file = './ajax/classicquestions.html';
 		my.loadQuestions(file);
+
+		file = './ajax/planets.html';
+		my.loadHTMLintoTab(file, my.data.uiElt$['planets'] ); // can add 3rd parameter method to run when done
 	}
 
 
@@ -199,10 +202,11 @@ var autoGEO = (function ($, my) {
 				if (e.shiftKey) {					// only show figure info if shift key is pressed at same time as single-click
 					var whichFigure = $(this).data("id");
 
-					my.log('l', 'Shift-Click on house:' + whichFigure);
+					my.log('l', 'Shift-Click on planet:' + whichFigure);
 					my.playAudio('klik1', 0.2);
-					my.data.uiElt$['housetab'].load('ajax/houseinfo.html #' + whichFigure);	// use anchor within html file to load just the part we want
-					$('#appTabs li:eq(2) a').tab('show');
+					// TODO: at this time it makes no difference what planet they click on
+					// TODO: I dont understand why eq(4) isnt the right tab!
+					$('#appTabs li:eq(5) a').tab('show');
 				}
 			});
 	}
