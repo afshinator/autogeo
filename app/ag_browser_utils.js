@@ -82,11 +82,6 @@ var autoGEO = (function ($, my) {
 
 
 
-
-
-
-
-
     //
     // browserCheck() - Get the browser type and version, log it.
     // Doesn't serve much of a purpose at this point except to just log this info

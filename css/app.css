@@ -114,7 +114,9 @@ header .span2 { outline:none; }
 }
 
 
-
+.tabtable tr {
+    vertical-align: top;
+}
 
 #placeholder {
     background: #eeeeee; /* Old browsers */
@@ -125,7 +127,6 @@ header .span2 { outline:none; }
     background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
-
 }
 
 #shieldChart {
@@ -154,6 +155,15 @@ header .span2 { outline:none; }
 }
 
 
+textarea#questionBox {
+    width: 680px;
+    height: 60px;
+    border: 2px solid #cccccc;
+    padding: 5px;
+    font-family: Tahoma, sans-serif;
+    font-size: 20px;
+    background: #eee;
+}
 
 
 

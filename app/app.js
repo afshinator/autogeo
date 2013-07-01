@@ -80,13 +80,15 @@ var autoGEO = (function ($, my) {
 	my.data.uiElt$['geoloc_btn'] = $('#geoloc_btn');
 	my.data.uiElt$['planetlist'] = $('.planetlist');	// In the header
 	my.data.uiElt$['audio_toggle'] = $("#audio_toggle");
+	my.data.uiElt$['questionBox'] = $("#questionBox");	// Textarea on home tab where questions are entered
 	my.data.uiElt$['home'] = $('#home');				// Home tab	
 	my.data.uiElt$['figtab'] = $('#figtab');			// About the Figures tab
 	my.data.uiElt$['housetab'] = $('#housetab');		// About the Houses tab	
 	my.data.uiElt$['time'] = $('#time');				// Time Transits & Rulers tab
 	my.data.uiElt$['planets'] = $('#planets');			// About the Planets tab	
 	my.data.uiElt$['questions'] = $('#questions');		// Questions & Houses tab
-	my.data.uiElt$['settings'] = $('#settings');		// Program Options tab
+	my.data.uiElt$['interpts'] = $('#interpts');		// Interpretations tab	
+//	my.data.uiElt$['settings'] = $('#settings');		// Program Options tab
 
 
 	if ( my.initView === undefined ){
