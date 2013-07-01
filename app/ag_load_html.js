@@ -1,8 +1,11 @@
-// load html 
+// HTML to be injected into index.html
+//
+// Could ajax this stuff in but why load a bunch more files... this is just one extra file.
+
 
 var autoGEO = (function ($, my) {
 
-// TODO: the Shield chart table -- hardcoded until I get to loading it via ajax...
+
 var schart = '<table id="ChartTable"> \
     <tr>\
         <td></td>\
@@ -82,6 +85,25 @@ var schart = '<table id="ChartTable"> \
     </tr>\
 </table>';
 
+
+var home = '<div class="row">\
+        <div class="span3">        \
+            <span id="testpic"></span>       \
+        </div>\
+        <div class="span9">\
+            <p>Once you select the Geolocation button, your current location will appear to the left</p>\
+            <p>To do a session, you have to have a question you want answered.</p>\
+\
+            <p>If you already have a question in mind, find which house in the chart the question belongs to and double click to select that house.</p>\
+            <textarea id="questionBox" name="question">Enter your question here or choose one from the list.</textarea>\
+            <p>Some times it is better to ask some questions that others.  Take a look at what the ruler of the day and current time is for the type of question that is favorable to ask right now.</p>\
+\
+            shift-mouse click on any house in the chart, or figure above to get details.<br>\
+        </div>\
+    </div>';
+
+
+
 var figtab = '<table id="ChartTable"> \
   <p><strong>SHIFT + Single-click</strong> on any of the figures in the table above to learn more about each individual figure, its associations and attributes.</p>\
   <p>That information will stay in this tab until you choose another figure.</p>\
@@ -99,9 +121,53 @@ var housetab = '<p>Each house is associated with a different sector of life. SHI
     <p>Other special questions will have specific information in particular houses.</p>';
 
 
+var interptChoices = '<form id="interptForm" name="form1">\
+    <p>\
+        <input type="radio" name="interps" value="a"/><strong>Correct placement</strong><br/>\
+        <input type="radio" name="interps" value="b"/><strong>Basic interpretation</strong><br/>\
+        <input type="radio" name="interps" value="c"/><strong>Root of the question</strong><br/>\
+        <input type="radio" name="interps" value="d"/><strong>The 4 triplicities</strong><br/>\
+        <input type="radio" name="interps" value="e"/><strong>Elemental triplicities</strong><br/>\
+        <input type="radio" name="interps" value="g"/><strong>The houses 1</strong><br/>\
+        <input type="radio" name="interps" value="i"/><strong>Index, Part of Fortune</strong><br/>\
+        <input type="radio" name="interps" value="j"/><strong>Essential Dignities</strong><br/>\
+        <input type="radio" name="interps" value="m"/><strong>Modes of Perfection</strong><br/>\
+        <input type="radio" name="interps" value="n"/><strong>Aspects between Houses</strong><br/>\
+        <input type="radio" name="interps" value="o"/><strong>Company of Houses</strong><br/>\
+        <input type="radio" name="interps" value="r"/><strong>The Reconciler</strong><br/>\
+    </p>\
+    </form>';  
+
+var interptText = '\
+    <p>Remember:</p>\
+    <ul>\
+        <li><strong>The Querent</strong> is  the person for whom the chart has been cast, \
+        whether its you or someone else.</li>\
+        <li><strong>The Quesited</strong> is the person or thing the querent wants to know about.</li>\
+    </ul>\
+    <p align="left"><strong>Some interpretation details:</strong></p>\
+    <ul>\
+        <li><strong>Correct Placement</strong> will tell you about the reliability of the casting</li>\
+        <li><strong>Basic Interp</strong> will look at the judge and witnesses for the answer</li>\
+        <li><strong>Root of the question</strong> will show you the driving force behind the scenario</li>\
+        <li><strong>The 4 Triplicities</strong> show a broad picture of all the forces in the querents life</li>\
+        <li>Elemental triplicities</li>\
+        <li>Elemental interaction</li>\
+        <li>The Houses  1 - Interpretation of the querent, quesited, and their interaction</li>\
+        <li><strong>Modes of Perfection</strong></li>\
+        <li><strong>The Reconciler</strong></li>\
+    </ul>\
+    <p>&nbsp;</p>';
+
+
+
+    $('#home').append(home);
  	$('#shieldChart').append(schart);
     $('#figtab').append(figtab);
     $('#housetab').append(housetab);
+    $('#interptChoices').append(interptChoices);
+    $('#interptText').append(interptText);
+
 
 	return my;
 }(jQuery, autoGEO || {}));
