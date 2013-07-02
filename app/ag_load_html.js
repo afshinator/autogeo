@@ -123,18 +123,18 @@ var housetab = '<p>Each house is associated with a different sector of life. SHI
 
 var interptChoices = '<form id="interptForm" name="form1">\
     <p>\
-        <input type="radio" name="interps" value="a"/><strong>Correct placement</strong><br/>\
-        <input type="radio" name="interps" value="b"/><strong>Basic interpretation</strong><br/>\
-        <input type="radio" name="interps" value="c"/><strong>Root of the question</strong><br/>\
-        <input type="radio" name="interps" value="d"/><strong>The 4 triplicities</strong><br/>\
-        <input type="radio" name="interps" value="e"/><strong>Elemental triplicities</strong><br/>\
-        <input type="radio" name="interps" value="g"/><strong>The houses 1</strong><br/>\
-        <input type="radio" name="interps" value="i"/><strong>Index, Part of Fortune</strong><br/>\
-        <input type="radio" name="interps" value="j"/><strong>Essential Dignities</strong><br/>\
-        <input type="radio" name="interps" value="m"/><strong>Modes of Perfection</strong><br/>\
-        <input type="radio" name="interps" value="n"/><strong>Aspects between Houses</strong><br/>\
-        <input type="radio" name="interps" value="o"/><strong>Company of Houses</strong><br/>\
-        <input type="radio" name="interps" value="r"/><strong>The Reconciler</strong><br/>\
+        <input type="radio" name="interps" value="0"/><strong>Correct placement</strong><br/>\
+        <input type="radio" name="interps" value="1"/><strong>Basic interpretation</strong><br/>\
+        <input type="radio" name="interps" value="2"/><strong>Root of the question</strong><br/>\
+        <input type="radio" name="interps" value="3"/><strong>The 4 triplicities</strong><br/>\
+        <input type="radio" name="interps" value="4"/><strong>Elemental triplicities</strong><br/>\
+        <input type="radio" name="interps" value="5"/><strong>The houses 1</strong><br/>\
+        <input type="radio" name="interps" value="6"/><strong>Index, Part of Fortune</strong><br/>\
+        <input type="radio" name="interps" value="7"/><strong>Essential Dignities</strong><br/>\
+        <input type="radio" name="interps" value="8"/><strong>Modes of Perfection</strong><br/>\
+        <input type="radio" name="interps" value="9"/><strong>Aspects between Houses</strong><br/>\
+        <input type="radio" name="interps" value="10"/><strong>Company of Houses</strong><br/>\
+        <input type="radio" name="interps" value="11"/><strong>The Reconciler</strong><br/>\
     </p>\
     </form>';  
 
