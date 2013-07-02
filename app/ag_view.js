@@ -140,13 +140,23 @@ var autoGEO = (function ($, my) {
 		var file = './ajax/geomantic-hours.html';
 		my.loadRulerTimesTable(file);
 
+		//
 		file = './ajax/classicquestions.html';
 		my.loadQuestions(file);
 
+		//
 		file = './ajax/planets.html';
 		my.loadHTMLintoTab(file, my.data.uiElt$['planets'] ); // can add 3rd parameter method to run when done
 
-		my.initInterpretations();		
+		//
+        var defaults = {                    // for slimscroller
+            height: '300px',
+            distance: '4px',
+            railVisible: true,
+            wheelStep: 10
+        };
+		my.data.uiElt$['interpts'].find('#interptText').slimScroll( defaults );
+		my.initInterpretations();
 	}
 
 
