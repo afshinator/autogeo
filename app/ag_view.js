@@ -128,9 +128,9 @@ var autoGEO = (function ($, my) {
 
 
 	//
-	// initTabs() - Enable the tabs, tab switching
+	// initTabs() - Enable the tabs, inject HTML into tabs
 	function initTabs() {
-		// Handler lets you pick between the different tabs
+		// Activate all the tabs
 		$('#appTabs a').click(function (e) {
 			e.preventDefault();
 			$(this).tab('show');
@@ -145,6 +145,8 @@ var autoGEO = (function ($, my) {
 
 		file = './ajax/planets.html';
 		my.loadHTMLintoTab(file, my.data.uiElt$['planets'] ); // can add 3rd parameter method to run when done
+
+		my.initInterpretations();		
 	}
 
 
