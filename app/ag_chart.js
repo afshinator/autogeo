@@ -81,7 +81,9 @@ var autoGEO = (function ($, my) {
 		c[15] = combineFigures(c[0], c[14]);			// The Reconciler
 
 		my.data.sounds['chime'].volume(0.1).play();		// sound
-		my.log("info", "Chart derived!");
+
+		my.statusMsg("Chart derived!");
+		// my.log("info", "Chart derived!");
 	};
 
 
@@ -145,6 +147,7 @@ var autoGEO = (function ($, my) {
 
 		house$.addClass('gradient4');
 		my.data.quesitedHouse = house;
+		my.statusMsg('House of Quesited Selected');
 		// my.log('i', 'House of Quesited set: ' + house);
 	};
 

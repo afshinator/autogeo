@@ -129,6 +129,7 @@ var autoGEO = (function ($, my) {
 
     //
     // initAudio() - Load in the audio files, save them for later quick access
+    //   called by checkLocalStorage() after checking presets
     function initAudio() {
         var prefix = 'snd/';
         var files = [               // all sounds below corresponds to filenames

@@ -99,6 +99,10 @@ header .span2 { outline:none; }
 */
 
 
+#statusMsg {
+    
+}
+
 .timetable th {
     width : 80px;
     vertical-align: top;   

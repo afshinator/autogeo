@@ -9,6 +9,21 @@ var autoGEO = (function ($, my) {
 	var audioChkbx$ = $("#audio_toggle");
 
 
+	// my.statusMsg()
+	//		Put a little status message up with some animation
+	my.statusMsg = function(msg, bErr) {
+		my.data.uiElt$['statusMsg'].stop()
+									.css( {opacity: 1.0})
+									.slideDown()
+									.html( (bErr === true) ? my.label('warning', msg) : my.label('info', msg) )
+									.animate( {left: '+=90px', top: '+=150px', opacity: 0.25}, 7000, 'linear',
+										function() {
+											$(this).slideUp();
+										});
+	};
+
+
+
 
 	// my.log() -- 
 	//		to :  "info" or "log" or "err"       (the type of log message)
@@ -74,6 +89,7 @@ var autoGEO = (function ($, my) {
 
 		}
 		else if ( (to === "err") || (to === "error") ) {
+			my.statusMsg('Error caught - check log!', true);
 			console.log("ERROR:" + msg);
 			clickOnAndAppendIfNotActive(2);
 		}
@@ -128,7 +144,7 @@ var autoGEO = (function ($, my) {
 
 
 	//
-	// initTabs() - Enable the tabs, inject HTML into tabs
+	// initTabs() - Enable the tabs, inject HTML into tabs, setup handlers for click on interpts
 	function initTabs() {
 		// Activate all the tabs
 		$('#appTabs a').click(function (e) {
@@ -140,15 +156,15 @@ var autoGEO = (function ($, my) {
 		var file = './ajax/geomantic-hours.html';
 		my.loadRulerTimesTable(file);
 
-		//
+		// Questions in their Houses tab
 		file = './ajax/classicquestions.html';
 		my.loadQuestions(file);
 
-		//
+		// Planets Tab
 		file = './ajax/planets.html';
 		my.loadHTMLintoTab(file, my.data.uiElt$['planets'] ); // can add 3rd parameter method to run when done
 
-		//
+		// Interpretations tab
         var defaults = {                    // for slimscroller
             height: '300px',
             distance: '4px',
@@ -196,8 +212,9 @@ var autoGEO = (function ($, my) {
 		my.data.uiElt$['geoloc_btn'].click(function(e) {
 			e.preventDefault();
 			my.playAudio('klik1', 0.2);
-			my.log('l', "Geolocation button was pressed");
+//			my.log('l', "Geolocation button was pressed");
 			my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
+			my.statusMsg('Derived hourly rulers');
 		});
 
 
@@ -371,8 +388,9 @@ var autoGEO = (function ($, my) {
 
 	//  only called upon app startup
 	my.initView = function() {
+		my.statusMsg("Welcome to AutoGeomancy!");
 		initLog();							// Put together logging system
-		my.initBrowser();					// Get App presets, browser make/version, catch resize event
+		my.initBrowser();					// Get App presets, browser make/version, catch resize event, init audio, 
 		initTabs();							// Load html and inject into appropriate tabs
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
 		initClockAndTime();					// Date and Time, geolocation in header
