@@ -214,7 +214,6 @@ var autoGEO = (function ($, my) {
 			my.playAudio('klik1', 0.2);
 //			my.log('l', "Geolocation button was pressed");
 			my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
-			my.statusMsg('Derived hourly rulers');
 		});
 
 

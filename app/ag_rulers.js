@@ -158,6 +158,7 @@ var autoGEO = (function ($, my) {
 
 			initGeoTimeDivisions();
 			getAndDisplayRulers();
+			my.statusMsg('Derived hourly rulers');
 		}
 
 		function geoerror(error) {

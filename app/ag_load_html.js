@@ -124,8 +124,8 @@ var housetab = '<p>Each house is associated with a different sector of life. SHI
 var interptChoices = '<form id="interptForm" name="form1">\
     <p>\
         <input type="radio" name="interps" value="0"/><strong>Correct placement</strong><br/>\
-        <input type="radio" name="interps" value="1"/><strong>Basic interpretation</strong><br/>\
-        <input type="radio" name="interps" value="2"/><strong>Root of the question</strong><br/>\
+        <input type="radio" name="interps" value="1"/><strong>The Way of the Points</strong><br/>\
+        <input type="radio" name="interps" value="2"/><strong></strong><br/>\
         <input type="radio" name="interps" value="3"/><strong>The 4 triplicities</strong><br/>\
         <input type="radio" name="interps" value="4"/><strong>Elemental triplicities</strong><br/>\
         <input type="radio" name="interps" value="5"/><strong>The houses 1</strong><br/>\
