@@ -56,7 +56,7 @@ var autoGEO = (function ($, my) {
     //      play(which, volume) - play a given sound at given volume
     //
     my.audio = function() {
-        var View = new my.viewConstructor($("#audio_toggle"));
+        var View = new my.viewConstructor();
         var isLoaded = false;
         var prefix = 'snd/';        // path prefix
         var files = [               // all sounds below corresponds to filenames
@@ -76,6 +76,8 @@ var autoGEO = (function ($, my) {
                             my.log("l", "-- loaded sound file: " + files[i]);
                         }
                         isLoaded = true;
+
+                        View.init(undefined, my.audioView($("#audio_toggle")));
                         return this;
             },
             play:   function(whichSound, volume) { // Play whichSound at volume, if Audio is enabled

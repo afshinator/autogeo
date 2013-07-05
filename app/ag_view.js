@@ -182,47 +182,61 @@ var autoGEO = (function ($, my) {
 		// to check  $('form #mycheckbox').is(':checked');
 		*/
 
-my.viewConstructor = function(element$) {
-	var el$ = element$;
+	my.viewConstructor = function(element$) {
+		var el$ = element$;
 
-	return {
-		init: function(el, fx, elAncestor, tag) {
-			el$ = el$ || el;		// choose el$ to be itself if its already set, or else el if first parameter is not undefined
+		return {
+			init: function(el, fx, elAncestor, tag) {
+				el$ = el$ || el;		// choose el$ to be itself if its already set, or else el if first parameter is not undefined
 
-			if ( el$ === undefined && elAncestor !== undefined) {	// 3rd parameter is where we can start looking for it
-				el$ = elAncestor$.find(tag);
+				if ( el$ === undefined && elAncestor !== undefined) {	// 3rd parameter is where we can start looking for it
+					el$ = elAncestor$.find(tag);
+				}
+
+				my.log('i', 'el$ = ' + el$);
+				if (fx) { fx();}
 			}
-
-my.log('i', 'el$ = ' + el$);
-			if (fx) { fx();}
-		}
+		};
 	};
-};
+
+
+
+	my.audioView = function(el$) {
+			el$.click(function() {
+				if ( $(this).is(':checked') ) {	// Audio toggled  on
+					my.settings.set('audio', true);			// my.data.audio = true;
+					my.audio.unmute().play('spring1', 0.2);
+				}
+				else
+				{								// Audio toggled off
+					my.settings.set('audio', false);			// my.data.audio = false;
+					my.audio.mute();
+				}
+			});
+	};
+
+
+
+
+
 
 	//
 	// initButtonsAndControls() - Event handlers for Geolocation button and Audio On/Off checkbox
 	function initButtonsAndControls() {
+/*
 		// Click handler for AUDIO on/off checkbox
 		audioChkbx$.click(function() {
 			if ( $(this).is(':checked') ) {	// Audio toggled  on
 				my.settings.set('audio', true);			// my.data.audio = true;
-				Howler.unmute();			// unmute all sounds  
-				my.audio.play('spring1', 0.2);
+				my.audio.unmute().play('spring1', 0.2);
 			}
 			else
 			{								// Audio toggled off
 				my.settings.set('audio', false);			// my.data.audio = false;
-				Howler.mute();				// mute all sounds, not sure if this actually stops them
-
-				// loop through all sounds, stop them in case mute() just lowered their volume...
-				for (var snd in my.data.sounds) {
-					if (my.data.sounds.hasOwnProperty(snd)) {
-						my.data.sounds[snd].stop();
-					}
-				}
+				my.audio.mute();
 			}
 		});
-
+*/
 
 		// Click handler for GEOLOCATION button
 		my.data.uiElt$['geoloc_btn'].click(function(e) {
