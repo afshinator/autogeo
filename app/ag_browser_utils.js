@@ -6,6 +6,103 @@ var autoGEO = (function ($, my) {
     var bAudioLoaded = false;
 
 
+
+
+
+
+    // my.settings wraps the app settings and presets data
+    //      init() -    get all settings from LocalStorage, return them as key vals
+    //          specifically for now: AUDIO, GEOLOCATION
+    //      get()   - return all settings as key-vals
+    //      set(key, val)   - set a particular key to a value
+    //      save()  - save all settings out to locastorage.
+    my.settings = function() {
+        var audio = true;                       // default values that will be over-written by what presets are in localstorage
+        var geolocation = true;
+
+        return {
+            init:   function() {                // get all setting from LocalStorage, return them as key vals
+                        if ( !store.enabled ) { // store comes from store.js
+                            log("err", "No local storage available (for presets)");
+                        } else {
+                            var presets = store.get('autoGEO');         // get key vals for our app ??? TODO
+                            if ( presets ) {    // presets found in localstorage
+                                audio = presets.audio;
+                                geolocation = presets.geolocation;
+                            }
+                            else {            // No presets were there
+                                my.log("log", "No app PRESETS found in localstorage. Going with defaults.");
+                            }
+                        }
+                        return { 'audio':audio, 'geolocation':geolocation};
+                    },
+            get:    function() {                // return all settings as key-vals
+                        return { 'audio':audio, 'geolocation':geolocation};
+                    },
+            set:    function(key, val) {        // set a specific setting
+                        if ( key === 'audio') { audio = val; }
+                        else if ( key === 'geolocation') { geolocation = val; }
+                        else {
+                            my.log('e', 'my.setting.set() received an unknown app setting key value:' + key);
+                        }
+                    },
+            save:   function() {                // save all settings to LocalStorage
+                        store.set('autoGEO', { 'audio':audio, 'geolocation':geolocation});
+                    }
+        };
+    }();
+
+
+
+    //
+    // check LocalStorage for presets, get the presets
+    // if geolocation was set in the presets, do it immediately,
+    function checkLocalStorage() {
+        var presets;
+
+        if ( !store.enabled ) {
+            log("err", "No local storage available (for presets)");
+        } else {
+            // Get saved settings/presets
+            presets = store.get('autoGEO');
+
+            if ( presets ) {        // Presets/settings found
+
+                // --- AUDIO
+                my.data.audio = presets.audio;
+
+                // --- GEOLOCATION
+                my.data.geolocation = presets.geolocation;
+
+                if (my.data.geolocation) {
+                    // uncomment next line if you want the preset to auto kickoff geolocation
+                    // my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
+                    //geolocChkbx$.attr('checked', true);
+                } else {
+                    // TODO: disable geolocation button
+                    //geolocChkbx$.attr('checked', false);
+                }
+
+            } else {            // No presets were there
+                my.log("log", "No AutoGEO app PRESET settings saved in this browsers localstorage.");
+            }
+        }
+
+        if (my.data.audio) {
+            // Audio is on either through app default or presets   
+            my.data.uiElt$['audio_toggle'].attr('checked', true);   // Set the audio checkbox
+            initAudio();                                            // Load Audio & get them ready for play
+            my.data.sounds['startup_11'].volume(0.2).play();        // Play startup sound
+        } else {
+            my.data.uiElt$['audio_toggle'].attr('checked', false);
+        }
+
+    }
+
+
+
+
+
     // Return negative-number safe x modulus y math operation
     // Need this fx because modulus negative numbers is broken in JS
     my.mod = function(x, y) {
@@ -86,6 +183,7 @@ var autoGEO = (function ($, my) {
     // browserCheck() - Get the browser type and version, log it.
     // Doesn't serve much of a purpose at this point except to just log this info
     // Requires: logging system to be set up.
+    //  TODO: add this information to a SESSION
     function browserCheck() {
         var b;
         var v = $.browser.version;
@@ -106,24 +204,6 @@ var autoGEO = (function ($, my) {
     }
 
 
-
-    //
-    // catchBrowserResize() - Deal with browser resize event(s)
-    // Resizing the browser fires many sporadic resize events.  We want to only catch the last resize
-    // event in the series and then deal with it.
-    // Requires: logging system to be set up.
-    function catchBrowserResize() {
-        $(window).smartresize(function(){
-            var w = $("body").width();
-            my.data.containerWidth = w;
-            // TODO: do whatever depends on browser resize...
-            if (my.log === undefined) {
-                console.log('(no log fx)smartresize called: '+ w);
-            } else {
-                my.log("log", "Browser Resize events caught; width:" + w);
-            }
-        });
-    }
 
 
 
@@ -150,60 +230,36 @@ var autoGEO = (function ($, my) {
 
 
 
-    //
-    // check LocalStorage for presets, get the presents
-    // if geolocation was set in the presets, do it!
-    function checkLocalStorage() {
-        var presets;
-
-        if ( !store.enabled ) {
-            log("err", "No local storage available (for presets)");
-        } else {
-            // Get saved settings/presets
-            presets = store.get('autoGEO');
-
-            if ( presets ) {        // Presets/settings found
-
-                // --- AUDIO
-                my.data.audio = presets.audio;
-
-                // --- GEOLOCATION
-                my.data.geolocation = presets.geolocation;
-
-                if (my.data.geolocation) {
-                    // uncomment next line if you want the preset to auto kickoff geolocation
-                    // my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
-                    //geolocChkbx$.attr('checked', true);
-                } else {
-                    // TODO: disable geolocation button
-                    //geolocChkbx$.attr('checked', false);
-                }
-
-            } else {            // No presets were there
-                my.log("log", "No AutoGEO app PRESET settings saved in this browsers localstorage.");
-            }
-        }
-
-        if (my.data.audio) {
-            // Audio is on either through app default or presets   
-            my.data.uiElt$['audio_toggle'].attr('checked', true);   // Set the audio checkbox
-            initAudio();                                            // Load Audio & get them ready for play
-            my.data.sounds['startup_11'].volume(0.2).play();        // Play startup sound
-        } else {
-            my.data.uiElt$['audio_toggle'].attr('checked', false);
-        }
-
-    }
-
-
-
 
     //
     // my.initBrowser() - Called by the view
     my.initBrowser = function() {
         browserCheck();         // Log what browser, version we're running on
-        catchBrowserResize();   // Deal with browser resizes
-        checkLocalStorage();    // Check for app presets in LocalStorage
+
+        var settings = my.settings.init();     // Get app setting presets from localstorage
+
+        if ( settings.audio === true ) {
+            // Audio is on either through default or app settings previously stored in localstorage
+            my.log('l', 'Setting for AUDIO is on - kicking off initAudio()...');
+            my.data.uiElt$['audio_toggle'].attr('checked', true);   // Set the audio checkbox
+            initAudio();                                            // Load Audio & get them ready for play
+            my.data.sounds['startup_11'].volume(0.2).play();        // Play startup sound
+        }
+        else {
+            my.data.uiElt$['audio_toggle'].attr('checked', false);
+        }
+
+        if ( settings.geolocation === true ) {
+            // my.log('l', 'Setting for geolocation is on - kicking it off...');            
+            // uncomment next line if you want the preset to auto kickoff geolocation
+            // my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
+            //geolocChkbx$.attr('checked', true);
+        } else {
+            // TODO: disable geolocation button
+            //geolocChkbx$.attr('checked', false);
+        }
+
+        // checkLocalStorage();    // Check for app presets in LocalStorage
     };
 
 

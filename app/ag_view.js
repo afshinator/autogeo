@@ -189,13 +189,13 @@ var autoGEO = (function ($, my) {
 		// Click handler for AUDIO on/off checkbox
 		audioChkbx$.click(function() {
 			if ( $(this).is(':checked') ) {	// Audio toggled  on
-				my.data.audio = true;
+				my.settings.set('audio', true);			// my.data.audio = true;
 				Howler.unmute();			// unmute all sounds  
 				my.playAudio('spring1', 0.2);
 			}
 			else
 			{								// Audio toggled off
-				my.data.audio = false;
+				my.settings.set('audio', false);			// my.data.audio = false;
 				Howler.mute();				// mute all sounds, not sure if this actually stops them
 
 				// loop through all sounds, stop them in case mute() just lowered their volume...
@@ -389,7 +389,7 @@ var autoGEO = (function ($, my) {
 	my.initView = function() {
 		my.statusMsg("Welcome to AutoGeomancy!");
 		initLog();							// Put together logging system
-		my.initBrowser();					// Get App presets, browser make/version, catch resize event, init audio, 
+		my.initBrowser();					// Find browser make/version, Get app presets for Audio & Geolocation
 		initTabs();							// Load html and inject into appropriate tabs
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
 		initClockAndTime();					// Date and Time, geolocation in header
