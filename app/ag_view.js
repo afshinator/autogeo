@@ -191,7 +191,7 @@ var autoGEO = (function ($, my) {
 			if ( $(this).is(':checked') ) {	// Audio toggled  on
 				my.settings.set('audio', true);			// my.data.audio = true;
 				Howler.unmute();			// unmute all sounds  
-				my.playAudio('spring1', 0.2);
+				my.audio.play('spring1', 0.2);
 			}
 			else
 			{								// Audio toggled off
@@ -211,7 +211,7 @@ var autoGEO = (function ($, my) {
 		// Click handler for GEOLOCATION button
 		my.data.uiElt$['geoloc_btn'].click(function(e) {
 			e.preventDefault();
-			my.playAudio('klik1', 0.2);
+			my.audio.play('klik1', 0.2);
 //			my.log('l', "Geolocation button was pressed");
 			my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
 		});
@@ -231,7 +231,7 @@ var autoGEO = (function ($, my) {
 					var whichFigure = $(this).data("id");
 
 					my.log('l', 'Shift-Click on planet:' + whichFigure);
-					my.playAudio('klik1', 0.2);
+					my.audio.play('klik1', 0.2);
 					// TODO: at this time it makes no difference what planet they click on
 					// TODO: I dont understand why eq(4) isnt the right tab!
 					$('#appTabs li:eq(5) a').tab('show');
@@ -299,7 +299,7 @@ var autoGEO = (function ($, my) {
 						var whichFigure = $(this).data("id");
 
 						my.log('l', 'Shift-Click on ' + my.data.figs[whichFigure].name);
-						my.playAudio('klik1', 0.2);
+						my.audio.play('klik1', 0.2);
 						my.data.uiElt$['figtab'].load('ajax/figinfo.html #' + whichFigure);	// use anchor within html file to load just the part we want
 						$('#appTabs li:eq(1) a').tab('show');
 					}
@@ -363,7 +363,7 @@ var autoGEO = (function ($, my) {
 					whichFigure = whichFigure.substring(5);
 
 					my.log('l', 'Shift-Click on house:' + whichFigure);
-					my.playAudio('klik1', 0.2);
+					my.audio.play('klik1', 0.2);
 					my.data.uiElt$['housetab'].load('ajax/houseinfo.html #' + whichFigure);	// use anchor within html file to load just the part we want
 					$('#appTabs li:eq(2) a').tab('show');
 				}

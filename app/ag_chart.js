@@ -80,7 +80,7 @@ var autoGEO = (function ($, my) {
 
 		c[15] = combineFigures(c[0], c[14]);			// The Reconciler
 
-		my.data.sounds['chime'].volume(0.1).play();		// sound
+		my.audio.play('chime', 0.1);					// sound
 
 		my.statusMsg("Chart derived!");
 		// my.log("info", "Chart derived!");
@@ -107,7 +107,8 @@ var autoGEO = (function ($, my) {
 			my.log("log", "Figure : " + i + " " + my.data.figs[i].name + " chosen for House " + (my.data.knownMothers + 1), false);
 			my.data.knownMothers += 1;
 
-			my.data.sounds['whoosh4'].volume(0.1).play();		// sound
+			my.audio.play('whoosh4', 0.1);		// sound
+
 			// all four mothers are chosen, so kick off deriving the whole chart
 			if (my.data.knownMothers > 3) {
 				my.generateChart();				// derive chart & store in internal data structure
@@ -132,7 +133,7 @@ var autoGEO = (function ($, my) {
 	//			house - number of house selected for house of quested to set.
 	//			house$ - optional argument;  (for quesited house selection from questions list)
 	my.setQuesitedHouse = function(house, house$) {
-		my.playAudio('whoosh1', 0.2);
+		my.audio.play('whoosh1', 0.2);
 
 		// If quesited House has been previously set, get rid of UI effect
 		if ( my.data.quesitedHouse !== 0 ) {
