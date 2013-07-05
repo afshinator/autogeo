@@ -112,7 +112,7 @@ var autoGEO = (function ($, my) {
 			var whichInterpt = $(this).val();
 			var interptResults = null;
 
-			my.playAudio('klik1', 0.6);
+			my.audio.play('klik1', 0.6);
 			// my.log('l', 'Interpretation ' + whichInterpt + ' clicked.');
 
 			// delegate checking for if interpts has already run, whether chart is derived yet, etc... to ...
@@ -184,7 +184,7 @@ var autoGEO = (function ($, my) {
 				// assert ( typeof interptStatus[which].interpret === "function"  )
 				iResult += ( typeof interptStatus[which].interpret === "function" ) ?  interptStatus[which].interpret() : "";		// where the action happens
 				interptStatus[which].done = true;
-				my.playAudio('spring1', 0.4);
+				my.audio.play('spring1', 0.4);
 				my.log('i', iResult);				// todo: shouldn't really be logging this from here.
 			}
 

@@ -7,11 +7,11 @@ var autoGEO = (function ($, my) {
 
 
     // my.settings wraps the app settings and presets data
-    //      init() -    get all settings from LocalStorage, return them as key vals
-    //          specifically for now: AUDIO, GEOLOCATION
-    //      get()   - return all settings as key-vals
+    //      init()          -  get all settings from LocalStorage, return them as key vals
+    //                          specifically for now: AUDIO, GEOLOCATION
+    //      get()           - return all settings as key-vals
     //      set(key, val)   - set a particular key to a value
-    //      save()  - save all settings out to locastorage.
+    //      save()          - save all settings out to locastorage.
     my.settings = function() {
         var audio = true;                       // default values that will be over-written by what presets are in localstorage
         var geolocation = true;
@@ -50,7 +50,13 @@ var autoGEO = (function ($, my) {
 
 
 
+
+    // my.audio wraps all the AUDIO stuff including loading the files and playing individual sounds
+    //      init()              - load all the sound files so they are ready to play  (uses HOWLER.js)
+    //      play(which, volume) - play a given sound at given volume
+    //
     my.audio = function() {
+        var View = new my.viewConstructor($("#audio_toggle"));
         var isLoaded = false;
         var prefix = 'snd/';        // path prefix
         var files = [               // all sounds below corresponds to filenames
@@ -70,6 +76,7 @@ var autoGEO = (function ($, my) {
                             my.log("l", "-- loaded sound file: " + files[i]);
                         }
                         isLoaded = true;
+                        return this;
             },
             play:   function(whichSound, volume) { // Play whichSound at volume, if Audio is enabled
                         if ( my.settings.get()['audio'] === false ) { return; } // Audio setting is off, do nothing.
@@ -80,53 +87,20 @@ var autoGEO = (function ($, my) {
                         }
 
                         sounds[whichSound].volume(volume).play();
+                        return this;
+            },
+            mute: function() {
+                        Howler.mute();        // mute all sounds, not sure if this actually stops them
+                        return this;
+            },
+            unmute: function() {
+                        Howler.unmute();            // unmute all sounds
+                        return this;
             }
         };
     }();
 
 
-/*
-    //
-    // playAudio() - Play whichSound at howLoud volume if Audio checkbox is clicked on
-    //  Will also load the sounds if they haven't been loaded at startup.
-    my.playAudio = function(whichSound, howLoud) {
-        if ( my.data.audio === false) { return; } // Audio checkbox indicates no sound so do nothing.
-        // else audio is enabled...
-        // Upon app startup, if presets indicated no audio, then sounds were not loaded,
-        // Since audio checkbox on now, see if we need to load sounds before playing indicated sound
-        if ( bAudioLoaded === false ) {
-            initAudio();
-        }
-
-        // Now we're ready to play whatever sound
-        my.data.sounds[whichSound].volume(howLoud).play();
-    };
-
-
-
-    //
-    // initAudio() - Load in the audio files, save them for later quick access
-    //   called by checkLocalStorage() after checking presets
-    function initAudio() {
-        var prefix = 'snd/';
-        var files = [               // all sounds below corresponds to filenames
-                'drip1', 'icedispense', 'klik1', 'spring1', 'startup_11',
-                'whoosh1', 'whoosh4', 'plink_06', 'chime'
-            ];
-
-        for (i = 0; i < files.length; i += 1 ) {
-            my.log("l", "--loaded sound: " + files[i]);
-            my.data.sounds[files[i]] = new Howl({               // TODO: error handler if snd doesnt load
-                urls: [prefix + files[i] + '.mp3', prefix + files[i] + '.ogg'],
-                autoplay: false
-            });
-        }
-
-        bAudioLoaded = true;
-    }
-
-*/
-my.playAudio = function(w,v) { my.audio.play(w,v); };
 
 
     // Return negative-number safe x modulus y math operation
@@ -219,7 +193,10 @@ my.playAudio = function(w,v) { my.audio.play(w,v); };
 
 
     //
-    // my.initBrowser() - Called by the view
+    // my.initBrowser() - 
+    //      Get and log browser version,  get app presets from localstorage, initialize AUDIO
+    //      if presets indicate it then load up all sounds and kick of Geolocation.
+    // 
     my.initBrowser = function() {
         browserCheck();                         // Log browser, version we're running on
 
@@ -229,9 +206,8 @@ my.playAudio = function(w,v) { my.audio.play(w,v); };
             // Audio is on either through default or app settings previously stored in localstorage
             my.log('l', 'Setting for AUDIO is on - kicking off initAudio()...');
             my.data.uiElt$['audio_toggle'].attr('checked', true);   // Set the audio checkbox
-            my.audio.init(); //initAudio();         
-            my.audio.play('startup_11', 0.2)                                   // Load Audio & get them ready for play
-            // my.data.sounds['startup_11'].volume(0.2).play();        // Play startup sound
+            my.audio.init();                                        // Load Audio & get them ready for play    
+            my.audio.play('startup_11', 0.2);                       // Play startup sound
         }
         else {
             my.data.uiElt$['audio_toggle'].attr('checked', false);

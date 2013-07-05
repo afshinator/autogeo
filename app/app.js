@@ -12,8 +12,8 @@ var autoGEO = (function ($, my) {
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
 		knownMothers: 0,							// # of chart mothers that have been divined/entered...
 		quesitedHouse : 0,							// will hold the # of the House of Quesited
-		audio : true,								// will be tied to UI checkbox, preset
-		geolocation: true,							// will be tied to UI checkbox, preset
+//		audio : true,								// will be tied to UI checkbox, preset
+//		geolocation: true,							// will be tied to UI checkbox, preset
 		now: undefined,								// time right now updated by the clock, moment object
 		latitude: undefined,						// Result of geolocation
 		longitude: undefined,						// Result of geolocation
@@ -21,7 +21,7 @@ var autoGEO = (function ($, my) {
 		sunsettoday: undefined,						//		used to divide day and night into 12 sections....
 		sunrise2moro: undefined,					//		will be Date() objects
 		snapshot: undefined,						// url pointing to google pic of geolocation define area
-		sounds : {},								// will hold howler sounds loaded from file.
+//		sounds : {},								// will hold howler sounds loaded from file.
 		chart: [],									// Will hold the built chart
 		figs : []
 	};
@@ -75,6 +75,13 @@ var autoGEO = (function ($, my) {
 
 	// Some html elements will be accessed over and over again, and across the app, so get the
 	// referece to them now and store it away so it can provide quick acess later.
+
+	// These are basic divisions to speed up caching other elements later
+	my.data.uiElt$['header'] = $('header');
+	my.data.uiElt$['belowHeader'] = $('#belowHeader');
+
+
+
 	my.data.uiElt$['statusMsg'] = $('#statusMsg');		// Interpretations tab	
 	my.data.uiElt$['ChartTable'] = $('#ChartTable');
 	my.data.uiElt$['shieldChart'] = $('#shieldChart');

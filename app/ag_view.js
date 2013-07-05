@@ -182,6 +182,22 @@ var autoGEO = (function ($, my) {
 		// to check  $('form #mycheckbox').is(':checked');
 		*/
 
+my.viewConstructor = function(element$) {
+	var el$ = element$;
+
+	return {
+		init: function(el, fx, elAncestor, tag) {
+			el$ = el$ || el;		// choose el$ to be itself if its already set, or else el if first parameter is not undefined
+
+			if ( el$ === undefined && elAncestor !== undefined) {	// 3rd parameter is where we can start looking for it
+				el$ = elAncestor$.find(tag);
+			}
+
+my.log('i', 'el$ = ' + el$);
+			if (fx) { fx();}
+		}
+	};
+};
 
 	//
 	// initButtonsAndControls() - Event handlers for Geolocation button and Audio On/Off checkbox
