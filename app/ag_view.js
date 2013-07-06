@@ -182,7 +182,7 @@ var autoGEO = (function ($, my) {
 		// to check  $('form #mycheckbox').is(':checked');
 		*/
 
-	my.viewConstructor = function(element$) {
+	my.ViewConstructor = function(element$) {
 		var el$ = element$;
 
 		return {
@@ -194,25 +194,39 @@ var autoGEO = (function ($, my) {
 				}
 
 				my.log('i', 'el$ = ' + el$);
-				if (fx) { fx();}
+				if (fx) { fx(el$);}
+			},
+			exec: function(fx, params) {
+				// assert fx === function
+				fx(params);
 			}
 		};
 	};
 
 
-
+	// The view for audio consists of the checkbox for turning sound on/off
+	//
 	my.audioView = function(el$) {
-			el$.click(function() {
-				if ( $(this).is(':checked') ) {	// Audio toggled  on
-					my.settings.set('audio', true);			// my.data.audio = true;
-					my.audio.unmute().play('spring1', 0.2);
-				}
-				else
-				{								// Audio toggled off
-					my.settings.set('audio', false);			// my.data.audio = false;
-					my.audio.mute();
-				}
-			});
+		// initial state of checkbox, 
+		if (! my.audio.isMuted() ) {
+			el$.attr('checked', true);
+		}
+		else {
+			el$.attr('checked', true);
+		}
+
+		// click handler for audio on/off checkbox 
+		el$.click(function() {
+			if ( $(this).is(':checked') ) {				// Audio toggled  on
+//				my.settings.set('audio', true);			// my.data.audio = true;
+				my.audio.unmute().play('spring1', 0.2);
+			}
+			else
+			{								// Audio toggled off
+//				my.settings.set('audio', false);			// my.data.audio = false;
+				my.audio.mute();
+			}
+		});
 	};
 
 

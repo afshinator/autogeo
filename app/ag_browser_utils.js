@@ -5,14 +5,12 @@ var autoGEO = (function ($, my) {
 	// vars for only this module
     var bAudioLoaded = false;
 
-
-    // my.settings wraps the app settings and presets data
-    //      init()          -  get all settings from LocalStorage, return them as key vals
-    //                          specifically for now: AUDIO, GEOLOCATION
-    //      get()           - return all settings as key-vals
-    //      set(key, val)   - set a particular key to a value
-    //      save()          - save all settings out to locastorage.
-    my.settings = function() {
+    // my.presets() - 
+    //      init() - Load the presets from localstorage if they exists, if not then set defaults. returns presets
+    //      get() - Returns presets as key vals 
+    //      set(key, val) - Sets a certain preset
+    //      save - Saves presets to Localstorage
+    my.presets = function() {
         var audio = true;                       // default values that will be over-written by what presets are in localstorage
         var geolocation = true;
 
@@ -51,12 +49,14 @@ var autoGEO = (function ($, my) {
 
 
 
+
     // my.audio wraps all the AUDIO stuff including loading the files and playing individual sounds
     //      init()              - load all the sound files so they are ready to play  (uses HOWLER.js)
     //      play(which, volume) - play a given sound at given volume
     //
     my.audio = function() {
-        var View = new my.viewConstructor();
+        var view = new my.ViewConstructor();
+        var muted = true;
         var isLoaded = false;
         var prefix = 'snd/';        // path prefix
         var files = [               // all sounds below corresponds to filenames
@@ -66,7 +66,8 @@ var autoGEO = (function ($, my) {
         var sounds = {};            // will hold loaded in files as Howler objects
 
         return {
-            init:   function() {
+            init:   function(mute) {
+                        muted = mute;
                         // assert ( isLoaded === false )
                         for (var i = 0; i < files.length; i += 1 ) {
                             sounds[files[i]] = new Howl({               // TODO: error handler if snd doesnt load
@@ -77,11 +78,11 @@ var autoGEO = (function ($, my) {
                         }
                         isLoaded = true;
 
-                        View.init(undefined, my.audioView($("#audio_toggle")));
+                        view.init($("#audio_toggle"), my.audioView);
                         return this;
             },
             play:   function(whichSound, volume) { // Play whichSound at volume, if Audio is enabled
-                        if ( my.settings.get()['audio'] === false ) { return; } // Audio setting is off, do nothing.
+                        if ( muted === true ) { return this; } // Audio setting is off, do nothing.
 
                         if ( isLoaded === false ) {
                             my.log('l', 'Loading audio after app startup.');
@@ -91,12 +92,17 @@ var autoGEO = (function ($, my) {
                         sounds[whichSound].volume(volume).play();
                         return this;
             },
+            isMuted: function() {
+                return (muted === true);
+            },
             mute: function() {
                         Howler.mute();        // mute all sounds, not sure if this actually stops them
+                        muted = true;
                         return this;
             },
             unmute: function() {
                         Howler.unmute();            // unmute all sounds
+                        muted = false;
                         return this;
             }
         };
@@ -200,22 +206,20 @@ var autoGEO = (function ($, my) {
     //      if presets indicate it then load up all sounds and kick of Geolocation.
     // 
     my.initBrowser = function() {
-        browserCheck();                         // Log browser, version we're running on
+        browserCheck();                         // Log browser version we're running on
 
-        var settings = my.settings.init();     // Get app setting presets from localstorage
+        var presets = my.presets.init();        // Get app setting presets from localstorage
 
-        if ( settings.audio === true ) {
-            // Audio is on either through default or app settings previously stored in localstorage
+        if ( presets.audio === true ) {
             my.log('l', 'Setting for AUDIO is on - kicking off initAudio()...');
-            my.data.uiElt$['audio_toggle'].attr('checked', true);   // Set the audio checkbox
-            my.audio.init();                                        // Load Audio & get them ready for play    
-            my.audio.play('startup_11', 0.2);                       // Play startup sound
+            my.audio.init(false);                   // Load Audio & get them ready for play    
+            my.audio.play('startup_11', 0.2);       // Play startup sound
         }
         else {
-            my.data.uiElt$['audio_toggle'].attr('checked', false);
+            my.audio.init(true);                    // Init audio with mute on
         }
 
-        if ( settings.geolocation === true ) {
+        if ( presets.geolocation === true ) {
             // my.log('l', 'Setting for geolocation is on - kicking it off...');            
             // uncomment next line if you want the preset to auto kickoff geolocation
             // my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
@@ -225,7 +229,7 @@ var autoGEO = (function ($, my) {
             //geolocChkbx$.attr('checked', false);
         }
 
-        // checkLocalStorage();    // Check for app presets in LocalStorage
+
     };
 
 

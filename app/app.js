@@ -7,7 +7,7 @@ var autoGEO = (function ($, my) {
 	// share variable across the app via autoGEO.data.name
 	my.data = {
 		name : "afshin",
-		presets : {},								// key:value --> app presets like audio/geolocation/... ?
+//		presets : {},								// key:value --> app presets like audio/geolocation/... ?
 		uiElt$ : {},								// key:html elts  --> val: jquery selections; for cross app quick access
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
 		knownMothers: 0,							// # of chart mothers that have been divined/entered...
