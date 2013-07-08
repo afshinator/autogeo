@@ -2,52 +2,37 @@
 
 var autoGEO = (function ($, my) {
 
-	// vars for only this module
-    var bAudioLoaded = false;
 
-    // my.presets() - 
-    //      init() - Load the presets from localstorage if they exists, if not then set defaults. returns presets
-    //      get() - Returns presets as key vals 
-    //      set(key, val) - Sets a certain preset
-    //      save - Saves presets to Localstorage
-    my.presets = function() {
-        var audio = true;                       // default values that will be over-written by what presets are in localstorage
-        var geolocation = true;
+    // 
+    // Wrap txt with a <span> for Bootstrap class that format the text nicely
+    // see http://twitter.github.io/bootstrap/components.html#labels-badges
+    // Assumes: logging system is up.
+    my.label = function(label, txt) {
+        var wrappedTxt = '<span class="label';
 
-        return {
-            init:   function() {                // get all setting from LocalStorage, return them as key vals
-                        if ( !store.enabled ) { // store comes from store.js
-                            log("err", "No local storage available (for presets)");
-                        } else {
-                            var presets = store.get('autoGEO');         // get key vals for our app ??? TODO
-                            if ( presets ) {    // presets found in localstorage
-                                audio = presets.audio;
-                                geolocation = presets.geolocation;
-                            }
-                            else {            // No presets were there
-                                my.log("log", "No app PRESETS found in localstorage. Going with defaults.");
-                            }
-                        }
-                        return { 'audio':audio, 'geolocation':geolocation};
-            },
-            get:    function() {                // return all settings as key-vals
-                        return { 'audio':audio, 'geolocation':geolocation};
-            },
-            set:    function(key, val) {        // set a specific setting
-                        if ( key === 'audio') { audio = val; }
-                        else if ( key === 'geolocation') { geolocation = val; }
-                        else {
-                            my.log('e', 'my.setting.set() received an unknown app setting key value:' + key);
-                        }
-            },
-            save:   function() {                // save all settings to LocalStorage
-                        store.set('autoGEO', { 'audio':audio, 'geolocation':geolocation});
-            }
-        };
-    }();
+        switch(label) {
+            case "default":
+                wrappedTxt += '">';                 break;
+            case "success":
+                wrappedTxt += ' label-success">';   break;
+            case "warning":
+                wrappedTxt += ' label-warning">';   break;
+            case "important":
+                wrappedTxt += ' label-important">'; break;
+            case "info":
+                wrappedTxt += ' label-info">';      break;
+            case "inverse":
+                wrappedTxt += ' label-inverse">';   break;
 
+            default: my.log("err", "my.Label(" + label + ", ...) not valid. Text not wrapped");
+                return txt;
+        }
 
+        wrappedTxt += txt;
+        wrappedTxt += '</span>';
 
+        return wrappedTxt;
+    };
 
 
     // my.audio wraps all the AUDIO stuff including loading the files and playing individual sounds
@@ -67,20 +52,25 @@ var autoGEO = (function ($, my) {
 
         return {
             init:   function(mute) {
+                        var element = "#audio_toggle";      // The HTML element, in this case Audio checkbox
+
                         muted = mute;
-                        // assert ( isLoaded === false )
+                        // assert ( isLoaded === false ) ; should only need to call this function once in the app, upon startup
                         for (var i = 0; i < files.length; i += 1 ) {
                             sounds[files[i]] = new Howl({               // TODO: error handler if snd doesnt load
                                 urls: [prefix + files[i] + '.mp3', prefix + files[i] + '.ogg'],
                                 autoplay: false
                             });
-                            my.log("l", "-- loaded sound file: " + files[i]);
                         }
                         isLoaded = true;
+                        my.log("l", "Loaded " + (i+1) + " sound files.");
 
-                        view.init($("#audio_toggle"), my.audioView);
+                        // Currently I believe the best place to do actual selection of html element is here, not in the view
+                        // Shortcut looking for it since we know its located in the header
+                        view.init( my.data.uiElt$['header'].find(element), my.audioView );
+                        
                         return this;
-            },
+                    },
             play:   function(whichSound, volume) { // Play whichSound at volume, if Audio is enabled
                         if ( muted === true ) { return this; } // Audio setting is off, do nothing.
 
@@ -91,10 +81,10 @@ var autoGEO = (function ($, my) {
 
                         sounds[whichSound].volume(volume).play();
                         return this;
-            },
+                    },
             isMuted: function() {
-                return (muted === true);
-            },
+                        return (muted === true);
+                    },
             mute: function() {
                         Howler.mute();        // mute all sounds, not sure if this actually stops them
                         muted = true;
@@ -104,7 +94,7 @@ var autoGEO = (function ($, my) {
                         Howler.unmute();            // unmute all sounds
                         muted = false;
                         return this;
-            }
+                    }
         };
     }();
 
@@ -206,25 +196,38 @@ var autoGEO = (function ($, my) {
     //      if presets indicate it then load up all sounds and kick of Geolocation.
     // 
     my.initBrowser = function() {
-        browserCheck();                         // Log browser version we're running on
+        var presetKeyVals;
 
-        var presets = my.presets.init();        // Get app setting presets from localstorage
+        // assert ( my.log is up and running)
 
-        if ( presets.audio === true ) {
-            my.log('l', 'Setting for AUDIO is on - kicking off initAudio()...');
-            my.audio.init(false);                   // Load Audio & get them ready for play    
+        browserCheck();                         // Just logs Browser make & version app is running on
+
+        presetKeyVals = my.presets.init();      // Get app setting presets from localstorage,
+
+        my.settings.init( presetKeyVals ) ;     // Initialize app settings (audio, geoloc) using presets
+
+        //
+        // Now based on settings (which we got from presets) kick off audio and geolocation - or not.
+
+        // The way this is written, even if presets indicate no audio, sound files are still loaded
+        if ( presetKeyVals.audio === true ) {
+            my.log('l', 'APP PRESETS: for AUDIO is ON - kicking off initAudio()...');
+            my.audio.init(false);                   // Load Audio files & get them ready for play
             my.audio.play('startup_11', 0.2);       // Play startup sound
         }
         else {
+            my.log('l', 'APP PRESETS: for AUDIO is OFF - still loading sound files.');
             my.audio.init(true);                    // Init audio with mute on
         }
 
-        if ( presets.geolocation === true ) {
-            // my.log('l', 'Setting for geolocation is on - kicking it off...');            
+
+        if ( presetKeyVals.geolocation === true ) {
+            my.log('l', 'APP PRESETS: for GEOLOCATION is ON - Going to wait for user to press button to kick it off.');
             // uncomment next line if you want the preset to auto kickoff geolocation
             // my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
             //geolocChkbx$.attr('checked', true);
         } else {
+            my.log('l', 'APP PRESETS: for GEOLOCATION is OFF - Can still use it by just clicking button!');
             // TODO: disable geolocation button
             //geolocChkbx$.attr('checked', false);
         }

@@ -2,13 +2,6 @@
 
 var autoGEO = (function ($, my) {
 
-	// will contain JQuery selections of the logs elements, set in initLog(), so that we
-	// wont have to do a bunch of redundant JQuery selections everytime we log.
-	var	logPanel = [];			// global to this module (file)
-
-	var audioChkbx$ = $("#audio_toggle");
-
-
 	// my.statusMsg()
 	//		Put a little status message up with some animation
 	my.statusMsg = function(msg, bErr) {
@@ -16,130 +9,11 @@ var autoGEO = (function ($, my) {
 									.css( {opacity: 1.0})
 									.slideDown()
 									.html( (bErr === true) ? my.label('warning', msg) : my.label('info', msg) )
-									.animate( {left: '+=90px', top: '+=150px', opacity: 0.25}, 7000, 'linear',
+									.animate( {left: '+=90px', top: '+=150px', opacity: 0.25}, 5500, 'linear',
 										function() {
 											$(this).slideUp();
 										});
 	};
-
-
-
-
-	// my.log() -- 
-	//		to :  "info" or "log" or "err"       (the type of log message)
-	//		msg : message to be outputed
-	//		bShowstopper : whether this is a fatal situation! (or just special in the case of "log"), 
-	//						default is false
-	my.log = function(to, msg, bShowstopper) {
-		function clickOnAndAppendIfNotActive(which) {
-			var count = -1;
-
-			if ( which !== 1 ) {	// only want to click open geolog or error because app log is updated too often.
-				// if this is not the currently open collapsible, then trigger the click on its anchor so it can close the others...
-				if (  !( (logPanel[which].active$).hasClass('in') ) ) {
-					(logPanel[which].a$).click();
-				}
-			}
-
-			// add bootstrap span classes for labeling colors...
-			if ( (to === "err") || (to === "error") ) {			// to, bShowstopper, msg defined in outer fx
-				if (bShowstopper) {
-					msg = my.label("important", msg);
-				} else {
-					msg = my.label("warning", msg);
-				}
-			}
-			else if ( (to === "log") || (to === "l") ){
-				if (bShowstopper) {
-					msg = my.label("success", msg);
-				} else {
-					msg = my.label("info", msg);
-				}
-			}
-			else {
-				// no label formatting for "info" logs
-			}
-
-			msg = '<p>' + msg + '</p>';
-
-			if (which === 1 ) {
-				// for log, Add the augmented msg to the beginning of the list so latest info is at top
-				(logPanel[which].txt$).prepend(msg);
-			} else {
-				(logPanel[which].txt$).append(msg);
-			}
-
-			// use the counter itself to keep track of count of msgs in collapsible
-			count = ((logPanel[which].count$).text()) * 1;	// multiply casts it to number
-			count += 1;
-			(logPanel[which].count$).text(count);
-		}
-
-		// bShowstopper is an optional argument, set it to false by default
-		if (typeof bShowstopper === "undefined" || bShowstopper === null || bShowstopper === "false") {
-			bShowstopper = false;
-		}
-
-		if ( (to === "info") || ( to === "i" ) ) {
-			clickOnAndAppendIfNotActive(0);
-		}
-		else if ( (to === "log") || (to === "l") ) {
-			console.log(msg);
-			clickOnAndAppendIfNotActive(1);
-
-		}
-		else if ( (to === "err") || (to === "error") ) {
-			my.statusMsg('Error caught - check log!', true);
-			console.log("ERROR:" + msg);
-			clickOnAndAppendIfNotActive(2);
-		}
-	};
-
-
-
-	// Get access to logs html elements as JQuery selections and save for future reference.
-	// Also attach little scrolls bars to each log
-	function initLog() {
-		var accordion$ = $("#accordion1");		// The Log parent element
-		var defaults;
-
-		logPanel[0] = {					// log
-				txt$ : accordion$.find("#logInfo"),
-				a$ : accordion$.find("a:first"),
-				active$ : accordion$.find("#collapseOne"),
-				count$ : accordion$.find(".log-stats:eq(0) span")
-		};
-
-		logPanel[1] = {					// info
-				txt$ : accordion$.find("#logSys"),
-				a$ : accordion$.find("a:eq(1)"),
-				active$ : accordion$.find("#collapseTwo"),
-				count$ : accordion$.find(".log-stats:eq(1) span")
-		};
-
-		logPanel[2] = {					// err
-				txt$ : accordion$.find("#logErr"),
-				a$ : accordion$.find("a:eq(2)"),
-				active$ : accordion$.find("#collapseThree"),
-				count$ : accordion$.find(".log-stats:eq(2) span")
-		};
-
-
-		// attach the cute little scroll bars to the 3 log windows
-		// http://rocha.la/jQuery-slimScroll
-		defaults = {
-			distance: '4px',
-			railVisible: true,
-			wheelStep: 10,
-			start: 'bottom'
-		};
-
-		logPanel[0].txt$.slimScroll( defaults );
-		logPanel[0].active$.collapse('hide');
-		logPanel[1].txt$.slimScroll( defaults );
-		logPanel[2].txt$.slimScroll( defaults );
-
-	}
 
 
 
@@ -431,9 +305,7 @@ var autoGEO = (function ($, my) {
 
 	//  only called upon app startup
 	my.initView = function() {
-		my.statusMsg("Welcome to AutoGeomancy!");
-		initLog();							// Put together logging system
-		my.initBrowser();					// Find browser make/version, Get app presets for Audio & Geolocation
+
 		initTabs();							// Load html and inject into appropriate tabs
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
 		initClockAndTime();					// Date and Time, geolocation in header
