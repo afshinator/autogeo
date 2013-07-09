@@ -4,12 +4,15 @@ var autoGEO = (function ($, my) {
 
 	// my.statusMsg()
 	//		Put a little status message up with some animation
-	my.statusMsg = function(msg, bErr) {
+	my.statusMsg = function(msg, bErr, icon) {
+		var smallIcon = ( icon ) ? icon : 'icon-info-sign';		// default icon
+
+		var msg2 = '<i class=' + smallIcon + '></i> ' + msg;
 		my.data.uiElt$['statusMsg'].stop()
 									.css( {opacity: 1.0})
 									.slideDown()
-									.html( (bErr === true) ? my.label('warning', msg) : my.label('info', msg) )
-									.animate( {left: '+=90px', top: '+=150px', opacity: 0.25}, 5500, 'linear',
+									.html( (bErr === true) ? my.label('error', msg2) : my.label('warning', msg2) )
+									.animate( {opacity: 0.25}, 5500, 'linear',
 										function() {
 											$(this).slideUp();
 										});
@@ -29,15 +32,15 @@ var autoGEO = (function ($, my) {
 		// Gets & injects the html for the TIME TRANSITS AND RULERS tab
 		var file = './ajax/geomantic-hours.html';
 		my.loadRulerTimesTable(file);
-
+			my.progressBar.increase(5);
 		// Questions in their Houses tab
 		file = './ajax/classicquestions.html';
 		my.loadQuestions(file);
-
+			my.progressBar.increase(5);
 		// Planets Tab
 		file = './ajax/planets.html';
 		my.loadHTMLintoTab(file, my.data.uiElt$['planets'] ); // can add 3rd parameter method to run when done
-
+			my.progressBar.increase(5);
 		// Interpretations tab
         var defaults = {                    // for slimscroller
             height: '300px',
@@ -47,6 +50,7 @@ var autoGEO = (function ($, my) {
         };
 		my.data.uiElt$['interpts'].find('#interptText').slimScroll( defaults );
 		my.initInterpretations();
+			my.progressBar.increase(5);
 	}
 
 
@@ -67,7 +71,7 @@ var autoGEO = (function ($, my) {
 					el$ = elAncestor$.find(tag);
 				}
 
-				my.log('i', 'el$ = ' + el$);
+				// if (my.log) { my.log('i', 'el$ = ' + el$); }
 				if (fx) { fx(el$);}
 			},
 			exec: function(fx, params) {
@@ -83,12 +87,32 @@ var autoGEO = (function ($, my) {
 	my.audioView = function(el$) {
 		// initial state of checkbox, 
 		if (! my.audio.isMuted() ) {
-			el$.attr('checked', true);
+			//el$.attr('checked', true);
+			el$.bootstrapSwitch('setState', true);
 		}
 		else {
-			el$.attr('checked', true);
+			//el$.attr('checked', false);
+			el$.bootstrapSwitch('setState', false);
 		}
 
+		el$.on('switch-change', function(e, data) {
+			var $el = $(data.el);
+			var value = data.value;
+			if ( value === true ) {
+				my.settings.set('audio', true);
+				my.audio.unmute().play('spring1', 0.2);
+			}
+			else {
+				my.settings.set('audio', false);
+				my.audio.mute();
+			}
+			my.log('i', e);
+			my.log('i', $el);
+			my.log('i', value);
+		});
+
+
+/*
 		// click handler for audio on/off checkbox 
 		el$.click(function() {
 			if ( $(this).is(':checked') ) {				// Audio toggled  on
@@ -101,11 +125,13 @@ var autoGEO = (function ($, my) {
 				my.audio.mute();
 			}
 		});
+*/
 	};
 
 
-
-
+	my.progressBarView = function(el$) {
+		alert(el$.attr('style'));
+	};
 
 
 	//
@@ -134,7 +160,7 @@ var autoGEO = (function ($, my) {
 			my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
 		});
 
-
+			my.progressBar.increase();
 
 		// Click and Hover handlers for Planetary list 
 		my.data.uiElt$['planetlist'].find('li').hover(
@@ -155,6 +181,8 @@ var autoGEO = (function ($, my) {
 					$('#appTabs li:eq(5) a').tab('show');
 				}
 			});
+
+			my.progressBar.increase();
 	}
 
 
@@ -296,11 +324,30 @@ var autoGEO = (function ($, my) {
 	//  only called upon app startup
 	my.initView = function() {
 
+
 		initTabs();							// Load html and inject into appropriate tabs
+			my.progressBar.increase();
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
+			my.progressBar.increase();
 		initClockAndTime();					// Date and Time, geolocation in header
+			my.progressBar.increase(5);
 		initChart();						// Set up handlers inside the chart
+			my.progressBar.increase(5);
 		initGeomanticFigures();				// Load the geomantic figures
+			my.progressBar.increase(5);
+
+		my.data.uiElt$['shieldChart'].css('visibility', 'visible' ).fadeIn(3000, function() {
+			my.progressBar.increase(5);
+			my.data.uiElt$['audio_toggle'].css('visibility', 'visible');
+			my.data.uiElt$['geoloc_btn'].css('visibility', 'visible');
+		});
+
+		my.data.uiElt$['geoFigures'].css('visibility', 'visible' ).fadeIn(3500, function() {
+			my.progressBar.increase(5);
+			my.progressBar.end();
+			my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
+		});
+
 	};
 
 

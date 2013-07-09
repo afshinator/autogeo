@@ -1,4 +1,4 @@
-// 
+// ag_browser_utils.js
 
 var autoGEO = (function ($, my) {
 
@@ -33,6 +33,8 @@ var autoGEO = (function ($, my) {
 
         return wrappedTxt;
     };
+
+
 
 
     // my.audio wraps all the AUDIO stuff including loading the files and playing individual sounds
@@ -193,7 +195,7 @@ var autoGEO = (function ($, my) {
     //
     // my.initBrowser() - 
     //      Get and log browser version,  get app presets from localstorage, initialize AUDIO
-    //      if presets indicate it then load up all sounds and kick of Geolocation.
+    //      if presets indicate it then load up all sounds and kick off Geolocation if need be.
     // 
     my.initBrowser = function() {
         var presetKeyVals;
@@ -201,13 +203,13 @@ var autoGEO = (function ($, my) {
         // assert ( my.log is up and running)
 
         browserCheck();                         // Just logs Browser make & version app is running on
-
+            my.progressBar.increase();
         presetKeyVals = my.presets.init();      // Get app setting presets from localstorage,
 
         my.settings.init( presetKeyVals ) ;     // Initialize app settings (audio, geoloc) using presets
-
+            my.progressBar.increase();
         //
-        // Now based on settings (which we got from presets) kick off audio and geolocation - or not.
+        // Based on settings (which we got from presets) kick off audio and geolocation - or not.
 
         // The way this is written, even if presets indicate no audio, sound files are still loaded
         if ( presetKeyVals.audio === true ) {
@@ -220,6 +222,7 @@ var autoGEO = (function ($, my) {
             my.audio.init(true);                    // Init audio with mute on
         }
 
+        my.progressBar.increase();
 
         if ( presetKeyVals.geolocation === true ) {
             my.log('l', 'APP PRESETS: for GEOLOCATION is ON - Going to wait for user to press button to kick it off.');

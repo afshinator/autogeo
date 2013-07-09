@@ -161,12 +161,12 @@ var interptText = '\
 
 
 
-    $('#home').append(home);
- 	$('#shieldChart').append(schart);
-    $('#figtab').append(figtab);
-    $('#housetab').append(housetab);
-    $('#interptChoices').append(interptChoices);
-    $('#interptText').append(interptText);
+    $('#home').append(home);                  
+ 	$('#shieldChart').append(schart);       
+    $('#figtab').append(figtab);                
+    $('#housetab').append(housetab);           
+    $('#interptChoices').append(interptChoices); 
+    $('#interptText').append(interptText);      
 
 
 	return my;

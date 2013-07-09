@@ -63,7 +63,7 @@ var autoGEO = (function ($, my) {
                         if ( key === 'audio') { audio = val; }
                         else if ( key === 'geolocation') { geolocation = val; }
                         else {
-                            my.log('e', 'my.setting.set() received an unknown app setting key value:' + key);
+                            my.log('e', 'my.presets.set() received an unknown app setting key value:' + key);
                         }
             },
             save:   function() {                // save all settings to LocalStorage
@@ -73,6 +73,8 @@ var autoGEO = (function ($, my) {
     }();
 
 
+    // my.settings() - App settings
+    //		At this point just whether audio is on/off and whether geolocation has been kicked off
     my.settings = function() {
         var audio = true;                  // defaults
         var geolocation = true;
@@ -217,6 +219,53 @@ var autoGEO = (function ($, my) {
 	}
 
 
+	// my.progressBar
+	//		Starts on program startup, is incremented at as startup continues
+	//		and finally goes away at end of startup.
+	//
+	my.progressBar = function() {
+		var progress;
+		var element = "#progressBar";      // The HTML element, in this case the progress bar in the header
+		var pb$;
+
+        var updateView = function() {
+				pb$.css('width', progress);
+        };
+
+
+		return {
+			init: function(startAt) {
+				pb$ = my.data.uiElt$['header'].find(element);
+				if (startAt) {
+					progress = startAt;
+				}
+				else {
+					progress = 0;
+				}
+
+				updateView();
+
+				return this;
+			},
+			increase: function (percentIncrement) {
+				progress += ( ( percentIncrement ) ? (percentIncrement/100) * 383 : 5 ) ;	// aprox width is 383; 
+				updateView();
+				return this;
+			},
+			where: function() {
+				return progress;
+			},
+			end: function() {
+				progress += 500;
+				updateView();
+				pb$.parent().animate( {opacity: 0.0}, 1000, 'linear',
+										function() {
+											/* $(this).slideUp(); */
+										});
+				return this;
+			}
+		};
+	}();
 
 
 	// ------ Main Program Execution 
@@ -228,12 +277,16 @@ var autoGEO = (function ($, my) {
 	my.data.uiElt$['header'] = $('header');
 	my.data.uiElt$['belowHeader'] = $('#belowHeader');
 
-	my.data.uiElt$['statusMsg'] = $('#statusMsg');
-	my.data.uiElt$['ChartTable'] = $('#ChartTable');
-	my.data.uiElt$['shieldChart'] = $('#shieldChart');
-	my.data.uiElt$['geoloc_btn'] = $('#geoloc_btn');
-	my.data.uiElt$['planetlist'] = $('.planetlist');	// In the header
-	my.data.uiElt$['audio_toggle'] = $("#audio_toggle");
+	var localHeaderCache$ = my.data.uiElt$['header'];
+
+	my.data.uiElt$['statusMsg'] = localHeaderCache$.find('#statusMsg');
+	my.data.uiElt$['geoFigures'] = localHeaderCache$.find('#geoFigures');
+	my.data.uiElt$['shieldChart'] = localHeaderCache$.find('#shieldChart');
+	my.data.uiElt$['ChartTable'] = localHeaderCache$.find('#ChartTable');
+	my.data.uiElt$['geoloc_btn'] = localHeaderCache$.find('#geoloc_btn');
+	my.data.uiElt$['planetlist'] = localHeaderCache$.find('.planetlist');	// In the header
+	my.data.uiElt$['audio_toggle'] = localHeaderCache$.find("#audio_toggle");
+
 	my.data.uiElt$['questionBox'] = $("#questionBox");	// Textarea on home tab where questions are entered
 	my.data.uiElt$['home'] = $('#home');				// Home tab	
 	my.data.uiElt$['figtab'] = $('#figtab');			// About the Figures tab
@@ -247,11 +300,16 @@ var autoGEO = (function ($, my) {
 	if ( my.initView === undefined ){
 		my.log("err", "Inside App.js, initView not yet defined!", true);
 	} else {
-		my.statusMsg("Welcome to AutoGeomancy!");		// Status Message was initialized by the browser.
+		// Hide the chart and figures table so loading ugliness wont show
+		my.data.uiElt$['shieldChart'].hide();
+		my.data.uiElt$['geoFigures'].hide();
 
+		my.progressBar.init();
+			my.progressBar.increase();
 		initLog();						// Put together logging system for program output, app events, & errors
+			my.progressBar.increase();
 		my.initBrowser();				// Find browser make/version, Get app presets for Audio & Geolocation		
-
+			my.progressBar.increase();
 		my.initView();
 	}
 

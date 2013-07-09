@@ -26,8 +26,25 @@ header {
  * Widgets in the header 
  */
 
+#audio_toggle {
+    margin-top: 20px;
+    visibility: hidden;
+}
+
+#geoloc_btn {
+    /* margin-top: 20px; */
+    visibility: hidden;
+}
+
+#geoFigures {
+    visibility: hidden;
+    margin-top: 80px;
+}
+
+
 #shieldChart {
-    margin-top: 25px;
+    visibility: hidden;                 /* initially hidden to hide loading ugliness */
+    margin-top:25px;
 }
 
 
@@ -66,7 +83,7 @@ header {
 
 
 #geoPlanets {               /* the Planet icons in the header */
-    margin-top:10px;
+    margin-top:20px;
     margin-left:0px;
 }
 
