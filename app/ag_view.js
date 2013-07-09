@@ -347,7 +347,6 @@ var autoGEO = (function ($, my) {
 			my.progressBar.end();
 			my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
 		});
-
 	};
 
 

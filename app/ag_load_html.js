@@ -87,10 +87,8 @@ var schart = '<table id="ChartTable"> \
 
 
 var home = '<div class="row">\
-        <div class="span3">        \
-            <span id="testpic"></span>       \
-        </div>\
         <div class="span9">\
+            <h4>Ready for your Geomantic Divination session?</h4>\
             <p>Once you select the Geolocation button, your current location will appear to the left</p>\
             <p>To do a session, you have to have a question you want answered.</p>\
 \
@@ -99,6 +97,9 @@ var home = '<div class="row">\
             <p>Some times it is better to ask some questions that others.  Take a look at what the ruler of the day and current time is for the type of question that is favorable to ask right now.</p>\
 \
             shift-mouse click on any house in the chart, or figure above to get details.<br>\
+        </div>\
+        <div class="span3">        \
+            <span id="testpic"></span>       \
         </div>\
     </div>';
 

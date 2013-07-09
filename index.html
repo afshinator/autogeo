@@ -6,7 +6,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/app.css" rel="stylesheet" media="screen">
-    <link  href="css/bootstrapSwitch.css" rel="stylesheet">    
+    <link  href="css/bootstrapSwitch.css" rel="stylesheet">
   </head>
 
   <body>
@@ -47,20 +47,19 @@
                             <ul class="figlist"></ul>
                         </span>              
                     </div>
-<table width="100%" border="0" cellspacing="0" cellpadding="10">
-  <tr>
-    <td>
-        <div id="audio_toggle" class="switch switch-mini" data-on="info" data-off="success">
-            <input type="checkbox" checked />
-        </div>  Volume<br>        
-    </td>
-   
-    <td>
-        <button id="geoloc_btn" class="btn btn-small">Geolocation</button><br>
-    </td>
-  </tr>
-</table>
-
+                    <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                      <tr>
+                        <td>
+                            <div id="audio_toggle" class="switch switch-mini" data-on="warning" data-off="success">
+                                <input type="checkbox" checked />
+                            </div>  Volume<br>        
+                        </td>
+                       
+                        <td>
+                            <button id="geoloc_btn" class="btn btn-small">Geolocation</button><br>
+                        </td>
+                      </tr>
+                    </table>
 <!--
                     <form id="appSettingsForm">                 
                         <input id="audio_toggle" type="checkbox" name="setting" value="audio" />
@@ -81,6 +80,7 @@
                         <li><a href="#planets">The Planets</a></li>
                         <li><a href="#questions">Questions and Houses</a></li>
                         <li><a href="#interpts">Interpretations</a></li>
+                        <li><a href="#about">About</a></li>
                     </ul>
                      
                     <div class="tab-content">
@@ -102,6 +102,7 @@
                                 </div>
                             </div>          <!-- row -->
                         </div>
+                        <div class="tab-pane" id="about"></div>
                     </div>
                 </div>
             </div>                      <!-- row -->
@@ -162,7 +163,6 @@
     <script src="js/jquery.slimscroll.min.js"></script> <!-- mini scroll bars -->
     <script src="js/store.min.js"></script>             <!-- Local Storage -->
     <script src="js/howler.min.js"></script>            <!-- Sounds -->
-
 
     <script src="app/debounce.js"></script>
     <script src="app/ag_sunrisesunset.js"></script>     <!-- Sunrise & Sunset times from geolocation -->
