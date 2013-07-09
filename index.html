@@ -13,57 +13,44 @@
       <div id="bkgd">
         <header>
             <div class="row">
-                <div class="span5">
-                    <h1 id="appTitle">AutoGEO </h1>
-
-                    <img src="img/filler1.png" height="100px"></img>  <!-- make room for image -->
-                    <table>
-                        <tr>
-                            <td width="30px"></td>
-                            <td width="280px">                    
-                                By <strong>Afshin Mokhtari</strong>, v1b
-                            </td>
-                            <td>
-                                <form id="appSettingsForm">                 
-                                    <input id="audio_toggle" type="checkbox" name="setting" value="audio" />
-                                    Audio<br>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <div id="statusMsg"></div>
-                                <span id="currenttime"></span> 
-                                <span id="currentlocation"></span>
-                                <span id="suntimes"></span> 
-                            </td>
-                            <td>
-                                <button id="geoloc_btn" class="btn btn-small">Geolocation</button>
-                            </td>
-                        </tr>
-                    </table> 
+                <div class="span4">                 <!--  -->
+                    <span id="appTitle"><h1>Auto-Geomancy by Afshin Mokhtari</h1></span>
                 </div>
-                <div  id="geoPlanets" class="gradient1 span3">
-                    <span class="content">
-                        <ul class="planetlist">
-                            <li data-id="0"><img src="img/sun.gif" width="18px"></img></li>
-                            <li data-id="1"><img src="img/moon.gif" width="18px"></img></li>
-                            <li data-id="2"><img src="img/mars.gif" width="18px"></img></li>
-                            <li data-id="3"><img src="img/mercury.gif" width="18px"></img></li>
-                            <li data-id="4"><img src="img/jupiter.gif" width="18px"></img></li>
-                            <li data-id="5"><img src="img/venus.gif" width="18px"></img></li>
-                            <li data-id="6"><img src="img/saturn.gif" width="18px"></img></li>           
-                        </ul>
-                    </span>
+                <div id="mid-hdr" class="span5">    <!--  -->
+                    <div class="progress progress-warning progress-striped active">
+                        <div class="bar" style="width: 10%;"></div>
+                    </div>                    
+                    <div id="shieldChart"></div>
+                    <div id="currentlocation"></div>
+                    <div id="suntimes"></div>
+                </div>
+                <div class="span3">                 <!--  -->
+                    <div id="statusMsg"></div>
+                    <div id="currenttime"></div> 
+                    <div  id="geoPlanets" class="gradient1 span3">                    
+                        <span class="content">
+                            <ul class="planetlist">
+                                <li data-id="0"><img src="img/sun.gif" width="18px"></img></li>
+                                <li data-id="1"><img src="img/moon.gif" width="18px"></img></li>
+                                <li data-id="2"><img src="img/mars.gif" width="18px"></img></li>
+                                <li data-id="3"><img src="img/mercury.gif" width="18px"></img></li>
+                                <li data-id="4"><img src="img/jupiter.gif" width="18px"></img></li>
+                                <li data-id="5"><img src="img/venus.gif" width="18px"></img></li>
+                                <li data-id="6"><img src="img/saturn.gif" width="18px"></img></li>           
+                            </ul>
+                        </span>
+                    </div>
+
                     <div id="geoFigures">
                         <span class="content">
                             <ul class="figlist"></ul>
                         </span>              
-                    </div>
-                </div>
-                <div class="span4">
-                    <div id="shieldChart"></div>
+                    </div>                     
+                    <form id="appSettingsForm">                 
+                        <input id="audio_toggle" type="checkbox" name="setting" value="audio" />
+                        Audio<br>
+                    </form>
+                    <button id="geoloc_btn" class="btn btn-small">Geolocation</button>                                      
                 </div>
             </div>
         </header>

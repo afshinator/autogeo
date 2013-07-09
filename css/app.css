@@ -1,65 +1,79 @@
 /*
-**/
-.filler { background-color: grey;}
+ *  AutoGEOmancy CSS
+ *
+ */
 
-body { background: url(../img/bkgd.jpg) repeat;}
 
-a { color: #b5451d;}
+body { background: url(../img/bkgd.jpg) repeat;}            /* background tile */
 
-.container {
-    outline: none;  /* get rid of outlines that are left behind when you click on a link or other element */
+#bkgd {                                                     /* App Title image */
+    background: url(../img/title8.jpg) top left no-repeat;
+}
+
+header { 
+    outline: none;
+    height: 340px; 
+    }
+
+#mid-hdr {
+    background: url(../img/paper5.png) top center no-repeat;    
+    height: 340px; 
 }
 
 
-#bkgd {
-    background: url(../img/hdr.png) top left no-repeat;
+
+/*
+ * Widgets in the header 
+ */
+
+#shieldChart {
+    margin-top: 25px;
 }
 
-#appTitle { display: none; }
 
-.hideIt { display: none; }          /* for hiding geolocation btn after its pressed */
-
-header { height: 250px; }
-header .span2 { outline:none; }
-
-#home { height: 300px;}
-#figTab { height: 300px;}
-#houseTab { height: 300px;}
-#time { height: 300px;}
-#questions { height: 300px;}
-#settings { height: 300px;}
-
-#geoFigures { height: 60px;}
-
-
-#interpts h5 {
-    margin-top: 0px;
-}
-
-#interpts td {
-    vertical-align: top;
-    padding-left: 0px;
-    padding-top: 0px;
-}
-
-.collapsible {
+#ChartTable {
     -webkit-border-radius: 4px;
-    border-radius: 4px; 
+    border-radius: 4px;
 
     /* prevents text selection*/
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+
+    margin: 0 auto;  /* to center it in the div */
 }
 
-.collpaseBtn {
-    color: white;
+
+#sChartTable tr {
+    height: 50px;
 }
+
+#sChartTable td {
+    padding: 3px;
+}
+
+
+#currentlocation {
+    margin-top:30px;
+    text-align: center;
+}
+
+#suntimes {
+    margin-top:5px;
+    text-align: center;
+}
+
+
+#geoPlanets {               /* the Planet icons in the header */
+    margin-top:10px;
+    margin-left:0px;
+}
+
 
 .figlist, .planetlist {
     display: block;
-    float: right;
+  /*  float: right; */
     left:0;
     position: relative;
     list-style: none outside none;
@@ -81,38 +95,8 @@ header .span2 { outline:none; }
     margin-bottom:7px;
     margin-right: 0.4em;
     margin-left:0.4em;
-}              
+}    
 
-.accordion a {
-    outline:none;
-}
-
-
-.log-stats {                /* The log messages counts */
-    display: block;
-    float:right;
-    width: 40px;
-    padding-top:5px;
-}
-
-/*
-#currenttime { 
-    font-size: small;
-}
-
-#currentlocation {
-    font-size: small;
-}
-
-#appSettingsForm {
-    font-size: small;
-}
-*/
-
-
-#statusMsg {
-    
-}
 
 .timetable th {
     width : 80px;
@@ -133,41 +117,62 @@ header .span2 { outline:none; }
     vertical-align: top;
 }
 
-#placeholder {
-    background: #eeeeee; /* Old browsers */
-    background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
-    filter: progid:DXImage-moz-transform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
-}
-
-#shieldChart {
-    margin-top: 5px;
-}
 
 
-#ChartTable {
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
 
-    /* prevents text selection*/
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
+
+/*
+ * COLORS
+ */
+
+a { color: #b5451d;} 
+
+
+
+
+
+#appTitle { display: none; }        /* the h1 tag for indexing purposes */
+
+.progress { margin-top: 7px;}       /* Progress bar position from top of page */
+
+.container {
+    outline: none;  /* get rid of outlines that are left behind when you click on a link or other element */
 }
 
 
-#sChartTable tr {
-    height: 50px;
+
+/*
+ */
+
+
+.hideIt { display: none; }          /* for hiding geolocation btn after its pressed */
+
+
+/*
+ * The TABS
+ */
+
+#home { height: 300px;}
+#figTab { height: 300px;}
+#houseTab { height: 300px;}
+#time { height: 300px;}
+#questions { height: 300px;}
+#settings { height: 300px;}
+
+.accordion a {
+    outline:none;
 }
 
-#sChartTable td {
-    padding: 3px;
+#interpts h5 {
+    margin-top: 0px;
 }
+
+#interpts td {
+    vertical-align: top;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
 
 
 textarea#questionBox {
@@ -182,28 +187,39 @@ textarea#questionBox {
 
 
 
-.outline1 {
-    outline: 2px double #f0b318;
-    outline-offset: 4px; /*Delete if you don't want an offset*/
+/*
+ */
+.collapsible {
+    -webkit-border-radius: 4px;
+    border-radius: 4px; 
+
+    /* prevents text selection*/
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-.outline2 {
-    outline: 3px groove #f02805;
-        outline-offset: 10px; /*Delete if you don't want an offset*/
+.collpaseBtn {
+    color: white;
 }
 
-.outline3 {
-    outline: 1px outset #a37321;
-        outline-offset: 10px; /*Delete if you don't want an offset*/
+
+.log-stats {                /* The log messages counts */
+    display: block;
+    float:right;
+    width: 40px;
+    padding-top:5px;
 }
 
-.vspacer1 {
-    height: 40px;
-}
 
-#testpic {
 
-}
+
+/* 
+ * Visual Effects
+ */
+
+
 
 
 .gradient1 {
@@ -216,10 +232,6 @@ textarea#questionBox {
     filter: progid:DXImage-moz-transform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */ 
 }
 
-.gradient2 {
-    background: black;
-    color: yellow;
-}
 
 .gradient3 {
     background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 85%, rgba(255,255,255,0) 99%); /* FF3.6+ */
@@ -256,37 +268,14 @@ filter: progid:DXImage-moz-transform.Microsoft.gradient( startColorstr='#eaefb5'
 
 }
 
-.bshadow1{
-    -moz-box-shadow:10px 10px 5px #000000;
--webkit-box-shadow:10px 10px 5px #000000;
-box-shadow:10px 10px 5px #000000;
-}
 
 .overEffect1 {
     outline: 1px dotted #a37321;
     outline-offset: 4px; /*Delete if you don't want an offset*/;
 }
 
-.myoverEffect2{
-    background: rgb(96,108,136); /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(96,108,136,1)), color-stop(100%,rgba(63,76,107,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(-45deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(-45deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(-45deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* IE10+ */
-    background: linear-gradient(135deg,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%); /* W3C */
-    filter: progid:DXImage-moz-transform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
 
-.mxxxyOverEffect {
-    background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
-    background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-    background: -o-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-    background: -ms-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-    background: linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-    filter: progid:DXImage-moz-transform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
-}
+
 
 .-moz-transform1{
     -moz--moz-transform: scale(1.2) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
@@ -309,9 +298,6 @@ box-shadow:10px 10px 5px #000000;
     box-shadow:  1px 1px 3px 1px rgba(0, 0, 0, .3);
 }
 
-.transpt {
-    background: url(../img/semitransparent.png) repeat;
-}
 
 
 /*  ********************************************************   */

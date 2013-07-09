@@ -68,7 +68,7 @@ var autoGEO = (function ($, my) {
                         // Currently I believe the best place to do actual selection of html element is here, not in the view
                         // Shortcut looking for it since we know its located in the header
                         view.init( my.data.uiElt$['header'].find(element), my.audioView );
-                        
+
                         return this;
                     },
             play:   function(whichSound, volume) { // Play whichSound at volume, if Audio is enabled

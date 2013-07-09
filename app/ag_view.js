@@ -257,17 +257,7 @@ var autoGEO = (function ($, my) {
 	// chart data structure.  Here we just set up handlers for background effects.
 	// TODO: load the chart in dynamically.
 	function initChart() {
-		my.data.uiElt$['ChartTable'].hover(
-			function() {
-				$(this).addClass('chartHover').addClass('transpt');
-
-			},
-			function() {
-				$(this).removeClass('chartHover').removeClass('transpt');
-			}
-		);
-
-
+		// Hover handler used to be here
 		my.data.uiElt$['ChartTable'].find('.house').hover(
 			function() {
 				$(this).addClass('overEffect1');
