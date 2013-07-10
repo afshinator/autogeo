@@ -89,14 +89,14 @@ var schart = '<table id="ChartTable"> \
 var home = '<div class="row">\
         <div class="span9">\
             <h4>Ready for your Geomantic Divination session?</h4>\
-            <p>Once you select the Geolocation button, your current location will appear to the left</p>\
-            <p>To do a session, you have to have a question you want answered.</p>\
+            <p>At any time you can shift-click on a house in the chart, or on one of the geomantic figures above for more info.</p>\
+            <p><strong>Step 1.</strong> (Optional) : Click the <strong>Geolocation</strong> button - <small>this derives the ruler of the hour,etc... which you can see under the <em>Time transits and Rulers</em> tab. This info can be used to find the most auspicious time for your type of question.</small></p>\
+            <p><strong>Step 2.</strong> Think of a question you want the answer to. <small>You can see a list in the <strong><em>Questions and Houses</em></strong> tab above.  You can click on a question there or enter it yourself below.  If you want a serious answer to your question, make sure you are focused and sincere in your asking.</small></p>\
+            <textarea id="questionBox" name="question">Enter your question here.</textarea>\
 \
-            <p>If you already have a question in mind, find which house in the chart the question belongs to and double click to select that house.</p>\
-            <textarea id="questionBox" name="question">Enter your question here or choose one from the list.</textarea>\
-            <p>Some times it is better to ask some questions that others.  Take a look at what the ruler of the day and current time is for the type of question that is favorable to ask right now.</p>\
+            <p><strong>Step 3.</strong> Find which house in the chart your question fits in; double-click to select that house as the <em>House of the Quesited</em>.</p>\
+            <p><strong>Step 4.</strong> Either select the 4 mother figures which derive the chart by double-clicking on them above, or divine manually below.</p>\
 \
-            shift-mouse click on any house in the chart, or figure above to get details.<br>\
         </div>\
         <div class="span3">        \
             <span id="testpic"></span>       \

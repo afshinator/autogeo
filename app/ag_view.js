@@ -106,26 +106,7 @@ var autoGEO = (function ($, my) {
 				my.settings.set('audio', false);
 				my.audio.mute();
 			}
-			my.log('i', e);
-			my.log('i', $el);
-			my.log('i', value);
 		});
-
-
-/*
-		// click handler for audio on/off checkbox 
-		el$.click(function() {
-			if ( $(this).is(':checked') ) {				// Audio toggled  on
-//				my.settings.set('audio', true);			// my.data.audio = true;
-				my.audio.unmute().play('spring1', 0.2);
-			}
-			else
-			{								// Audio toggled off
-//				my.settings.set('audio', false);			// my.data.audio = false;
-				my.audio.mute();
-			}
-		});
-*/
 	};
 
 
