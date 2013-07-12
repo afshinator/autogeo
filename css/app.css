@@ -137,6 +137,12 @@ header {
 
 
 
+#captureKybd {
+    font-size: 11px;        /* the text in the input field, where you hit the space bar to cast */
+    background: #eee0bd;
+}
+
+
 
 /*
  * COLORS
@@ -198,8 +204,8 @@ textarea#questionBox {
     border: 2px solid #cccccc;
     padding: 5px;
     font-family: Tahoma, sans-serif;
-    font-size: 20px;
-    background: #eee;
+    font-size: 18px;
+    background: #eee0bd;
 }
 
 
