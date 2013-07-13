@@ -287,8 +287,12 @@ var autoGEO = (function ($, my) {
 	my.data.uiElt$['planetlist'] = localHeaderCache$.find('.planetlist');	// In the header
 	my.data.uiElt$['audio_toggle'] = localHeaderCache$.find("#audio_toggle");
 
-	my.data.uiElt$['questionBox'] = $("#questionBox");	// Textarea on home tab where questions are entered
-	my.data.uiElt$['home'] = $('#home');				// Home tab	
+	var localBelowHeader$ = my.data.uiElt$['belowHeader'];
+
+	my.data.uiElt$['home'] = localBelowHeader$.find('#home');				// Home tab
+	my.data.uiElt$['questionBox'] = my.data.uiElt$['home'].find('#questionBox');	// Textarea on home tab where questions are entered
+	my.data.uiElt$['castingInput'] = my.data.uiElt$['home'].find('#castingInput');	// input area on home tab for space-bar presses
+
 	my.data.uiElt$['figtab'] = $('#figtab');			// About the Figures tab
 	my.data.uiElt$['housetab'] = $('#housetab');		// About the Houses tab	
 	my.data.uiElt$['time'] = $('#time');				// Time Transits & Rulers tab

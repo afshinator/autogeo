@@ -95,7 +95,7 @@ var home = '<div class="row">\
             <textarea id="questionBox" name="question">Enter your question here.</textarea>\
 \
             <p><strong>Step 3.</strong> Find which house in the chart your question fits in; double-click to select that house as the <em>House of the Quesited</em>.</p>\
-            <p><strong>Step 4.</strong> 4 \'mother\' figures derive a full chart. There are 2 ways to indicate those figures:<br>---1. Either double-click on four geomantic figures above,<br>---2. Or generate a chart by casting the 4 mother figure above and to the right...</p>\
+            <p><strong>Step 4.</strong> 4 \'mother\' figures derive a full chart. There are 2 ways to indicate those figures:<br><small>---1. Either double-click on four geomantic figures above,<br>---2. Or generate a chart by casting the 4 mother figure above and to the right...</small></p>\
         </div>\
         <div class="span3">        \
             <p><strong>To cast the 4 mother figures</strong>, you will use the keyboard to simulate drawing lines....</p>\
@@ -103,7 +103,7 @@ var home = '<div class="row">\
             <li>Put the question in your mind, evoke &amp; maintain your sense of curiousity about it,  and when ready, <strong><br>hit Enter to start</strong></li>\
             <li>Type a random number of spaces followed by the ENTER key</li>\
             <li>Pause for a second between lines, enter 15 more lines and at the end the whole chart will be generated automatically</li></small></ul>\
-            <input type="text" class="" id="captureKybd" value="Click in here, hit ENTER to start casting" height="300" size="30">\
+            <input type="text" id="castingInput" value="Click in here to divine manually" height="300" size="30">\
             <span id="testpic"></span>       \
         </div>\
     </div>';

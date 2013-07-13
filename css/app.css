@@ -137,9 +137,10 @@ header {
 
 
 
-#captureKybd {
+#castingInput {
     font-size: 11px;        /* the text in the input field, where you hit the space bar to cast */
     background: #eee0bd;
+    display: none;
 }
 
 

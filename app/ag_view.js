@@ -300,11 +300,107 @@ var autoGEO = (function ($, my) {
 	}
 
 
+	my.castingInput = function() {
+		var el$;
+		var spaceBarPress = [];		// will be array of 16 integers that indicate how many times space bar was hit
+
+		var minClicksPerLine;
+		var justClickedInTheFirstTime;
+		var castingInProgress;
+		var linesCast;
+		var abortedCast = false;
+		var count;
+
+		my.data.uiElt$['castingInput'] = my.data.uiElt$['home'].find('#castingInput');
+
+		function reset() {
+			for (var i = 0 ; i < 16 ; i += 1) {
+				spaceBarPress[i] = 0;
+			}
+
+			justClickedInTheFirstTime = true;
+			castingInProgress = false;
+			linesCast = 0;
+		}
+
+
+		function init(minSpacesPerLine) {
+			el$ = my.data.uiElt$['castingInput'];
+			minClicksPerLine = minSpacesPerLine || 6;		// default to 6
+
+			reset();
+			el$.fadeIn('slow');				// was hidden via css
+
+			el$.on('focus', function() {	// Clear contents of input upon first entry
+				el$.val("Focus on your question, ENTER to start");
+			});
+
+			el$.keypress(handleKeyPress);
+
+			return this;
+		}
+
+
+		function handleKeyPress(e) {
+			el$.val("");	// Whatever they typed, erase it!
+
+			// Initial case of where they just click in and hit ENTER key to start
+			if ( justClickedInTheFirstTime && ( e.which === 13 ) ) {	// 13 is enter key
+				el$.val("start!");
+				castingInProgress = true;
+				justClickedInTheFirstTime = false;
+				count = 0;
+				e.preventDefault();
+				return;
+			}
+
+			if ( castingInProgress === true ) {
+
+				if ( e.which === 13 ) {					// ENTER key, but not the first time
+					if ( count < minClicksPerLine ) {
+						my.log('i', 'Casting aborted because settings require at least ' + minClicksPerLine + ' hits per line.');
+						abortCasting();
+					} else {							// ENTER was hit and there are a valid # of space bar hits
+						spaceBarPress[linesCast] = count;
+						linesCast += 1;
+						count = 0;
+
+						if ( linesCast > 15 ) {		// Finished with all 16 lines
+							castingInProgress = false;
+							// TODO: DERIVE THE CHART....
+						} else {
+							el$.val( linesCast + ' done, ' + (16-linesCast) + ' lines left, keep going');
+						}
+					}
+					return;
+				}
+
+				if ( e.which === 32 ) {					// Space bar 
+					count += 1;
+				}
+			}
+
+		}
+
+
+		function abortCasting() {
+			reset();
+			abortedCast = true;
+			castingInProgress = false;
+			el$.val("Casting Aborted - Start over");
+			el$.blur();
+		}
+
+
+		return {
+			init: init
+		};
+	};
+
 
 
 	//  only called upon app startup
 	my.initView = function() {
-
 
 		initTabs();							// Load html and inject into appropriate tabs
 			my.progressBar.increase();
@@ -316,6 +412,9 @@ var autoGEO = (function ($, my) {
 			my.progressBar.increase(5);
 		initGeomanticFigures();				// Load the geomantic figures
 			my.progressBar.increase(5);
+
+		my.castingInput().init();				//
+
 
 		my.data.uiElt$['shieldChart'].css('visibility', 'visible' ).fadeIn(3000, function() {
 			my.progressBar.increase(5);
