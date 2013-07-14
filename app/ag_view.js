@@ -23,6 +23,16 @@ var autoGEO = (function ($, my) {
 	//
 	// initTabs() - Enable the tabs, inject HTML into tabs, setup handlers for click on interpts
 	function initTabs() {
+		var localBelowHeader$ = my.data.uiElt$['belowHeader'];
+
+		my.data.uiElt$['figtab'] = localBelowHeader$.find('#figtab');			// About the Figures tab
+		my.data.uiElt$['housetab'] = localBelowHeader$.find('#housetab');		// About the Houses tab	
+		my.data.uiElt$['time'] = localBelowHeader$.find('#time');				// Time Transits & Rulers tab
+		my.data.uiElt$['planets'] = localBelowHeader$.find('#planets');			// About the Planets tab	
+		my.data.uiElt$['questions'] = localBelowHeader$.find('#questions');		// Questions & Houses tab
+		my.data.uiElt$['interpts'] = localBelowHeader$.find('#interpts');		// Interpretations tab	
+		my.data.uiElt$['about'] = localBelowHeader$.find('#about');				// About tab	
+
 		// Activate all the tabs
 		$('#appTabs a').click(function (e) {
 			e.preventDefault();
@@ -33,14 +43,17 @@ var autoGEO = (function ($, my) {
 		var file = './ajax/geomantic-hours.html';
 		my.loadRulerTimesTable(file);
 			my.progressBar.increase(5);
+
 		// Questions in their Houses tab
 		file = './ajax/classicquestions.html';
 		my.loadQuestions(file);
 			my.progressBar.increase(5);
+
 		// Planets Tab
 		file = './ajax/planets.html';
 		my.loadHTMLintoTab(file, my.data.uiElt$['planets'] ); // can add 3rd parameter method to run when done
 			my.progressBar.increase(5);
+
 		// Interpretations tab
         var defaults = {                    // for slimscroller
             height: '300px',
@@ -48,7 +61,12 @@ var autoGEO = (function ($, my) {
             railVisible: true,
             wheelStep: 10
         };
+
 		my.data.uiElt$['interpts'].find('#interptText').slimScroll( defaults );
+
+		// About tab
+		my.data.uiElt$['about'].find('div').slimScroll( defaults ); // had trouble with attaching slimscroll to tab div, but it works attached to inner
+
 		my.initInterpretations();
 			my.progressBar.increase(5);
 	}
@@ -426,7 +444,11 @@ var autoGEO = (function ($, my) {
 			my.progressBar.increase(5);
 			my.progressBar.end();
 			my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
+
+			$('#myModal').modal('show');
 		});
+
+
 	};
 
 

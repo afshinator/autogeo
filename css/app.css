@@ -175,13 +175,16 @@ a { color: #b5451d;}
 /*
  * The TABS
  */
+.tab-pane { height: 300px; }
 
-#home { height: 300px;}
-#figTab { height: 300px;}
-#houseTab { height: 300px;}
-#time { height: 300px;}
-#questions { height: 300px;}
-#settings { height: 300px;}
+
+
+
+#paper {    /* in the about tab */
+    background: url(../img/paper.png) top left no-repeat;
+    padding: 35px;
+    margin:10px;
+}
 
 .accordion a {
     outline:none;
@@ -246,7 +249,7 @@ textarea#questionBox {
 
 
 
-.gradient1 {
+.gradient1 {            /* transparent left to white right */
     background: -moz-linear-gradient(45deg,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(45deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
@@ -257,7 +260,7 @@ textarea#questionBox {
 }
 
 
-.gradient3 {
+.gradient3 {            /* transparent circular edges to white in middle */
     background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 85%, rgba(255,255,255,0) 99%); /* FF3.6+ */
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(85%,rgba(255,255,255,0)), color-stop(99%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
     background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 85%,rgba(255,255,255,0) 99%); /* Chrome10+,Safari5.1+ */

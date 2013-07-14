@@ -91,10 +91,10 @@ var home = '<div class="row">\
             <h4>Ready for your Geomantic Divination session?</h4>\
             <p>At any time you can shift-click on a house in the chart, or on one of the geomantic figures above for more info.</p>\
             <p><strong>Step 1.</strong> (Optional) : Click the <strong>Geolocation</strong> button - <small>this derives the ruler of the hour,etc... which you can see under the <em>Time transits and Rulers</em> tab. This info can be used to find the most auspicious time for your type of question.</small></p>\
-            <p><strong>Step 2.</strong> Think of a question you want the answer to. <small>You can see a list in the <strong><em>Questions and Houses</em></strong> tab above.  You can click on a question there or enter it yourself below.  If you want a serious answer to your question, make sure you are focused and sincere in your asking.</small></p>\
+            <p><strong>Step 2.</strong> Think of a question you want the answer to. <small>You can see a list in the <strong><em>Questions and Houses</em></strong> tab above.  Click on a question there or type it yourself below.  If you want a serious answer to your question, make sure you are focused and sincere in your asking.</small></p>\
             <textarea id="questionBox" name="question">Enter your question here.</textarea>\
 \
-            <p><strong>Step 3.</strong> Find which house in the chart your question fits in; double-click to select that house as the <em>House of the Quesited</em>.</p>\
+            <p><strong>Step 3.</strong> Find which house in the chart your question fits in; shift-click on the houses above for more info about them; double-click to select that house as the <em>House of the Quesited</em>.</p>\
             <p><strong>Step 4.</strong> 4 \'mother\' figures derive a full chart. There are 2 ways to indicate those figures:<br><small>---1. Either double-click on four geomantic figures above,<br>---2. Or generate a chart by casting the 4 mother figure above and to the right...</small></p>\
         </div>\
         <div class="span3">        \
@@ -165,14 +165,38 @@ var interptText = '\
     </ul>\
     <p>&nbsp;</p>';
 
-
+var about = '<div id="aboutBox" class="gradient1">\
+    <table width="100%" border="0" >\
+      <tr>\
+        <td width="39%">\
+            <div id="paper">\
+            <p>AutoGeomancy by <a href="http://acuafshin.com">Afshin Mokhtari</a></p><small>\
+            <p>Version 2beta100</p>\
+            <p>Please notify me if you have problems,<br />\
+            or if you love it, or what.</p>\
+            <p>Geomancy, from Ancient Greek geōmanteía<br />\
+              translates literally to "foresight by earth"; it is a<br />\
+              translation of the Arabic term ‛ilm al-raml, or<br />\
+              the "science of the sand". (<a href="http://en.wikipedia.org/wiki/Geomancy" target="_blank">read more from<br />\
+            Wikipedia</a>)</p>\
+                </small>\
+            </div>\
+        </td>\
+        <td width="61%" ><p>This project would have been a lot harder without the support of :</p>\
+        <p>&nbsp;</p></td>\
+      </tr>\
+    </table>\
+<p>&nbsp;</p>\
+<p>&nbsp;</p>\
+</div>';
 
     $('#home').append(home);                  
  	$('#shieldChart').append(schart);       
     $('#figtab').append(figtab);                
     $('#housetab').append(housetab);           
     $('#interptChoices').append(interptChoices); 
-    $('#interptText').append(interptText);      
+    $('#interptText').append(interptText);
+    $('#about').append(about);    
 
 
 	return my;

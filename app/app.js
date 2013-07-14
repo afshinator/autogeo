@@ -291,22 +291,25 @@ var autoGEO = (function ($, my) {
 
 	my.data.uiElt$['home'] = localBelowHeader$.find('#home');				// Home tab
 	my.data.uiElt$['questionBox'] = my.data.uiElt$['home'].find('#questionBox');	// Textarea on home tab where questions are entered
-	my.data.uiElt$['castingInput'] = my.data.uiElt$['home'].find('#castingInput');	// input area on home tab for space-bar presses
+	// my.data.uiElt$['castingInput'] = my.data.uiElt$['home'].find('#castingInput');	// input area on home tab for space-bar presses
 
+	// Tab related elements put into my.data.uiElt$ in the view
+/*
 	my.data.uiElt$['figtab'] = $('#figtab');			// About the Figures tab
 	my.data.uiElt$['housetab'] = $('#housetab');		// About the Houses tab	
 	my.data.uiElt$['time'] = $('#time');				// Time Transits & Rulers tab
 	my.data.uiElt$['planets'] = $('#planets');			// About the Planets tab	
 	my.data.uiElt$['questions'] = $('#questions');		// Questions & Houses tab
 	my.data.uiElt$['interpts'] = $('#interpts');		// Interpretations tab	
-
+*/
 
 	if ( my.initView === undefined ){
 		my.log("err", "Inside App.js, initView not yet defined!", true);
 	} else {
 		// Hide the chart and figures table so loading ugliness wont show
-		my.data.uiElt$['shieldChart'].hide();
+		my.data.uiElt$['shieldChart'].hide();  // initView() unhides them
 		my.data.uiElt$['geoFigures'].hide();
+
 
 		my.progressBar.init();
 			my.progressBar.increase();
