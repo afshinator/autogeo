@@ -318,6 +318,7 @@ var autoGEO = (function ($, my) {
 	}
 
 
+
 	my.castingInput = function() {
 		var el$;
 		var spaceBarPress = [];		// will be array of 16 integers that indicate how many times space bar was hit
@@ -326,7 +327,7 @@ var autoGEO = (function ($, my) {
 		var justClickedInTheFirstTime;
 		var castingInProgress;
 		var linesCast;
-		var abortedCast = false;
+		var abortedCast = false;		// not really used yet...
 		var count;
 
 		my.data.uiElt$['castingInput'] = my.data.uiElt$['home'].find('#castingInput');
@@ -350,16 +351,34 @@ var autoGEO = (function ($, my) {
 			el$.fadeIn('slow');				// was hidden via css
 
 			el$.on('focus', function() {	// Clear contents of input upon first entry
-				el$.val("Focus on your question, ENTER to start");
-			});
+				my.log('i', "Click inside the space bar input");
+				
+				if ( my.data.quesitedHouse === 0 ) {
+					my.statusMsg('No House of the Quesited Selected!', true, 'icon-flag');
+					// play a warning sound
+				} else {
+					my.statusMsg('Get ready to Cast.');
+				}
 
-			el$.keypress(handleKeyPress);
+				el$.val("Focus on your question, ENTER to start");
+			}).on('blur', function() {
+				if ( castingInProgress ) {
+					my.log('err', 'You clicked outside the box. Going somewhere?? Casting aborted.');
+					abortCasting();
+				}
+			}).keypress(handleKeyPress);
 
 			return this;
 		}
 
 
 		function handleKeyPress(e) {
+			var parseFourLines = function() {
+				var figure = ((spaceBarPress[linesCast] % 2 ) * 8) + ((spaceBarPress[linesCast-1] % 2) * 4)+ ((spaceBarPress[linesCast-2] % 2) * 2) + (spaceBarPress[linesCast-3] % 2);
+				my.log('i', 'Figure parsed to: ' + figure);
+			};
+
+			e.preventDefault();
 			el$.val("");	// Whatever they typed, erase it!
 
 			// Initial case of where they just click in and hit ENTER key to start
@@ -368,7 +387,7 @@ var autoGEO = (function ($, my) {
 				castingInProgress = true;
 				justClickedInTheFirstTime = false;
 				count = 0;
-				e.preventDefault();
+
 				return;
 			}
 
@@ -376,12 +395,18 @@ var autoGEO = (function ($, my) {
 
 				if ( e.which === 13 ) {					// ENTER key, but not the first time
 					if ( count < minClicksPerLine ) {
-						my.log('i', 'Casting aborted because settings require at least ' + minClicksPerLine + ' hits per line.');
+						my.log('err', 'Casting aborted because settings require at least ' + minClicksPerLine + ' hits per line. Be careful also not to go to fast and hit ENTER twice by mistake.');
 						abortCasting();
 					} else {							// ENTER was hit and there are a valid # of space bar hits
 						spaceBarPress[linesCast] = count;
 						linesCast += 1;
 						count = 0;
+
+						if ( linesCast % 4 === 0 ) {
+							my.data.knownMothers += 1;
+							my.data.chart[my.data.knownMothers] = parseFourLines();
+						}
+
 
 						if ( linesCast > 15 ) {		// Finished with all 16 lines
 							castingInProgress = false;
@@ -402,9 +427,11 @@ var autoGEO = (function ($, my) {
 
 
 		function abortCasting() {
+			my.data.knownMothers = 0;
 			reset();
 			abortedCast = true;
 			castingInProgress = false;
+			my.statusMsg('Casting Aborted!', false, 'icon-exclamation-sign');
 			el$.val("Casting Aborted - Start over");
 			el$.blur();
 		}

@@ -15,11 +15,11 @@
         <header>
             <div class="row">
                 <div class="span4">                 <!--  -->
-                    <span id="appTitle"><h1>Auto-Geomancy by Afshin Mokhtari</h1></span>
+                    <div id="appTitle"><h1>Auto-Geomancy by Afshin Mokhtari</h1></div>
                 </div>
                 <div id="mid-hdr" class="span5">    <!--  -->
-                    <div "pbParent" class="progress progress-warning progress-striped active">
-                        <div id="progressBar" class="bar" style="width: 0%;"></div>
+                    <div id="pbParent" class="progress progress-warning progress-striped active">
+                        <div id="progressBar" class="bar" style="width: 0%"></div>
                     </div>           
                     <div id="shieldChart"></div>
                     <div id="currentlocation"></div>
@@ -29,25 +29,25 @@
                     <div id="statusMsg"></div>
                     <div id="currenttime"></div> 
                     <div  id="geoPlanets" class="gradient1 span3">                    
-                        <span class="content">
+                        <div class="content">
                             <ul class="planetlist">
-                                <li data-id="0"><img src="img/sun.gif" width="18px"></img></li>
-                                <li data-id="1"><img src="img/moon.gif" width="18px"></img></li>
-                                <li data-id="2"><img src="img/mars.gif" width="18px"></img></li>
-                                <li data-id="3"><img src="img/mercury.gif" width="18px"></img></li>
-                                <li data-id="4"><img src="img/jupiter.gif" width="18px"></img></li>
-                                <li data-id="5"><img src="img/venus.gif" width="18px"></img></li>
-                                <li data-id="6"><img src="img/saturn.gif" width="18px"></img></li>           
+                                <li data-id="0"><img src="img/sun.gif" width="18" alt="Sun"></li>
+                                <li data-id="1"><img src="img/moon.gif" width="18" alt="Moon"></li>
+                                <li data-id="2"><img src="img/mars.gif" width="18" alt="Mars"></li>
+                                <li data-id="3"><img src="img/mercury.gif" width="18" alt="Mercury"></li>
+                                <li data-id="4"><img src="img/jupiter.gif" width="18" alt="Jupiter"></li>
+                                <li data-id="5"><img src="img/venus.gif" width="18" alt="Venus"></li>
+                                <li data-id="6"><img src="img/saturn.gif" width="18" alt="Saturn"></li>           
                             </ul>
-                        </span>
+                        </div>
                     </div>
 
                     <div id="geoFigures">
-                        <span class="content">
+                        <div class="content">
                             <ul class="figlist"></ul>
-                        </span>              
+                        </div>              
                     </div>
-                    <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                    <table class="layoutTable">
                       <tr>
                         <td>
                             <div id="audio_toggle" class="switch switch-mini" data-on="warning" data-off="success">
@@ -156,10 +156,12 @@
             <h3 id="myModalLabel">AutoGeomancy is in beta!</h3>
         </div>
         <div class="modal-body">
-            <p>That means I haven't finished writing it yet!</p><p>Most things work, some of things that do not include:</p>
+            <p>That means I haven't finished writing it yet!</p><p>Most things work, some of things that need work:</p>
             <ul><li>Casting a chart manually via space-bar.  Almost done with this.</li>
                 <li>Interpretations are at a minimum.  :-(</li>
                 <li>The Geomancy Log hardly gets any content since interpretations have just started</li>
+                <li>There is no reset button to start session from scratch</li>
+                <li>If it cant load image files (Chrome cross-origin requests), it throws exception which isn't caught at this point</li>                
             </ul>
             <p>I would love any feedback, especially about usability, bugs, omissions, and of course ideas for improvement. - afshin@acuafshin.com</p>
         </div>

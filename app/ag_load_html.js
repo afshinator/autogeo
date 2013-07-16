@@ -9,58 +9,39 @@ var autoGEO = (function ($, my) {
 var schart = '<table id="ChartTable"> \
     <tr>\
         <td></td>\
-        <td class="house" id="chart8"><img src="./img/figempty.png" alt="8th House"></img></td>\
+        <td class="house" id="chart8"><img src="./img/figempty.png" alt="8th House"></td>\
         <td></td>\
-        <td class="house" id="chart7"><img src="./img/figempty.png" alt="7th House"></img></td>\
+        <td class="house" id="chart7"><img src="./img/figempty.png" alt="7th House"></td>\
         <td></td>\
-        <td class="house" id="chart6"><img src="./img/figempty.png" alt="6th House"></img></td>\
+        <td class="house" id="chart6"><img src="./img/figempty.png" alt="6th House"></td>\
         <td></td>\
-        <td class="house" id="chart5"><img src="./img/figempty.png" alt="5th House"></img></td>\
+        <td class="house" id="chart5"><img src="./img/figempty.png" alt="5th House"></td>\
         <td></td>\
-        <td class="house" id="chart4"><img src="./img/figempty.png" alt="4th Mother"></img></td>\
+        <td class="house" id="chart4"><img src="./img/figempty.png" alt="4th Mother"></td>\
         <td></td>\
-        <td class="house" id="chart3"><img src="./img/figempty.png" alt="3rd Mother"></img></td>\
+        <td class="house" id="chart3"><img src="./img/figempty.png" alt="3rd Mother"></td>\
         <td></td>\
-        <td class="house" id="chart2"><img src="./img/figempty.png" alt="2nd Mother"></img></td>\
+        <td class="house" id="chart2"><img src="./img/figempty.png" alt="2nd Mother"></td>\
         <td></td>\
-        <td class="house" id="chart1"><img src="./img/figempty.png" alt="1st Mother"></img></td>\
-        <td></td>\
-    </tr>\
-    <tr>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart12"><img src="./img/figempty.png" alt="12th House"></img></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart11"><img src="./img/figempty.png" alt="11th House"></img></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart10"><img src="./img/figempty.png" alt="10th House"></img></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart9"><img src="./img/figempty.png" alt="9th House"></img></td>\
-        <td></td>\
+        <td class="house" id="chart1"><img src="./img/figempty.png" alt="1st Mother"></td>\
         <td></td>\
     </tr>\
     <tr>\
         <td></td>\
         <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart14"><img src="./img/figempty.png" alt="Left Witness"></img></td>\
-        <td></td>\
+        <td class="house" id="chart12"><img src="./img/figempty.png" alt="12th House"></td>\
         <td></td>\
         <td></td>\
         <td></td>\
+        <td class="house" id="chart11"><img src="./img/figempty.png" alt="11th House"></td>\
         <td></td>\
         <td></td>\
         <td></td>\
-        <td class="house" id="chart13"><img src="./img/figempty.png" alt="Right Witness"></img></td>\
+        <td class="house" id="chart10"><img src="./img/figempty.png" alt="10th House"></td>\
         <td></td>\
         <td></td>\
+        <td></td>\
+        <td class="house" id="chart9"><img src="./img/figempty.png" alt="9th House"></td>\
         <td></td>\
         <td></td>\
     </tr>\
@@ -69,18 +50,37 @@ var schart = '<table id="ChartTable"> \
         <td></td>\
         <td></td>\
         <td></td>\
+        <td class="house" id="chart14"><img src="./img/figempty.png" alt="Left Witness"></td>\
         <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart15"><img src="./img/figempty.png" alt="The Judge"></img></td>\
         <td></td>\
         <td></td>\
         <td></td>\
         <td></td>\
         <td></td>\
         <td></td>\
-        <td class="house" id="chart16"><img src="./img/figempty.png" alt="The Reconciler" width="60%"></img></td>\
+        <td class="house" id="chart13"><img src="./img/figempty.png" alt="Right Witness"></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+    </tr>\
+    <tr>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td class="house" id="chart15"><img src="./img/figempty.png" alt="The Judge"></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td></td>\
+        <td class="house" id="chart16"><img src="./img/figempty.png" alt="The Reconciler" width="60%"></td>\
         <td></td>\
     </tr>\
 </table>';
@@ -98,7 +98,7 @@ var home = '<div class="row">\
             <p><strong>Step 4.</strong> 4 \'mother\' figures derive a full chart. There are 2 ways to indicate those figures:<br><small>---1. Either double-click on four geomantic figures above,<br>---2. Or generate a chart by casting the 4 mother figure above and to the right...</small></p>\
         </div>\
         <div class="span3">        \
-            <p><strong>To cast the 4 mother figures</strong>, you will use the keyboard to simulate drawing lines....</p>\
+            <p><strong>To cast the 4 mother figures</strong>, you will use the keyboard to simulate marking lines....</p>\
             <ul><small><li>Click in the input box below</li>\
             <li>Put the question in your mind, evoke &amp; maintain your sense of curiousity about it,  and when ready, <strong><br>hit Enter to start</strong></li>\
             <li>Type a random number of spaces followed by the ENTER key</li>\
@@ -110,7 +110,7 @@ var home = '<div class="row">\
 
 
 
-var figtab = '<table id="ChartTable"> \
+var figtab = '\
   <p><strong>SHIFT + Single-click</strong> on any of the figures in the table above to learn more about each individual figure, its associations and attributes.</p>\
   <p>That information will stay in this tab until you choose another figure.</p>\
   <p>Each figure consists of four lines of either one or two dots. Two dots are often shown as a dash.</p>\

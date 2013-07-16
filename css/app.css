@@ -48,6 +48,20 @@ header {
 }
 
 
+/* http://stackoverflow.com/questions/6048913/in-html5-with-respect-to-tables-what-replaces-cellpadding-cellspacing-valign 
+*/
+.layoutTable {
+    width: 100%;
+    border: none;
+    border-collapse:collapse;
+    border-spacing: 0;
+}
+
+.layoutTable th, td {
+    padding: 10px;
+}
+
+
 #ChartTable {
     -webkit-border-radius: 4px;
     border-radius: 4px;
@@ -62,11 +76,11 @@ header {
 }
 
 
-#sChartTable tr {
+#ChartTable tr {
     height: 50px;
 }
 
-#sChartTable td {
+#ChartTable td {
     padding: 3px;
 }
 
