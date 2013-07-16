@@ -143,7 +143,7 @@ var autoGEO = (function ($, my) {
 			location = my.label("default", location);				// bootstrap styling "labels"
 
 			$("#currentlocation").html(location);
-			my.audio.play('icedispense', 0.1);
+			my.audio.play('arrival_horns', 0.1);
 
 
 			// google map based on geolocation data

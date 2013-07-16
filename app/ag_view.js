@@ -5,7 +5,7 @@ var autoGEO = (function ($, my) {
 	// my.statusMsg()
 	//		Put a little status message up with some animation
 	my.statusMsg = function(msg, bErr, icon) {
-		var smallIcon = ( icon ) ? icon : 'icon-info-sign';		// default icon
+		var smallIcon = icon || 'icon-info-sign';		// default icon
 
 		var msg2 = '<i class=' + smallIcon + '></i> ' + msg;
 		my.data.uiElt$['statusMsg'].stop()
@@ -14,7 +14,7 @@ var autoGEO = (function ($, my) {
 									.html( (bErr === true) ? my.label('error', msg2) : my.label('warning', msg2) )
 									.animate( {opacity: 0.25}, 5500, 'linear',
 										function() {
-											$(this).slideUp();
+											my.data.uiElt$['statusMsg'].slideUp();
 										});
 	};
 
@@ -34,7 +34,7 @@ var autoGEO = (function ($, my) {
 		my.data.uiElt$['about'] = localBelowHeader$.find('#about');				// About tab	
 
 		// Activate all the tabs
-		$('#appTabs a').click(function (e) {
+		localBelowHeader$.find('#appTabs a').click(function (e) {
 			e.preventDefault();
 			$(this).tab('show');
 		});
@@ -237,14 +237,14 @@ var autoGEO = (function ($, my) {
 		// Add handler to shift-click on a figure brings up info about it.
 		geoFiguresList$.find('.figureImg')
 				.hover(
-					function(){$(this).parent().addClass('overEffect1'); },
+					function(){$(this).parent().addClass('overEffect1');  },
 					function(){$(this).parent().removeClass('overEffect1'); }
 				).click(function(e) {
 					if (e.shiftKey) {					// only show figure info if shift key is pressed at same time as single-click
 						var whichFigure = $(this).data("id");
 
 						my.log('l', 'Shift-Click on ' + my.data.figs[whichFigure].name);
-						my.audio.play('klik1', 0.2);
+						my.audio.play('tick6', 0.6);
 						my.data.uiElt$['figtab'].load('ajax/figinfo.html #' + whichFigure);	// use anchor within html file to load just the part we want
 						$('#appTabs li:eq(1) a').tab('show');
 					}
@@ -350,22 +350,29 @@ var autoGEO = (function ($, my) {
 			reset();
 			el$.fadeIn('slow');				// was hidden via css
 
-			el$.on('focus', function() {	// Clear contents of input upon first entry
-				my.log('i', "Click inside the space bar input");
-				
+			el$.on('blur', function() {
+				if ( castingInProgress ) {
+					my.log('err', 'Casting aborted.');
+					abortCasting();
+				} else {
+					my.log('log', 'Left casting input field, casting wasnt in progress though.');
+					el$.val("Click in here to start.");
+				}
+			});
+
+			el$.on('focus', function() {
+				my.log('log', "Clicked into the space bar input");
+
 				if ( my.data.quesitedHouse === 0 ) {
-					my.statusMsg('No House of the Quesited Selected!', true, 'icon-flag');
+					my.log('log', "No House of the Quesited Selected!");
+					// my.statusMsg('No House of the Quesited Selected!', true, 'icon-flag');
 					// play a warning sound
 				} else {
-					my.statusMsg('Get ready to Cast.');
+					my.log('log', "Get ready to Cast.");
+					// my.statusMsg('Get ready to Cast.');
 				}
 
 				el$.val("Focus on your question, ENTER to start");
-			}).on('blur', function() {
-				if ( castingInProgress ) {
-					my.log('err', 'You clicked outside the box. Going somewhere?? Casting aborted.');
-					abortCasting();
-				}
 			}).keypress(handleKeyPress);
 
 			return this;
@@ -396,17 +403,17 @@ var autoGEO = (function ($, my) {
 				if ( e.which === 13 ) {					// ENTER key, but not the first time
 					if ( count < minClicksPerLine ) {
 						my.log('err', 'Casting aborted because settings require at least ' + minClicksPerLine + ' hits per line. Be careful also not to go to fast and hit ENTER twice by mistake.');
-						abortCasting();
+						el$.trigger('blur');			// blur handler calls abortCasting()
 					} else {							// ENTER was hit and there are a valid # of space bar hits
 						spaceBarPress[linesCast] = count;
 						linesCast += 1;
 						count = 0;
-
+/*
 						if ( linesCast % 4 === 0 ) {
 							my.data.knownMothers += 1;
 							my.data.chart[my.data.knownMothers] = parseFourLines();
 						}
-
+*/
 
 						if ( linesCast > 15 ) {		// Finished with all 16 lines
 							castingInProgress = false;
@@ -431,9 +438,8 @@ var autoGEO = (function ($, my) {
 			reset();
 			abortedCast = true;
 			castingInProgress = false;
-			my.statusMsg('Casting Aborted!', false, 'icon-exclamation-sign');
+			// my.statusMsg('Casting Aborted!', false, 'icon-exclamation-sign');
 			el$.val("Casting Aborted - Start over");
-			el$.blur();
 		}
 
 

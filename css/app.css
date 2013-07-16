@@ -62,7 +62,7 @@ header {
 }
 
 
-#ChartTable {
+#ChartTable {                   /* lives within shieldChart */
     -webkit-border-radius: 4px;
     border-radius: 4px;
 
@@ -81,7 +81,7 @@ header {
 }
 
 #ChartTable td {
-    padding: 3px;
+    padding: 2px;
 }
 
 

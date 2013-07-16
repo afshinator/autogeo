@@ -47,8 +47,8 @@ var autoGEO = (function ($, my) {
         var isLoaded = false;
         var prefix = 'snd/';        // path prefix
         var files = [               // all sounds below corresponds to filenames
-                'drip1', 'icedispense', 'klik1', 'spring1', 'startup_11',
-                'whoosh1', 'whoosh4', 'plink_06', 'chime'
+                'drip1', 'arrival_horns', 'klik1', 'spring1',
+                'whoosh1', 'whoosh4', 'chime', 'tick6'
             ];
         var sounds = {};            // will hold loaded in files as Howler objects
 
@@ -215,7 +215,10 @@ var autoGEO = (function ($, my) {
         if ( presetKeyVals.audio === true ) {
             my.log('l', 'APP PRESETS: for AUDIO is ON - kicking off initAudio()...');
             my.audio.init(false);                   // Load Audio files & get them ready for play
-            my.audio.play('startup_11', 0.2);       // Play startup sound
+            my.audio.play('arrival_horns', 0.2);       // Play startup sound
+            my.audio.play('klik1', 0.2);       // cache
+            my.audio.play('tick6', 0.2);       // cache the sound
+
         }
         else {
             my.log('l', 'APP PRESETS: for AUDIO is OFF - still loading sound files.');
