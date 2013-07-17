@@ -101,6 +101,10 @@ header {
     margin-left:0px;
 }
 
+#geoPlanets img {           /* The size of the planet images */
+    width: 18px;
+}
+
 
 .figlist, .planetlist {
     display: block;

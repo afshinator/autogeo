@@ -50,7 +50,7 @@ var schart = '<table id="ChartTable"> \
         <td></td>\
         <td></td>\
         <td></td>\
-        <td class="house" id="chart14"><img src="./img/figempty.png" alt="Left Witness"></td>\
+        <td class="house witness lwitness" id="chart14"><img src="./img/figempty.png" alt="Left Witness"></td>\
         <td></td>\
         <td></td>\
         <td></td>\
@@ -58,7 +58,7 @@ var schart = '<table id="ChartTable"> \
         <td></td>\
         <td></td>\
         <td></td>\
-        <td class="house" id="chart13"><img src="./img/figempty.png" alt="Right Witness"></td>\
+        <td class="house witness rwitness" id="chart13"><img src="./img/figempty.png" alt="Right Witness"></td>\
         <td></td>\
         <td></td>\
         <td></td>\
@@ -73,7 +73,7 @@ var schart = '<table id="ChartTable"> \
         <td></td>\
         <td></td>\
         <td></td>\
-        <td class="house" id="chart15"><img src="./img/figempty.png" alt="The Judge"></td>\
+        <td class="house judge" id="chart15"><img src="./img/figempty.png" alt="The Judge"></td>\
         <td></td>\
         <td></td>\
         <td></td>\
@@ -131,7 +131,7 @@ var interptChoices = '<form id="interptForm" name="form1">\
     <p>\
         <input type="radio" name="interps" value="0"/><strong>Correct placement</strong><br/>\
         <input type="radio" name="interps" value="1"/><strong>The Way of the Points</strong><br/>\
-        <input type="radio" name="interps" value="2"/><strong></strong><br/>\
+        <input type="radio" name="interps" value="2"/><strong>The Judge & the Witnesses</strong><br/>\
         <input type="radio" name="interps" value="3"/><strong>The 4 triplicities</strong><br/>\
         <input type="radio" name="interps" value="4"/><strong>Elemental triplicities</strong><br/>\
         <input type="radio" name="interps" value="5"/><strong>The houses 1</strong><br/>\

@@ -11,7 +11,7 @@ var autoGEO = (function ($, my) {
 	var interptStatus = [
 		{ 'done' : false, 'desc' : '<h5>Correct Placement</h5><table width="100%" border="0" cellspacing="0" cellpadding="10"><tr><td><p>In some traditions, there is a pattern of certain figures in the houses that verify the reliability of a reading.  If a figure appears in that house, it swears the event will come to pass.  This is often the first check that is made in interpretation.</p><p>Although it doesn\'t necessary mean the reading is invalid if it does not happen, it\'s good to get at least one figure to be in \'correct placement\'.</p><p>This small table below shows which houses \'should\' contain which figures.</p></td><td><table id="littleFigs" width="200px" border="0" cellspacing="0" cellpadding="0"><tr align="center"><th scope="col"><img src="img/fig8.gif" alt="Tristicia" width="12" /></th><th scope="col"><img src="img/fig2.gif" alt="Rubeus" width="12" /></th><th scope="col"><img src="img/fig5.gif" alt="Amissio" width="12" /></th><th scope="col"><img src="img/fig15.gif" alt="Via" width="12" /></th><th scope="col"><img src="img/fig4.gif" alt="Albus" width="12" /></th><th scope="col"><img src="img/fig14.gif" alt="Caput Draconis" width="12" /></th><th scope="col"><img src="img/fig1.gif" alt="Latecia" width="12" /></th><th scope="col"><img src="img/fig11.gif" alt="puer" width="12" /></th></tr><tr><td><img src="img/fig12.gif" alt="Fortuna Major" width="12" align="right" /></td><td> </td><td><img src="img/fig6.gif" alt="Conjunctio" width="12" align="right" /></td><td> </td><td> </td><td><img src="img/fig9.gif" alt="Carcer" width="12" align="left" /></td><td> </td><td><img src="img/fig3.gif" alt="Fortuna Minor" width="12" align="left" /></td></tr><tr><td> </td><td><img src="img/fig13.gif" alt="Puella" width="12" align="right" /></td><td> </td><td> </td><td> </td><td> </td><td><img src="img/fig7.gif" alt="Cauda Draconis" width="12" /></td><td> </td></tr><tr><td> </td><td> </td><td> </td><td><img src="img/fig10.gif" alt="Acquisitio" width="12" align="right" /></td><td> </td><td> </td><td> </td><td> </td></tr></table></td></tr></table>'}, // 0
 		{ 'done' : false, 'desc' : '<h5>The Way of the Points</h5><p><small>This interpretation points to the force, desire, or cause thats driving things through.  It reflects the root of the question being asked.  The way points to a house wherein the figure reflects why things are happening, rather than how they <i>will</i> happen.  If the figure of the judge has a 1 as its top element, there is always one root cause. If it has a 2 as its top element, there are many diffuse causes - the topmost causes are stronger causes.</p><p>To determine the way of the points, we first see if the top line of the judge is repeated in either of the top lines of the right or left witness. If neither one, then \'the way\' stops there and the interpretation is that the situation with the quesited is exactly as it seems.  Otherwise, following the witness that had the same top line up the chart, you repeat the same process and see which house on the row above has the same top line as the rows below to the judge. This process ends with ending up with one to many ends of the branch which reflect either the one root cause or the number of diffuse causes.</small></p>'},// 1 - 
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt 2'},// 2
+		{ 'done' : false, 'desc' : '<h5>The Judge and Witnesses</h5><small><p><strong>The Judge and Witnesses give the basic answer to your question.</strong>  The rest of the houses in the chart (Houses 1 through 12) give the details, the process the situation will go through.</p><p>The Judge is the figure that winds up in house 15.   The <em>right witness is in house 14</em>, and the<em> left witness in house 16</em>. Some figures are often favorable, and some are often unfavorable, but favorable and unfavorable are really relative to the question. Learn about each figure, its imagry and associations, and in what situations that figure is favored.</p><p><strong>The Judge</strong> describes the interaction between the <strong>querent</strong> (the person asking the question) and the <strong>quesited</strong> (what is being asked), and is also a snapshot of the present moment, with respect to the question. In many reading the Judge by itself gives a good basic answer. In a yes or no type question, you are looking mainly at weighing the figure of the judge against your question. </p><p><strong>The Judge will always be one of the 8 figures</strong>, shown below along with their Mobile / Stable quality. This is a property of the figures that is more important in some questions (for example: theft), than others. It could also indicate a fixed or changing situation.</p></small><table width="100%" border="0" cellspacing="0" cellpadding="10"><tr><td><img src="img/fig5.gif" alt="Amissio" width="16" height="48" /></td><td><img src="img/fig0.gif" alt="Populus" width="16" height="48" /></td><td><img src="img/fig12.gif" alt="Fortuna Major" width="16" height="48" /></td><td><img src="img/fig6.gif" alt="Conjunctio" width="16" height="48" /></td><td><img src="img/fig9.gif" alt="Carcer" width="16" height="48" /></td><td><img src="img/fig10.gif" alt="Acquisitio" width="16" height="48" /></td><td><img src="img/fig3.gif" alt="Fortuna Minor" width="16" height="48" /></td><td><img src="img/fig15.gif" alt="Via" width="16" height="48" /></td></tr><tr><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>mobile</td></tr></table><small><p>&nbsp;</p><p><strong>The Right Witness</strong> represents the querent, everything the querent brings to the question including their attitude, agenda, and past. A &quot;favorable&quot; figure as the right witness means the querent is positioned strongly at the beginning of the matter. An unfavorable figure means a weak start.</p><p><strong>The Left Witness</strong> represents what the quesited means to the querent and everything it brings to the question. Its a reflection of how the quesited affects the querent, and also the future of the matter (whereas the judge is the present, right witness is past). A &quot;favorable&quot; left witness means that the quesited is beneficial to the querent while an &quot;unfavorable&quot;one means the quesited is something that will harm the querent or the querent is better off without.</p></small>'}, // 2  The Judge and Witnesses
 		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt3'},// 3
 		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt4'},// 4
 		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt5'},// 5
@@ -32,7 +32,7 @@ var autoGEO = (function ($, my) {
 
 
 
-	// Correct Placement --
+	// Correct Placement --s
 	// Pattern starting from house 1 is:
 	// puer, laeticia, cap draco, albus, via, amissio, reub, 
 	// trist, f minor, carcer, conjunct, fmajor, caud d, puella, acquisitio
@@ -95,6 +95,82 @@ var autoGEO = (function ($, my) {
 		my.log('l', 'interpt result --->' + html);
 		return ( (html.length === 0) ? '' : html );
 	};
+
+
+
+
+	//
+	// The Judge and Witnesses --
+	interptStatus[2].interpret = function() {
+		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
+		var html = "";					// what is going to be returned as results/html to inject
+		var i;							// iteration
+
+		var stable = [ 0, 4, 8, 9, 10, 12, 13, 14 ];			// The stable figures
+		var judge = chart[14];
+		var rw = chart[12];
+		var lw = chart[13];
+
+		html += '<p><strong>The Judge and Witnesses</strong> - By looking at the Stable/Mobile Quality of each of the figures in these houses, you can get a sense of whether the situation is fixed or changing.</p><ul>';
+
+		// CRITERIA 1:  Stable/Mobile Quality of Figures
+		// Quick and dirty way to find out whether judge, lw, rw are stable or mobile figures.
+		var judgeStable = false, rwStable = false, lwStable = false;
+		for (i=0 ; i < stable.length ; i += 1) {
+			if ( stable[i] === chart[14] ) { judgeStable = true; }
+			if ( stable[i] === chart[12] ) { rwStable = true; }
+			if ( stable[i] === chart[13] ) { lfStable = true; }
+		}
+
+		// Right now we are just outputing in 3 cases, 1.) whether all are stable
+		if ( judgeStable && rwStable && lwStable ) {
+			html += '<li>The judge and witnesses are all stable figures.  Whether favorable or not, this implies a fixed situation.</li>';
+		} else {
+			if ( judgeStable ) {	//  2.) All arent stable, but Judge definitely is
+				html += '<li>The Judge ' + my.data.figs[judge].name + ' has a stable quality which might imply a definite yes or no, in those type of questions.</li>';
+			} else {
+				// 3. No stable figures
+				if ( ! (judgeStable || rwStable || lwStable ) ) {
+					html += '<li>The Judge and both Witnesses are all mobile figures!  This might indicate a situation in change with maybe uncertain, or quick to pass outcomes.</li>';
+				}
+			}
+		}
+
+
+		// CRITERIA 2: Special cases
+		// NEUTRAL figures: Conjunctio 6, via 15, populus 0,  (and fminor 3)
+		if ( judge === 6 || judge === 15 || judge === 0 || judge === 3 ) {
+			html += '<li>The Judge: ' + my.data.figs[judge].name + ' is a neutral figure which takes on the negative or positive influences of the Witnesses.</li>';
+		}
+
+		// POSITIVE figures: FMajor 12, ( Acquisitio 10 )
+		if ( judge === 12 ) {
+			html += '<li>The figure of the the Judge: ' + my.data.figs[judge].name + ' is almost always a positive indicator.</li>';
+		}
+
+		/* TODO: put more info for each of the 8 possible judges */
+
+		// NEGAIVE figures: Reubeus 2, Tristicia 8, Caud Drac 7, Amissio 5, Carcer 9
+		if ( judge === 5 || judge === 9 ) {
+			html += '<li>The figure of the the Judge: ' + my.data.figs[judge].name + ' is almost always a negative indicator.</li>';
+		}
+
+		if ( rw === 2 || rw === 8 || rw === 7 || rw === 5 || rw ===9 ||lw === 2 || lw === 8 || lw === 7 || lw === 5 || lw ===9 ) {
+			html += '<li>Usually NEGATIVE: Reubeus, Tristicia, Cauda Drac, Amissio, Carcer detected in one (or both) of the Witnesses.</li>';
+		}
+
+		// RW or LF is CAUDA DRACONIS (7), judge cant be c.draconis
+		if ( rw === 7 || lw === 7) {
+			html += '<li>The ' + ((rw === 7) ? 'Right' : 'Left') + ' Witness is Cauda Draconis, a disruptive figure, good only for losses and endings.</li>';
+		}
+
+		html += '</ul>';
+		my.log('l', 'interpt result --->' + html);
+		return html;
+	};
+
+
+
 
 
 
