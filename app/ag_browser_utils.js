@@ -47,8 +47,8 @@ var autoGEO = (function ($, my) {
         var isLoaded = false;
         var prefix = 'snd/';        // path prefix
         var files = [               // all sounds below corresponds to filenames
-                'drip1', 'arrival_horns', 'klik1', 'spring1',
-                'whoosh1', 'whoosh4', 'chime', 'tick6'
+                'drip1', 'arrival_horns', 'klik1', 'spring1', 'chime2', 'alert_23',
+                'whoosh1', 'whoosh4', 'chime', 'tick6', 'bebeblip'
             ];
         var sounds = {};            // will hold loaded in files as Howler objects
 
@@ -211,11 +211,13 @@ var autoGEO = (function ($, my) {
         //
         // Based on settings (which we got from presets) kick off audio and geolocation - or not.
 
-        // The way this is written, even if presets indicate no audio, sound files are still loaded
+        // The way this is right now, even if presets indicate no audio, sound files are still loaded
         if ( presetKeyVals.audio === true ) {
             my.log('l', 'APP PRESETS: for AUDIO is ON - kicking off initAudio()...');
             my.audio.init(false);                   // Load Audio files & get them ready for play
-            my.audio.play('arrival_horns', 0.2);       // Play startup sound
+            if ( my.data.shiftKeyDown === false ) { // No startup sound if shift key is pressed
+                my.audio.play('arrival_horns', 0.2);       // Play startup sound
+            }
             my.audio.play('klik1', 0.2);       // cache
             my.audio.play('tick6', 0.2);       // cache the sound
 

@@ -80,7 +80,7 @@ var autoGEO = (function ($, my) {
 
 		c[15] = combineFigures(c[0], c[14]);			// The Reconciler
 
-		my.audio.play('chime', 0.1);					// sound
+		my.audio.play('chime2', 0.1);					// sound
 
 		my.statusMsg("Chart derived!");
 		// my.log("info", "Chart derived!");

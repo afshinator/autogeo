@@ -471,6 +471,7 @@ var autoGEO = (function ($, my) {
 			my.progressBar.increase(5);
 			my.data.uiElt$['audio_toggle'].css('visibility', 'visible');
 			my.data.uiElt$['geoloc_btn'].css('visibility', 'visible');
+			$('.invisible').css('opacity', '1.0').css('visibility', 'visible').fadeIn(6000);	// css class invisible are all the other elements I want to show after app startup
 		});
 
 		my.data.uiElt$['geoFigures'].css('visibility', 'visible' ).fadeIn(3500, function() {
@@ -478,7 +479,10 @@ var autoGEO = (function ($, my) {
 			my.progressBar.end();
 			my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
 
-			$('#myModal').modal('show');
+			if ( my.data.shiftKeyDown === false ) {	// dont show modal if shify key is down
+				my.log('log', 'Shift key pressed, skipping startup modal dialog.');
+				$('#myModal').modal('show');
+			}
 		});
 
 

@@ -22,6 +22,15 @@ header {
 
 
 
+/* applied to all elements that I dont want to be visible until app finishes startup... */
+.hideable {
+    display: none;
+}
+
+.invisible {
+    opacity: 0.0;
+}
+
 /*
  * Widgets in the header 
  */

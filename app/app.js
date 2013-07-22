@@ -7,6 +7,7 @@ var autoGEO = (function ($, my) {
 	// share variable across the app via autoGEO.data.name
 	my.data = {
 		name : "afshin",
+		shiftKeyDown : false,						// will be set to true if shift key is being held down, for bypassing startup modal, ...
 //		presets : {},								// key:value --> app presets like audio/geolocation/... ?
 		uiElt$ : {},								// key:html elts  --> val: jquery selections; for cross app quick access
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
@@ -295,14 +296,26 @@ var autoGEO = (function ($, my) {
 
 	// Tab related elements put into my.data.uiElt$ in the view
 
+	// Set up event handlers for shift-key being pressed down
+	$(document).keydown(function(e) {
+		if (e.shiftKey) {
+			my.data.shiftKeyDown = true;
+		}
+	}).keyup(function(e) {
+		if (e.shiftKey) {
+			my.data.shiftKeyDown = false;
+
+		}
+	});
 
 	if ( my.initView === undefined ){
 		my.log("err", "Inside App.js, initView not yet defined!", true);
 	} else {
-		// Hide the chart and figures table so loading ugliness wont show
-		my.data.uiElt$['shieldChart'].hide();  // initView() unhides them
-		my.data.uiElt$['geoFigures'].hide();
-
+		if ( my.data.shiftKeyDown === false ) {
+			// Hide the chart and figures table so loading ugliness wont show
+			my.data.uiElt$['shieldChart'].hide();  // initView() unhides them
+			my.data.uiElt$['geoFigures'].hide();
+		}
 
 		my.progressBar.init();
 			my.progressBar.increase();
