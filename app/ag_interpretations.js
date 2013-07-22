@@ -11,16 +11,15 @@ var autoGEO = (function ($, my) {
 	var interptStatus = [
 		{ 'done' : false, 'desc' : '<h5>Correct Placement</h5><table width="100%" border="0" cellspacing="0" cellpadding="10"><tr><td><p>In some traditions, there is a pattern of certain figures in the houses that verify the reliability of a reading.  If a figure appears in that house, it swears the event will come to pass.  This is often the first check that is made in interpretation.</p><p>Although it doesn\'t necessary mean the reading is invalid if it does not happen, it\'s good to get at least one figure to be in \'correct placement\'.</p><p>This small table below shows which houses \'should\' contain which figures.</p></td><td><table id="littleFigs" width="200px" border="0" cellspacing="0" cellpadding="0"><tr align="center"><th scope="col"><img src="img/fig8.gif" alt="Tristicia" width="12" /></th><th scope="col"><img src="img/fig2.gif" alt="Rubeus" width="12" /></th><th scope="col"><img src="img/fig5.gif" alt="Amissio" width="12" /></th><th scope="col"><img src="img/fig15.gif" alt="Via" width="12" /></th><th scope="col"><img src="img/fig4.gif" alt="Albus" width="12" /></th><th scope="col"><img src="img/fig14.gif" alt="Caput Draconis" width="12" /></th><th scope="col"><img src="img/fig1.gif" alt="Latecia" width="12" /></th><th scope="col"><img src="img/fig11.gif" alt="puer" width="12" /></th></tr><tr><td><img src="img/fig12.gif" alt="Fortuna Major" width="12" align="right" /></td><td> </td><td><img src="img/fig6.gif" alt="Conjunctio" width="12" align="right" /></td><td> </td><td> </td><td><img src="img/fig9.gif" alt="Carcer" width="12" align="left" /></td><td> </td><td><img src="img/fig3.gif" alt="Fortuna Minor" width="12" align="left" /></td></tr><tr><td> </td><td><img src="img/fig13.gif" alt="Puella" width="12" align="right" /></td><td> </td><td> </td><td> </td><td> </td><td><img src="img/fig7.gif" alt="Cauda Draconis" width="12" /></td><td> </td></tr><tr><td> </td><td> </td><td> </td><td><img src="img/fig10.gif" alt="Acquisitio" width="12" align="right" /></td><td> </td><td> </td><td> </td><td> </td></tr></table></td></tr></table>'}, // 0
 		{ 'done' : false, 'desc' : '<h5>The Way of the Points</h5><p><small>This interpretation points to the force, desire, or cause thats driving things through.  It reflects the root of the question being asked.  The way points to a house wherein the figure reflects why things are happening, rather than how they <i>will</i> happen.  If the figure of the judge has a 1 as its top element, there is always one root cause. If it has a 2 as its top element, there are many diffuse causes - the topmost causes are stronger causes.</p><p>To determine the way of the points, we first see if the top line of the judge is repeated in either of the top lines of the right or left witness. If neither one, then \'the way\' stops there and the interpretation is that the situation with the quesited is exactly as it seems.  Otherwise, following the witness that had the same top line up the chart, you repeat the same process and see which house on the row above has the same top line as the rows below to the judge. This process ends with ending up with one to many ends of the branch which reflect either the one root cause or the number of diffuse causes.</small></p>'},// 1 - 
-		{ 'done' : false, 'desc' : '<h5>The Judge and Witnesses</h5><small><p><strong>The Judge and Witnesses give the basic answer to your question.</strong>  The rest of the houses in the chart (Houses 1 through 12) give the details, the process the situation will go through.</p><p>The Judge is the figure that winds up in house 15.   The <em>right witness is in house 14</em>, and the<em> left witness in house 16</em>. Some figures are often favorable, and some are often unfavorable, but favorable and unfavorable are really relative to the question. Learn about each figure, its imagry and associations, and in what situations that figure is favored.</p><p><strong>The Judge</strong> describes the interaction between the <strong>querent</strong> (the person asking the question) and the <strong>quesited</strong> (what is being asked), and is also a snapshot of the present moment, with respect to the question. In many reading the Judge by itself gives a good basic answer. In a yes or no type question, you are looking mainly at weighing the figure of the judge against your question. </p><p><strong>The Judge will always be one of the 8 figures</strong>, shown below along with their Mobile / Stable quality. This is a property of the figures that is more important in some questions (for example: theft), than others. It could also indicate a fixed or changing situation.</p></small><table width="100%" border="0" cellspacing="0" cellpadding="10"><tr><td><img src="img/fig5.gif" alt="Amissio" width="16" height="48" /></td><td><img src="img/fig0.gif" alt="Populus" width="16" height="48" /></td><td><img src="img/fig12.gif" alt="Fortuna Major" width="16" height="48" /></td><td><img src="img/fig6.gif" alt="Conjunctio" width="16" height="48" /></td><td><img src="img/fig9.gif" alt="Carcer" width="16" height="48" /></td><td><img src="img/fig10.gif" alt="Acquisitio" width="16" height="48" /></td><td><img src="img/fig3.gif" alt="Fortuna Minor" width="16" height="48" /></td><td><img src="img/fig15.gif" alt="Via" width="16" height="48" /></td></tr><tr><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>mobile</td></tr></table><small><p>&nbsp;</p><p><strong>The Right Witness</strong> represents the querent, everything the querent brings to the question including their attitude, agenda, and past. A &quot;favorable&quot; figure as the right witness means the querent is positioned strongly at the beginning of the matter. An unfavorable figure means a weak start.</p><p><strong>The Left Witness</strong> represents what the quesited means to the querent and everything it brings to the question. Its a reflection of how the quesited affects the querent, and also the future of the matter (whereas the judge is the present, right witness is past). A &quot;favorable&quot; left witness means that the quesited is beneficial to the querent while an &quot;unfavorable&quot;one means the quesited is something that will harm the querent or the querent is better off without.</p></small>'}, // 2  The Judge and Witnesses
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt3'},// 3
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt4'},// 4
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt5'},// 5
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt6'},
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt7'},
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt8'},
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt9'},
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt10'},
-		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt11'}
+		{ 'done' : false, 'desc' : '<h5>The Judge and Witnesses</h5><small><p><strong>The Judge and Witnesses give the basic answer to your question.</strong>  The rest of the houses in the chart (Houses 1 through 12) give the details, the process the situation will go through.</p><p>The Judge is the figure that winds up in <a id="blink-h15">house 15</a>.   The <em>right witness is in <a id="blink-h13">house 13</a></em>, and the<em> left witness in <a id="blink-h14">house 14</a></em>. Some figures are often favorable, and some are often unfavorable, but favorable and unfavorable are really relative to the question. Learn about each figure, its imagry and associations, and in what situations that figure is favored.</p><p><strong>The Judge</strong> describes the interaction between the <strong>querent</strong> (the person asking the question) and the <strong>quesited</strong> (what is being asked), and is also a snapshot of the present moment, with respect to the question. In many reading the Judge by itself gives a good basic answer. In a yes or no type question, you are looking mainly at weighing the figure of the judge against your question. </p><p><strong>The Judge will always be one of the 8 figures</strong>, shown below along with their Mobile / Stable quality. This is a property of the figures that is more important in some questions (for example: theft), than others. It could also indicate a fixed or changing situation.</p></small><table width="100%" border="0" cellspacing="0" cellpadding="10"><tr><td><img src="img/fig5.gif" alt="Amissio" width="16" height="48" /></td><td><img src="img/fig0.gif" alt="Populus" width="16" height="48" /></td><td><img src="img/fig12.gif" alt="Fortuna Major" width="16" height="48" /></td><td><img src="img/fig6.gif" alt="Conjunctio" width="16" height="48" /></td><td><img src="img/fig9.gif" alt="Carcer" width="16" height="48" /></td><td><img src="img/fig10.gif" alt="Acquisitio" width="16" height="48" /></td><td><img src="img/fig3.gif" alt="Fortuna Minor" width="16" height="48" /></td><td><img src="img/fig15.gif" alt="Via" width="16" height="48" /></td></tr><tr><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>mobile</td></tr></table><small><p>&nbsp;</p><p><strong>The Right Witness</strong> represents the querent, everything the querent brings to the question including their attitude, agenda, and past. A &quot;favorable&quot; figure as the right witness means the querent is positioned strongly at the beginning of the matter. An unfavorable figure means a weak start.</p><p><strong>The Left Witness</strong> represents what the quesited means to the querent and everything it brings to the question. Its a reflection of how the quesited affects the querent, and also the future of the matter (whereas the judge is the present, right witness is past). A &quot;favorable&quot; left witness means that the quesited is beneficial to the querent while an &quot;unfavorable&quot;one means the quesited is something that will harm the querent or the querent is better off without.</p></small>'}, // 2  The Judge and Witnesses
+		{ 'done' : false, 'desc' : '<h5>The 4 Triplicities</h5><small><p><strong>Looks at the broad picture of the querents life around the question</strong> by diving the 12 houses into four sets of three houses, each like a minuture chart itself with the lower house being the judge with respect to the other two houses. This interpretation is one way to get a general idea of all the forces at work, its useful in non-yes/no questions and when the answers to yes/no questions in the Judge and Witnesses isnt satisfying or clear.</p><p>This interpretation also reflects the general notion that the right side of the chart reflects the querent, while the left side of the chart is everything else.</p><p><a id="triplicity_a">The 1st triplicity</a> : houses <strong>1, 2, and 9</strong> represent<strong> the querent, their circumstances, health, habits, and outlook on life</strong>.</p><p><a id="triplicity_b">The 2nd triplicity : </a>houses <strong>3, 4, and 10</strong> represent<strong> the events shaping the querents life at the time of the reading</strong>.</p><p><a id="triplicity_c">The 3rd triplicity</a> : houses <strong>5, 6, and 11</strong> represent<strong> the querents home and work environment, places frequented, people met there, family and housemates</strong>.</p><p><a id="triplicity_d">The fourth triplicity</a> : houses <strong>7, 8, and 12</strong> represent <strong>the querents friends, associates, and authority figures</strong>.</p><p>Read each triplicity as though the bottom row is the judge, and the two   houses above it in its respective triplicity are the witnesses.  For example, in a question about your job house 5 talks about the past situation and house 6 the future, which combine to give the present in house 11.</p></small>'},	// 3 the triplicities
+		{ 'done' : false, 'desc' : '<h5>Elemental Triplicities</h5><small><p><strong>This is another perspective on the situation around the querents life where the 12 houses are split into 4 triplicities, this time based on association with the elements.</strong></p><p>Each of 4 elements are each associated with 3 different houses:</p><p><a id="interpE_Fire">The <strong>Fire</strong> triplicity</a> : houses <strong>1, 5, and 9</strong>, reflect the querents <strong>private life, personality, sexuality, love, children, arts, spirituality, temperament, thought, vices &amp; virtues</strong>.</p><p><a id="interpE_Air">The <strong>Air</strong> triplicity</a> : houses <strong>3, 7, and 11</strong>, reflect <strong>the quality of those things from the social standpoint.</strong> Social life, concrete realization, anything opposed to quesited, the non-self, hopes, expectations.</p><p><a id="interpE_Water">The <strong>Water</strong> triplicity</a> : houses <strong>4, 8, and 12</strong> reflect <strong> the querents Occult life, heredity, death or transformation, doubts &amp; renouncement.</strong>.</p><p><a id="interpE_Earth">The <strong>Earth</strong> triplicity</a> : houses <strong>2, 6, and 10</strong> reflect <strong>the chance of things from their material standpoint</strong>.</p></small>'},		// 4  Elemental Triplicities		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt5'},		// 5
+		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 6'},
+		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 7'},
+		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 8'},
+		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 9'},
+		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 10'},
+		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 11'}
 	];
 
 	// isFireLineActive(figure)
@@ -113,6 +112,31 @@ var autoGEO = (function ($, my) {
 
 		html += '<p><strong>The Judge and Witnesses</strong> - By looking at the Stable/Mobile Quality of each of the figures in these houses, you can get a sense of whether the situation is fixed or changing.</p><ul>';
 
+		/* This code doesn't belong here
+		 */
+			// set up a delegated event handler to highlight the house if they mouseover text in the interpt
+			my.data.uiElt$['interpts'].on('mouseover', "#blink-h13", function(e) {
+				$("#chart13").effect('highlight', {}, 2000); // addClass("blowUp120");
+				e.preventDefault();
+			});
+
+			// set up a delegated event handler to highlight the house if they mouseover text in the interpt
+			my.data.uiElt$['interpts'].on('mouseover', "#blink-h14", function(e) {
+				$("#chart14").effect('highlight', {}, 2000); // addClass("blowUp120");
+				e.preventDefault();
+			});
+
+			// set up a delegated event handler to highlight the house if they mouseover text in the interpt
+			my.data.uiElt$['interpts'].on('mouseover', "#blink-h15", function(e) {
+				$("#chart15").effect('highlight', {}, 2000); // addClass("blowUp120");
+				e.preventDefault();
+			});
+
+		/*
+		 */
+
+
+
 		// CRITERIA 1:  Stable/Mobile Quality of Figures
 		// Quick and dirty way to find out whether judge, lw, rw are stable or mobile figures.
 		var judgeStable = false, rwStable = false, lwStable = false;
@@ -172,8 +196,81 @@ var autoGEO = (function ($, my) {
 
 
 
+	//
+	// The 4 Triplicities --
+	interptStatus[3].interpret = function() {
+		/* This code doesn't really belong here, 
+		 */
+			// set up a delegated event handler to highlight the house if they mouseover text in the interpt
+			my.data.uiElt$['interpts'].on('mouseover', "#triplicity_a", function(e) {
+				$("#chart1").effect('highlight', {}, 2000);
+				$("#chart2").effect('highlight', {}, 2000);
+				$("#chart9").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+
+			my.data.uiElt$['interpts'].on('mouseover', "#triplicity_b", function(e) {
+				$("#chart3").effect('highlight', {}, 2000);
+				$("#chart4").effect('highlight', {}, 2000);
+				$("#chart10").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+
+			my.data.uiElt$['interpts'].on('mouseover', "#triplicity_c", function(e) {
+				$("#chart5").effect('highlight', {}, 2000);
+				$("#chart6").effect('highlight', {}, 2000);
+				$("#chart11").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+
+			my.data.uiElt$['interpts'].on('mouseover', "#triplicity_d", function(e) {
+				$("#chart7").effect('highlight', {}, 2000);
+				$("#chart8").effect('highlight', {}, 2000);
+				$("#chart12").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+		/*
+		 */
+	};
 
 
+
+	//
+	// The Elemental Triplicities --
+	interptStatus[4].interpret = function() {
+		/* This code doesn't really belong here, 
+		 */
+			// set up a delegated event handler to highlight the house if they mouseover text in the interpt
+			my.data.uiElt$['interpts'].on('mouseover', "#interpE_Fire", function(e) {
+				$("#chart1").effect('highlight', {}, 2000);
+				$("#chart5").effect('highlight', {}, 2000);
+				$("#chart9").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+
+			my.data.uiElt$['interpts'].on('mouseover', "#interpE_Air", function(e) {
+				$("#chart3").effect('highlight', {}, 2000);
+				$("#chart7").effect('highlight', {}, 2000);
+				$("#chart11").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+
+			my.data.uiElt$['interpts'].on('mouseover', "#interpE_Water", function(e) {
+				$("#chart4").effect('highlight', {}, 2000);
+				$("#chart8").effect('highlight', {}, 2000);
+				$("#chart12").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+
+			my.data.uiElt$['interpts'].on('mouseover', "#interpE_Earth", function(e) {
+				$("#chart2").effect('highlight', {}, 2000);
+				$("#chart6").effect('highlight', {}, 2000);
+				$("#chart10").effect('highlight', {}, 2000);
+				e.preventDefault();
+			});
+		/*
+		 */
+	};
 
 	//
 	// Set up handling click on interpt radio buttons.  called by initTabs()
