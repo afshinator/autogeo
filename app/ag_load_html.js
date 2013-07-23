@@ -5,7 +5,7 @@
 
 var autoGEO = (function ($, my) {
 
-
+/**
 var schart = '<table id="ChartTable"> \
     <tr>\
         <td></td>\
@@ -84,7 +84,7 @@ var schart = '<table id="ChartTable"> \
         <td></td>\
     </tr>\
 </table>';
-
+**/
 
 var home = '<div class="row">\
         <div class="span9">\
@@ -191,7 +191,7 @@ var about = '<div id="aboutBox" class="gradient1">\
 </div>';
 
     $('#home').append(home);                  
- 	$('#shieldChart').append(schart);       
+// 	$('#shieldChart').append(schart);       
     $('#figtab').append(figtab);                
     $('#housetab').append(housetab);           
     $('#interptChoices').append(interptChoices); 

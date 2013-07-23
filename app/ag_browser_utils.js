@@ -26,7 +26,7 @@ var autoGEO = (function ($, my) {
             case "inverse":
                 wrappedTxt += ' label-inverse">';   break;
 
-            default: // error case
+            default: // error case - just gonna return the text without wrapping
                 return txt;
         }
 
@@ -50,7 +50,7 @@ var autoGEO = (function ($, my) {
         var prefix = 'snd/';        // path prefix
         var files = [               // all sounds below corresponds to filenames
                 'drip1', 'arrival_horns', 'klik1', 'spring1', 'chime2', 'alert_23',
-                'whoosh1', 'whoosh4', 'chime', 'tick6', 'bebeblip'
+                'whoosh1', 'whoosh4', 'chime', 'tick6', 'bebeblip', 'notify2'
             ];
         var sounds = {};            // will hold loaded in files as Howler objects
 

@@ -282,8 +282,8 @@ var autoGEO = (function ($, my) {
 
 	my.data.uiElt$['statusMsg'] = localHeaderCache$.find('#statusMsg');
 	my.data.uiElt$['geoFigures'] = localHeaderCache$.find('#geoFigures');
-	my.data.uiElt$['shieldChart'] = localHeaderCache$.find('#shieldChart');
-	my.data.uiElt$['ChartTable'] = localHeaderCache$.find('#ChartTable');
+	// my.data.uiElt$['shieldChart'] = localHeaderCache$.find('#shieldChart');
+	// my.data.uiElt$['ChartTable'] = localHeaderCache$.find('#ChartTable');
 	my.data.uiElt$['geoloc_btn'] = localHeaderCache$.find('#geoloc_btn');
 	my.data.uiElt$['planetlist'] = localHeaderCache$.find('.planetlist');	// In the header
 	my.data.uiElt$['audio_toggle'] = localHeaderCache$.find("#audio_toggle");
@@ -311,9 +311,10 @@ var autoGEO = (function ($, my) {
 	if ( my.initView === undefined ){
 		my.log("err", "Inside App.js, initView not yet defined!", true);
 	} else {
+
 		if ( my.data.shiftKeyDown === false ) {
 			// Hide the chart and figures table so loading ugliness wont show
-			my.data.uiElt$['shieldChart'].hide();  // initView() unhides them
+			// my.data.uiElt$['shieldChart'].hide();  // initView() unhides them
 			my.data.uiElt$['geoFigures'].hide();
 		}
 

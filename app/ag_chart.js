@@ -2,6 +2,137 @@
 
 var autoGEO = (function ($, my) {
 
+	my.chart = function() {
+		var divShieldChart$;
+		var tableChartTable$;
+
+		function init() {
+			// 1. Get access to html elements..
+			var localHeaderCache$ = my.data.uiElt$['header'];	// header cached in app.js, first thing on startup
+
+			divShieldChart$ = localHeaderCache$.find('#shieldChart');
+
+			// 2. Build the HTML from a (ugly) string, then inject it...
+			/*jshint multistr: true */
+			var schart = '<table id="ChartTable"><tr>\
+				<td></td><td class="house" id="chart8"><img src="./img/figempty.png" alt="8th House"></td>\
+				<td></td><td class="house" id="chart7"><img src="./img/figempty.png" alt="7th House"></td>\
+				<td></td><td class="house" id="chart6"><img src="./img/figempty.png" alt="6th House"></td>\
+				<td></td><td class="house" id="chart5"><img src="./img/figempty.png" alt="5th House"></td>\
+				<td></td><td class="house" id="chart4"><img src="./img/figempty.png" alt="4th Mother"></td>\
+				<td></td><td class="house" id="chart3"><img src="./img/figempty.png" alt="3rd Mother"></td>\
+				<td></td><td class="house" id="chart2"><img src="./img/figempty.png" alt="2nd Mother"></td>\
+				<td></td><td class="house" id="chart1"><img src="./img/figempty.png" alt="1st Mother"></td>\
+				<td></td></tr><tr>\
+				<td></td><td></td><td class="house" id="chart12"><img src="./img/figempty.png" alt="12th House"></td>\
+				<td></td><td></td><td></td><td class="house" id="chart11"><img src="./img/figempty.png" alt="11th House"></td>\
+				<td></td><td></td><td></td><td class="house" id="chart10"><img src="./img/figempty.png" alt="10th House"></td>\
+				<td></td><td></td><td></td><td class="house" id="chart9"><img src="./img/figempty.png" alt="9th House"></td>\
+				<td></td><td></td></tr><tr><td></td><td></td><td></td><td></td>\
+				<td class="house witness lwitness" id="chart14"><img src="./img/figempty.png" alt="Left Witness"></td>\
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>\
+				<td class="house witness rwitness" id="chart13"><img src="./img/figempty.png" alt="Right Witness"></td>\
+				<td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>\
+				<td class="house judge" id="chart15"><img src="./img/figempty.png" alt="The Judge"></td><td></td><td></td><td></td><td></td><td></td><td></td>\
+				<td class="house" id="chart16"><img src="./img/figempty.png" alt="The Reconciler" width="60%"></td>\
+				<td></td></tr></table>';
+
+			divShieldChart$.append(schart);		// Inject the html
+
+			tableChartTable$ = localHeaderCache$.find('#ChartTable');
+
+			if ( my.data.shiftKeyDown === false ) {
+				// If shift key is down at startup time, hide the chart & fade it in
+				divShieldChart$.hide();  // initView() unhides them
+				divShieldChart$.css('visibility', 'visible' ).fadeIn(3000);
+			}
+
+
+			activateHandlers();
+
+			my.data.uiElt$['shieldChart'] = divShieldChart$;	// TODO: will I even need to set these ?
+			my.data.uiElt$['ChartTable'] = tableChartTable$;
+
+			return this;
+		} // init()
+
+
+		function activateHandlers() {
+
+			// Add over effect on houses, if shift-click to tab
+			tableChartTable$.find('.house').hover(
+				function() {
+					$(this).addClass('overEffect1');
+				},
+				function() {
+					$(this).removeClass('overEffect1');
+				})
+				.click(function(e) {
+					if (e.shiftKey) {					// only show figure info if shift key is pressed at same time as single-click
+						var whichFigure = $(this).attr("id");
+						whichFigure = whichFigure.substring(5);
+
+						my.log('l', 'Shift-Click on house:' + whichFigure);
+						my.audio.play('klik1', 0.2);
+						my.data.uiElt$['housetab'].load('ajax/houseinfo.html #' + whichFigure);	// use anchor within html file to load just the part we want
+						$('#appTabs li:eq(2) a').tab('show');
+					}
+				});
+
+			// On doubleclick of a house, set the house of the quesited
+			tableChartTable$.on("dblclick", '.house', function() {
+				var house = ( $(this).attr('id').slice(5) ) * 1;	// get which house, turn into number
+
+				if ( my.data.knownMothers < 4 ) {				// do only if chart is not derived
+					if ( house < 13 ) {
+						my.log('l', 'House of Quesited chosen,  double click on : ' + house);
+						setQuesitedHouse(house, $(this));
+					}
+				}
+			});
+
+		}
+
+
+		function reset() {
+
+		}
+
+		// setQuesitedHouse(house, house$) - called by dblclick handler of chart or click on questions list
+		//			house - number of house selected for house of quested to set.
+		//			house$ - optional argument;  (for quesited house selection from questions list)
+		function setQuesitedHouse(house, house$) {
+			my.audio.play('whoosh1', 0.2);
+
+			// If quesited House has been previously set, get rid of UI effect
+			if ( my.data.quesitedHouse !== 0 ) {
+				var $t = tableChartTable$.find('#chart' + my.data.quesitedHouse );
+				$t.removeClass('gradient4');
+			}
+
+			// if 2nd arg is not passed in, search for and find the html element of the house selected
+			if ( house$ === undefined ) {
+				house$ = tableChartTable$.find('#chart' + house );
+			}
+
+			house$.addClass('gradient4');
+			my.data.quesitedHouse = house;
+			my.statusMsg('House of Quesited Set : ' + house);
+		}
+
+
+		return {
+			init: init,
+			activateHandlers: activateHandlers,
+			reset: reset,
+			setQuesitedHouse: setQuesitedHouse
+		};
+	};
+
+
+
+
+
 	// passed in n corresponds to geomantic figure and should be between 0 and 15
 	function isValidGeoFigure(n) {
 		if ( (n < 16)  && (n > -1) ) { return true; }
@@ -90,7 +221,7 @@ var autoGEO = (function ($, my) {
 
 
 	//
-	// called upon double-click of one of the figures in the figure list
+	// called upon double-click of one of the figures in the figure list, or space-bar hits derived generation
 	my.figSelected = function(i) {
 		// build image tag for geo figure passed in 
 		function img(n) {
@@ -123,8 +254,7 @@ var autoGEO = (function ($, my) {
 			}
 		}
 		else {
-			// TODO: all figures chosen, should probably unbind the double-click form the figure images
-			//my.log('err', 'Stop doubleclicking on figures fool!');
+			// TODO: all figures chosen, should probably unbind the double-click form the figure images or something
 		}
 	};
 
@@ -148,7 +278,7 @@ var autoGEO = (function ($, my) {
 
 		house$.addClass('gradient4');
 		my.data.quesitedHouse = house;
-		my.statusMsg('House of Quesited Selected');
+		my.statusMsg('House of Quesited Set : ' + house);
 		// my.log('i', 'House of Quesited set: ' + house);
 	};
 
