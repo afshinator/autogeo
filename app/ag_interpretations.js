@@ -14,8 +14,8 @@ var autoGEO = (function ($, my) {
 		{ 'done' : false, 'desc' : '<h5>The Judge and Witnesses</h5><small><p><strong>The Judge and Witnesses give the basic answer to your question.</strong>  The rest of the houses in the chart (Houses 1 through 12) give the details, the process the situation will go through.</p><p>The Judge is the figure that winds up in <a id="blink-h15">house 15</a>.   The <em>right witness is in <a id="blink-h13">house 13</a></em>, and the<em> left witness in <a id="blink-h14">house 14</a></em>. Some figures are often favorable, and some are often unfavorable, but favorable and unfavorable are really relative to the question. Learn about each figure, its imagry and associations, and in what situations that figure is favored.</p><p><strong>The Judge</strong> describes the interaction between the <strong>querent</strong> (the person asking the question) and the <strong>quesited</strong> (what is being asked), and is also a snapshot of the present moment, with respect to the question. In many reading the Judge by itself gives a good basic answer. In a yes or no type question, you are looking mainly at weighing the figure of the judge against your question. </p><p><strong>The Judge will always be one of the 8 figures</strong>, shown below along with their Mobile / Stable quality. This is a property of the figures that is more important in some questions (for example: theft), than others. It could also indicate a fixed or changing situation.</p></small><table width="100%" border="0" cellspacing="0" cellpadding="10"><tr><td><img src="img/fig5.gif" alt="Amissio" width="16" height="48" /></td><td><img src="img/fig0.gif" alt="Populus" width="16" height="48" /></td><td><img src="img/fig12.gif" alt="Fortuna Major" width="16" height="48" /></td><td><img src="img/fig6.gif" alt="Conjunctio" width="16" height="48" /></td><td><img src="img/fig9.gif" alt="Carcer" width="16" height="48" /></td><td><img src="img/fig10.gif" alt="Acquisitio" width="16" height="48" /></td><td><img src="img/fig3.gif" alt="Fortuna Minor" width="16" height="48" /></td><td><img src="img/fig15.gif" alt="Via" width="16" height="48" /></td></tr><tr><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>stable</td><td>stable</td><td>mobile</td><td>mobile</td></tr></table><small><p>&nbsp;</p><p><strong>The Right Witness</strong> represents the querent, everything the querent brings to the question including their attitude, agenda, and past. A &quot;favorable&quot; figure as the right witness means the querent is positioned strongly at the beginning of the matter. An unfavorable figure means a weak start.</p><p><strong>The Left Witness</strong> represents what the quesited means to the querent and everything it brings to the question. Its a reflection of how the quesited affects the querent, and also the future of the matter (whereas the judge is the present, right witness is past). A &quot;favorable&quot; left witness means that the quesited is beneficial to the querent while an &quot;unfavorable&quot;one means the quesited is something that will harm the querent or the querent is better off without.</p></small>'}, // 2  The Judge and Witnesses
 		{ 'done' : false, 'desc' : '<h5>The 4 Triplicities</h5><small><p><strong>Looks at the broad picture of the querents life around the question</strong> by diving the 12 houses into four sets of three houses, each like a minuture chart itself with the lower house being the judge with respect to the other two houses. This interpretation is one way to get a general idea of all the forces at work, its useful in non-yes/no questions and when the answers to yes/no questions in the Judge and Witnesses isnt satisfying or clear.</p><p>This interpretation also reflects the general notion that the right side of the chart reflects the querent, while the left side of the chart is everything else.</p><p><a id="triplicity_a">The 1st triplicity</a> : houses <strong>1, 2, and 9</strong> represent<strong> the querent, their circumstances, health, habits, and outlook on life</strong>.</p><p><a id="triplicity_b">The 2nd triplicity : </a>houses <strong>3, 4, and 10</strong> represent<strong> the events shaping the querents life at the time of the reading</strong>.</p><p><a id="triplicity_c">The 3rd triplicity</a> : houses <strong>5, 6, and 11</strong> represent<strong> the querents home and work environment, places frequented, people met there, family and housemates</strong>.</p><p><a id="triplicity_d">The fourth triplicity</a> : houses <strong>7, 8, and 12</strong> represent <strong>the querents friends, associates, and authority figures</strong>.</p><p>Read each triplicity as though the bottom row is the judge, and the two   houses above it in its respective triplicity are the witnesses.  For example, in a question about your job house 5 talks about the past situation and house 6 the future, which combine to give the present in house 11.</p></small>'},	// 3 the triplicities
 		{ 'done' : false, 'desc' : '<h5>Elemental Triplicities</h5><small><p><strong>This is another perspective on the situation around the querents life where the 12 houses are split into 4 triplicities, this time based on association with the elements.</strong></p><p>Each of 4 elements are each associated with 3 different houses:</p><p><a id="interpE_Fire">The <strong>Fire</strong> triplicity</a> : houses <strong>1, 5, and 9</strong>, reflect the querents <strong>private life, personality, sexuality, love, children, arts, spirituality, temperament, thought, vices &amp; virtues</strong>.</p><p><a id="interpE_Air">The <strong>Air</strong> triplicity</a> : houses <strong>3, 7, and 11</strong>, reflect <strong>the quality of those things from the social standpoint.</strong> Social life, concrete realization, anything opposed to quesited, the non-self, hopes, expectations.</p><p><a id="interpE_Water">The <strong>Water</strong> triplicity</a> : houses <strong>4, 8, and 12</strong> reflect <strong> the querents Occult life, heredity, death or transformation, doubts &amp; renouncement.</strong>.</p><p><a id="interpE_Earth">The <strong>Earth</strong> triplicity</a> : houses <strong>2, 6, and 10</strong> reflect <strong>the chance of things from their material standpoint</strong>.</p></small>'},		// 4  Elemental Triplicities		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt5'},		// 5
-		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 6'},
-		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 7'},
+		{ 'done' : false, 'desc' : '<h5>The Querent, the Quesited, and the Outcome</h5><small><p>The quesited house(s), if there is one, answers the basic question.  The 1st house tells how the querent is affected by the quesited. The 4th house tells what the result of the whole situation will be. (See also The Reconciler).</p><p>If the figure of the querent is positive, but quesited negative, then querent wont get their desire, but its for the best.</p><p>If querent is negative, but quesited positive, then querent will get what they want, but they will regret it.</p><p>If   the querent or quesited figure passes to another house, then another   factor involving that house is involved in the matter.  Use the   associations of that house to understand what/who that factor is.</p>'},			// 6
+		{ 'done' : false, 'desc' : '<h5>The Index and Part of Fortune</h5><small><p><strong>The Index </strong>represents the hidden factor at work in the situation.  Its derived couting the number of single points in the first 12 houses.</p><p><strong>The Part of Fortune</strong> indicates a house from which the querent can expect good fortune to   come in the situation.  It is derived from adding all the points in the   first 12 houses together.</p></small>'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 8'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 9'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 10'},
@@ -50,7 +50,7 @@ var autoGEO = (function ($, my) {
 			}
 		}
 
-		my.log('l', 'interpt result --->' + html);
+		//my.log('l', 'interpt result --->' + html);
 		return ( (html.length === 0) ? 'None of the houses have figures that are \"correctly placed\".' : html );
 	};
 
@@ -91,7 +91,7 @@ var autoGEO = (function ($, my) {
 			}
 		}
 
-		my.log('l', 'interpt result --->' + html);
+		//my.log('l', 'interpt result --->' + html);
 		return ( (html.length === 0) ? '' : html );
 	};
 
@@ -189,7 +189,7 @@ var autoGEO = (function ($, my) {
 		}
 
 		html += '</ul>';
-		my.log('l', 'interpt result --->' + html);
+		//my.log('l', 'interpt result --->' + html);
 		return html;
 	};
 
@@ -271,6 +271,80 @@ var autoGEO = (function ($, my) {
 		/*
 		 */
 	};
+
+
+	//
+	// The Querent & the Quesited --
+	interptStatus[5].interpret = function() {
+
+	};
+
+
+	//
+	// The Index & Part of Fortune --
+	interptStatus[6].interpret = function() {
+		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
+		var html = "";					// what is going to be returned as results/html to inject		
+		var i, index = 0;
+		var partOfFortune = 0;
+		var figure;
+
+		// Index is all the 1's in the chart, mod 12
+		// Part of Fortune is all and 1's and 2's added up, mod 12]
+		for ( i = 0; i < 12; i += 1) {
+			figure = chart[i];
+			if (figure === 0) {
+				partOfFortune += 8;
+			} else if (figure === 1) {
+				index += 1;	partOfFortune += 7;
+			} else if (figure === 2) {
+				index +=1;	partOfFortune +=7;
+			} else if (figure === 3) {
+				index +=2;	partOfFortune +=6;
+			} else if (figure === 4) {
+				index +=1;	partOfFortune +=7;
+			} else if (figure === 5) {
+				index +=2;	partOfFortune +=6;
+			} else if (figure === 6) {
+				index +=2;	partOfFortune +=6;
+			} else if (figure === 7) {
+				index +=3;	partOfFortune +=5;
+			} else if (figure === 8) {
+				index +=1;	partOfFortune +=7;
+			} else if (figure === 9) {
+				index +=2;	partOfFortune +=6;
+			} else if (figure === 10) {
+				index +=2;	partOfFortune +=6;
+			} else if (figure === 11) {
+				index +=3;	partOfFortune +=5;
+			} else if (figure === 12) {
+				index +=2;	partOfFortune +=6;
+			} else if (figure === 13) {
+				index +=3;	partOfFortune +=5;
+			} else if (figure === 14) {
+				index +=3;	partOfFortune +=5;
+			} else if (figure === 15) {
+				index +=4;	partOfFortune +=4;
+			}
+		}	// end for
+
+		index = index % 12;
+		if (index === 0) { index = 12; }
+
+		partOfFortune = partOfFortune % 12;
+		if (partOfFortune === 0 ) { partOfFortune = 12; }
+
+		my.log('log', 'index:' + index + ' -- pof:'+ partOfFortune);
+
+		html += '<ul>';
+		html += '<li><strong>Index - The hidden factor in the situation is in house #' + index + '</strong></li>';
+		html += '<li><strong>Part of Fortune - House #' + partOfFortune + '</strong>.</li>';
+		html += '</ul>';
+		return html;
+	};
+
+
+
 
 	//
 	// Set up handling click on interpt radio buttons.  called by initTabs()

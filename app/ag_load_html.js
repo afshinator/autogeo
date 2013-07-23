@@ -134,7 +134,7 @@ var interptChoices = '<form id="interptForm" name="form1">\
         <input type="radio" name="interps" value="2"/><strong>The Judge & the Witnesses</strong><br/>\
         <input type="radio" name="interps" value="3"/><strong>The 4 triplicities</strong><br/>\
         <input type="radio" name="interps" value="4"/><strong>Elemental triplicities</strong><br/>\
-        <input type="radio" name="interps" value="5"/><strong>The houses 1</strong><br/>\
+        <input type="radio" name="interps" value="5"/><strong>Querent & Quesited</strong><br/>\
         <input type="radio" name="interps" value="6"/><strong>Index, Part of Fortune</strong><br/>\
         <input type="radio" name="interps" value="7"/><strong>Essential Dignities</strong><br/>\
         <input type="radio" name="interps" value="8"/><strong>Modes of Perfection</strong><br/>\
