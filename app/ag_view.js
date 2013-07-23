@@ -343,6 +343,16 @@ var autoGEO = (function ($, my) {
 		}
 
 
+		function abortCasting() {
+			my.data.knownMothers = 0;
+			reset();
+			abortedCast = true;
+			castingInProgress = false;
+			// my.statusMsg('Casting Aborted!', false, 'icon-exclamation-sign');
+			el$.val("Casting Aborted - Start over.");
+		}
+
+
 		function init(minSpacesPerLine) {
 			el$ = my.data.uiElt$['castingInput'];
 			minClicksPerLine = minSpacesPerLine || 6;		// default to 6
@@ -351,8 +361,8 @@ var autoGEO = (function ($, my) {
 			el$.fadeIn('slow');				// was hidden via css
 
 			el$.on('blur', function() {
-				if ( castingInProgress ) {
-					my.log('err', 'Casting aborted.');
+				if ( castingInProgress === true) {
+					my.log('log', 'Casting aborted.');
 					abortCasting();
 				} else {
 					my.log('log', 'Left casting input field, casting wasnt in progress though.');
@@ -361,7 +371,7 @@ var autoGEO = (function ($, my) {
 			});
 
 			el$.on('focus', function() {
-				my.log('log', "Clicked into the space bar input");
+				my.log('log', "Space bar input field received focus.");
 
 				if ( my.data.quesitedHouse === 0 ) {
 					my.log('log', "No House of the Quesited Selected!");
@@ -385,12 +395,12 @@ var autoGEO = (function ($, my) {
 				my.log('i', 'Figure parsed to: ' + figure);
 			};
 
-			e.preventDefault();
+			// e.preventDefault();
 			el$.val("");	// Whatever they typed, erase it!
 
 			// Initial case of where they just click in and hit ENTER key to start
 			if ( justClickedInTheFirstTime && ( e.which === 13 ) ) {	// 13 is enter key
-				el$.val("start!");
+				el$.val("Start!");
 				castingInProgress = true;
 				justClickedInTheFirstTime = false;
 				count = 0;
@@ -402,11 +412,14 @@ var autoGEO = (function ($, my) {
 
 				if ( e.which === 13 ) {					// ENTER key, but not the first time
 					if ( count < minClicksPerLine ) {
-						my.log('err', 'Casting aborted because settings require at least ' + minClicksPerLine + ' hits per line. Be careful also not to go to fast and hit ENTER twice by mistake.');
+						my.log('err', 'Casting aborted because settings require at least ' + minClicksPerLine + ' hits per line. Be careful also not to go too fast, or hit ENTER twice by mistake.');
 						el$.trigger('blur');			// blur handler calls abortCasting()
 					} else {							// ENTER was hit and there are a valid # of space bar hits
 						spaceBarPress[linesCast] = count;
 						linesCast += 1;
+
+						my.log('log', 'line ' + linesCast + ' -- count: ' + count);
+
 						count = 0;
 /*
 						if ( linesCast % 4 === 0 ) {
@@ -430,16 +443,6 @@ var autoGEO = (function ($, my) {
 				}
 			}
 
-		}
-
-
-		function abortCasting() {
-			my.data.knownMothers = 0;
-			reset();
-			abortedCast = true;
-			castingInProgress = false;
-			// my.statusMsg('Casting Aborted!', false, 'icon-exclamation-sign');
-			el$.val("Casting Aborted - Start over");
 		}
 
 
@@ -479,8 +482,10 @@ var autoGEO = (function ($, my) {
 			my.progressBar.end();
 			my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
 
-			if ( my.data.shiftKeyDown === false ) {	// dont show modal if shify key is down
+			if ( my.data.shiftKeyDown === true ) {
 				my.log('log', 'Shift key pressed, skipping startup modal dialog.');
+			} 
+			else {
 				$('#myModal').modal('show');
 			}
 		});

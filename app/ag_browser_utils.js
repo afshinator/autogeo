@@ -19,12 +19,14 @@ var autoGEO = (function ($, my) {
                 wrappedTxt += ' label-warning">';   break;
             case "important":
                 wrappedTxt += ' label-important">'; break;
+            case "error":
+                wrappedTxt += ' label-important">'; break;
             case "info":
                 wrappedTxt += ' label-info">';      break;
             case "inverse":
                 wrappedTxt += ' label-inverse">';   break;
 
-            default: my.log("err", "my.Label(" + label + ", ...) not valid. Text not wrapped");
+            default: // error case
                 return txt;
         }
 
