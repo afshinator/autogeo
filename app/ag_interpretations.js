@@ -16,7 +16,7 @@ var autoGEO = (function ($, my) {
 		{ 'done' : false, 'desc' : '<h5>Elemental Triplicities</h5><small><p><strong>This is another perspective on the situation around the querents life where the 12 houses are split into 4 triplicities, this time based on association with the elements.</strong></p><p>Each of 4 elements are each associated with 3 different houses:</p><p><a id="interpE_Fire">The <strong>Fire</strong> triplicity</a> : houses <strong>1, 5, and 9</strong>, reflect the querents <strong>private life, personality, sexuality, love, children, arts, spirituality, temperament, thought, vices &amp; virtues</strong>.</p><p><a id="interpE_Air">The <strong>Air</strong> triplicity</a> : houses <strong>3, 7, and 11</strong>, reflect <strong>the quality of those things from the social standpoint.</strong> Social life, concrete realization, anything opposed to quesited, the non-self, hopes, expectations.</p><p><a id="interpE_Water">The <strong>Water</strong> triplicity</a> : houses <strong>4, 8, and 12</strong> reflect <strong> the querents Occult life, heredity, death or transformation, doubts &amp; renouncement.</strong>.</p><p><a id="interpE_Earth">The <strong>Earth</strong> triplicity</a> : houses <strong>2, 6, and 10</strong> reflect <strong>the chance of things from their material standpoint</strong>.</p></small>'},		// 4  Elemental Triplicities		{ 'done' : false, 'desc' : 'bunch of <i>html</i> in here describing the interpt5'},		// 5
 		{ 'done' : false, 'desc' : '<h5>The Querent, the Quesited, and the Outcome</h5><small><p>The quesited house(s), if there is one, answers the basic question.  The 1st house tells how the querent is affected by the quesited. The 4th house tells what the result of the whole situation will be. (See also The Reconciler).</p><p>If the figure of the querent is positive, but quesited negative, then querent wont get their desire, but its for the best.</p><p>If querent is negative, but quesited positive, then querent will get what they want, but they will regret it.</p><p>If   the querent or quesited figure passes to another house, then another   factor involving that house is involved in the matter.  Use the   associations of that house to understand what/who that factor is.</p>'},			// 6
 		{ 'done' : false, 'desc' : '<h5>The Index and Part of Fortune</h5><small><p><strong>The Index </strong>represents the hidden factor at work in the situation.  Its derived couting the number of single points in the first 12 houses.</p><p><strong>The Part of Fortune</strong> indicates a house from which the querent can expect good fortune to   come in the situation.  It is derived from adding all the points in the   first 12 houses together.</p></small>'},
-		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 8'},
+		{ 'done' : false, 'desc' : '<h5>Essential Dignities</h5><small><p>The different figures are either empowered or weakened by their placement in the different houses. On a 5-tier scale from strongest to weakest, each figure is influenced by the house it winds up in. These relationships are   derived from  taking the planet corresponding to the figure,   and reconciling with its astrological aspect to the house it gets found in.</p><p>A figure is </p></small><ul>  <li><small><em>strongest</em> in its own house,</small></li><li><small><em>very strong</em> when in its Exaltation, </small></li><li><small><em>strong</em> in its Triplicity, </small></li><li><small><em>weak</em> in its Fall, </small></li> <li><small><em>weakest</em> in its Detriment.</li></ul></small>'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 9'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 10'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 11'}
@@ -344,6 +344,78 @@ var autoGEO = (function ($, my) {
 	};
 
 
+
+	//
+	// Essential Dignities --
+	interptStatus[7].interpret = function() {
+		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
+		var html = "";					// what is going to be returned as results/html to inject		
+		var i;
+		var figure;
+		var dignity;
+
+		//	figure as a string :  Array is house its in with value of dignity
+		//
+		//	Values from Terrestrial Astrology by Skinner
+		//		3	- Strongest: rules of own House
+		//		2	- Very strong : exaltation
+		//		1	- Strong triplicity
+		//		0	- if figure is NEUTRAL in the passed in house
+		//		-1	- Very weak - fall
+		//		-2	- Weakest - Detriment
+		var dignityList = {
+				// 1  2  3  4  5  6  7  8  9 10  11 12   
+			'0' : [0, 2, 0, 3, 0, 0, 0, -1,0,-2, 0, 1],	// Populus, h4:3, h2:2, h12:1, h8:-1, h10:-2 
+			'1' : [1, 1,-2, 2, 0,-2, 1, 0, 3,-1, 0, 3],	// Laetitia, h9/12:3, h4:2, h1/2/7:1, h10:-1, h3/6:-2
+			'2' : [3,-2, 0,-1, 1, 0,-2, 3, 0, 2, 0, 0],	// Rubeus, 1/8:3, 10:2, 5:1, 4:-1, 2/7:-2
+			'3' : [2, 0, 0, 0, 3, 0,-1, 1, 0, 0,-2, 0],	// Fort Minor, 1:2, 5:3, 7:-1, 8:1, 11:-2
+			'4' : [0, 0, 3, 1, 0, 3, 0, 0,-2, 1, 0,-1],	// Albus, 3/6:3, 4/10:1, 9:-2, 12:-1  // book lists fall:12 & detriment 9,12
+			'5' : [-2,3, 0, 0, 0,-1, 3, -2,1, 0, 1, 2],	// Amissio, 1/8:-2, 2/7:3, 6:-1, 9/11:1, 12:2
+			'6' : [0, 0, 3, 1, 0, 2, 0, 0,-2, 1, 0,-1],	// Conjunctio, 3:3, 4/10:1, 6:2, 9:-2, 12:-1
+			'7' : [0, 0,-1, 0, 0, 0, 0, 0, 2, 0, 0, 0],	// Cauda Draconis, 3:-1, 9:2
+			'8' : [-1,0, 1,-2,-2, 1, 2, 0, 0, 3, 3, 0],	// Tristicia, 1:-1, 3/6:1, 4/5:-2, 7:2, 10/11:3
+			'9' : [-1,0, 1,-2,-2, 1, 2, 0, 0, 3, 3, 0],	// Carcer, 1:-1, 3/6:1, 4/5:-2, 7:2, 10/11:3
+			'10': [1, 1,-2, 2, 0,-2, 1, 0, 3,-1, 0, 3],	// Acquisitio, 1/2/7:1, 3/6:-2, 4:2, 9/12:3, 10:-1
+			'11': [3,-2, 0,-1, 1, 0,-2, 3, 0, 2, 0, 0],	// Puer, 1/8:3, 2/7:-2, 4:-1, 5:1, 10:2	
+			'12': [2, 0, 0, 0, 3, 0,-1, 1, 0, 0,-1, 0],	// Fort Major, 1:2, 5:3, 7:-1, 8:1, 11:-2
+			'13': [-2,3, 0, 0, 0,-1, 3,-2, 1, 0, 1, 2],	// Puella, 1/8:-2, 2/7:3, 6:-1, 9/11:1, 12:2
+			'14': [0, 0, 2, 0, 0, 0, 0, 0,-1, 0, 0, 0],	// Cap Draconis, 3:2, 9:-1
+			'15': [0, 2, 0, 3, 0, 0, 0,-1, 0,-2, 0, 1]	// Via, 2:2, 4:3, 8:-1, 10:-2, 12:1
+		};
+
+		html += '<ul>';
+		for ( i = 0; i < 12; i += 1) {
+			figure = chart[i] + '';					// get figure in the house and turn it into a string
+			dignity = dignityList[figure][i];		// 
+			html += '<li>House ' + (i+1) + ': ' + my.data.figs[chart[i]].name + ' ';
+
+			if ( dignity === 0 ) {
+				html += 'is neutral in this house.</li>';
+			}
+			else if ( dignity === 1 ) {
+				html += 'is strong in this house. (+1)</li>';
+			}
+			else if ( dignity === 2 ) {
+				html += 'is very strong in this house. (+2)</li>';
+			}
+			else if ( dignity === 3 ) {
+				html += 'is strongest in this house! (+3)</li>';
+			}
+			else if ( dignity === -1 ) {
+				html += 'is weak (aka fall) in this house. (-1)</li>';
+			}
+			else if ( dignity === -2 ) {
+				html += 'is weakest (aka detriment) in this house! (-2)</li>';
+			}
+			else {
+				html += 'hiccup. error.</li>';
+				my.log('err', 'Strange number from dignityList.');
+			}
+		}
+		html += '</ul>';
+
+		return html;
+	};
 
 
 	//

@@ -283,7 +283,7 @@ var autoGEO = (function ($, my) {
 	// ag_chart.js holds code that deals with logic of figure combining and building the 
 	// chart data structure.  Here we just set up handlers for background effects.
 	// TODO: load the chart in dynamically.
-	function initChart() {
+/*	function initChart() {
 		// Hover handler used to be here
 		my.data.uiElt$['ChartTable'].find('.house').hover(
 			function() {
@@ -316,7 +316,7 @@ var autoGEO = (function ($, my) {
 			}
 		});
 	}
-
+*/
 
 
 	my.castingInput = function() {

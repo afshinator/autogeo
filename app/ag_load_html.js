@@ -5,86 +5,6 @@
 
 var autoGEO = (function ($, my) {
 
-/**
-var schart = '<table id="ChartTable"> \
-    <tr>\
-        <td></td>\
-        <td class="house" id="chart8"><img src="./img/figempty.png" alt="8th House"></td>\
-        <td></td>\
-        <td class="house" id="chart7"><img src="./img/figempty.png" alt="7th House"></td>\
-        <td></td>\
-        <td class="house" id="chart6"><img src="./img/figempty.png" alt="6th House"></td>\
-        <td></td>\
-        <td class="house" id="chart5"><img src="./img/figempty.png" alt="5th House"></td>\
-        <td></td>\
-        <td class="house" id="chart4"><img src="./img/figempty.png" alt="4th Mother"></td>\
-        <td></td>\
-        <td class="house" id="chart3"><img src="./img/figempty.png" alt="3rd Mother"></td>\
-        <td></td>\
-        <td class="house" id="chart2"><img src="./img/figempty.png" alt="2nd Mother"></td>\
-        <td></td>\
-        <td class="house" id="chart1"><img src="./img/figempty.png" alt="1st Mother"></td>\
-        <td></td>\
-    </tr>\
-    <tr>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart12"><img src="./img/figempty.png" alt="12th House"></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart11"><img src="./img/figempty.png" alt="11th House"></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart10"><img src="./img/figempty.png" alt="10th House"></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart9"><img src="./img/figempty.png" alt="9th House"></td>\
-        <td></td>\
-        <td></td>\
-    </tr>\
-    <tr>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house witness lwitness" id="chart14"><img src="./img/figempty.png" alt="Left Witness"></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house witness rwitness" id="chart13"><img src="./img/figempty.png" alt="Right Witness"></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-    </tr>\
-    <tr>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house judge" id="chart15"><img src="./img/figempty.png" alt="The Judge"></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td></td>\
-        <td class="house" id="chart16"><img src="./img/figempty.png" alt="The Reconciler" width="60%"></td>\
-        <td></td>\
-    </tr>\
-</table>';
-**/
 
 var home = '<div class="row">\
         <div class="span9">\
@@ -191,7 +111,6 @@ var about = '<div id="aboutBox" class="gradient1">\
 </div>';
 
     $('#home').append(home);                  
-// 	$('#shieldChart').append(schart);       
     $('#figtab').append(figtab);                
     $('#housetab').append(housetab);           
     $('#interptChoices').append(interptChoices); 
