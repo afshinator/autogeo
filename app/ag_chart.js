@@ -79,16 +79,35 @@ var autoGEO = (function ($, my) {
 					}
 				});
 
-			// On doubleclick of a house, set the house of the quesited
-			tableChartTable$.on("dblclick", '.house', function() {
+			// On doubleclick of a house, set the house of the quesited, or quesitor if ctrl was held
+			tableChartTable$.on("dblclick", '.house', function(e) {
 				var house = ( $(this).attr('id').slice(5) ) * 1;	// get which house, turn into number
 
 				if ( my.data.knownMothers < 4 ) {				// do only if chart is not derived
 					if ( house < 13 ) {
-						my.log('l', 'House of Quesited chosen,  double click on : ' + house);
-						setQuesitedHouse(house, $(this));
+						if (e.ctrlKey) {
+							// House of Quesitor Changed
+							alert('ctrl held in here');
+						}
+						else {
+							my.log('l', 'House of Quesited chosen,  double click on : ' + house);
+							setQuesitedHouse(house, $(this));
+						}
 					}
 				}
+			});
+
+			// one-time event to show instructions on chart
+			divShieldChart$.one("mouseover", function() {
+				var that = $(this);
+
+				$(this).addClass('chartOverlay1')
+						.animate( {opacity: 0.25}, 5500, 'linear',
+										function() {
+											that.removeClass('chartOverlay1');
+											that.css('opacity', 1.0);
+										}
+								);
 			});
 
 		}
@@ -127,7 +146,7 @@ var autoGEO = (function ($, my) {
 			reset: reset,
 			setQuesitedHouse: setQuesitedHouse
 		};
-	};
+	}();
 
 
 
@@ -212,6 +231,16 @@ var autoGEO = (function ($, my) {
 		c[15] = combineFigures(c[0], c[14]);			// The Reconciler
 
 		my.audio.play('chime2', 0.1);					// sound
+
+
+		my.data.uiElt$['shieldChart'].addClass('chartOverlay2')
+				.animate( {opacity: 0.25}, 2500, 'linear',
+								function() {
+									$(this).removeClass('chartOverlay2');
+									$(this).css('opacity', 1.0);
+								}
+						);
+
 
 		my.statusMsg("Chart derived!");
 		// my.log("info", "Chart derived!");

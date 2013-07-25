@@ -59,7 +59,20 @@ header {
 #shieldChart {
     visibility: hidden;                 /* initially hidden to hide loading ugliness */
     margin-top:25px;
+
 }
+
+.chartOverlay1 {
+    background: url(../img/chartoverlay1.png) no-repeat top left;
+}
+
+.chartOverlay2 {
+     background: url(../img/chartoverlay2.png) no-repeat top left;   
+}
+
+
+
+
 
 
 /* http://stackoverflow.com/questions/6048913/in-html5-with-respect-to-tables-what-replaces-cellpadding-cellspacing-valign 

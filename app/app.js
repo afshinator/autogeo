@@ -12,6 +12,7 @@ var autoGEO = (function ($, my) {
 		uiElt$ : {},								// key:html elts  --> val: jquery selections; for cross app quick access
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
 		knownMothers: 0,							// # of chart mothers that have been divined/entered...
+		quesitorHouse : 1,							// Defaults the Quesitor is in house 1
 		quesitedHouse : 0,							// will hold the # of the House of Quesited
 //		audio : true,								// will be tied to UI checkbox, preset
 //		geolocation: true,							// will be tied to UI checkbox, preset

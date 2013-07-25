@@ -280,44 +280,6 @@ var autoGEO = (function ($, my) {
 
 
 
-	// ag_chart.js holds code that deals with logic of figure combining and building the 
-	// chart data structure.  Here we just set up handlers for background effects.
-	// TODO: load the chart in dynamically.
-/*	function initChart() {
-		// Hover handler used to be here
-		my.data.uiElt$['ChartTable'].find('.house').hover(
-			function() {
-				$(this).addClass('overEffect1');
-			},
-			function() {
-				$(this).removeClass('overEffect1');
-			})
-			.click(function(e) {
-				if (e.shiftKey) {					// only show figure info if shift key is pressed at same time as single-click
-					var whichFigure = $(this).attr("id");
-					whichFigure = whichFigure.substring(5);
-
-					my.log('l', 'Shift-Click on house:' + whichFigure);
-					my.audio.play('klik1', 0.2);
-					my.data.uiElt$['housetab'].load('ajax/houseinfo.html #' + whichFigure);	// use anchor within html file to load just the part we want
-					$('#appTabs li:eq(2) a').tab('show');
-				}
-			});
-
-
-		my.data.uiElt$['ChartTable'].on("dblclick", '.house', function() {
-			var house = ( $(this).attr('id').slice(5) ) * 1;	// get which house, turn into number
-
-			if ( my.data.knownMothers < 4 ) {				// dont do if chart is already derived
-				if ( house < 13 ) {
-					my.log('l', 'House of chosen double click on : ' + house);
-					my.setQuesitedHouse(house, $(this));
-				}
-			}
-		});
-	}
-*/
-
 
 	my.castingInput = function() {
 		var el$;
@@ -462,7 +424,7 @@ var autoGEO = (function ($, my) {
 
 	//  only called upon app startup
 	my.initView = function() {
-		my.chart().init();
+		my.chart.init();
 
 		initTabs();							// Load html and inject into appropriate tabs
 			my.progressBar.increase();

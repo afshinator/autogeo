@@ -91,7 +91,7 @@ var about = '<div id="aboutBox" class="gradient1">\
         <td width="39%">\
             <div id="paper">\
             <p>AutoGeomancy by <a href="http://acuafshin.com">Afshin Mokhtari</a></p><small>\
-            <p>Version 2beta100</p>\
+            <p>Version 2beta120</p>\
             <p>Please notify me if you have problems,<br />\
             or if you love it, or what.</p>\
             <p>Geomancy, from Ancient Greek geōmanteía<br />\
