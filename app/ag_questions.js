@@ -36,7 +36,7 @@ var autoGEO = (function ($, my) {
 							my.log('l', 'Question chosen from house: ' + house + ", setting house of quesited.");
 							my.log('l', 'Question is:' + q);
 							my.data.uiElt$['questionBox'].val(q);	// put question in textarea on home tab
-							my.setQuesitedHouse( house );
+							my.chart.setQHouse( true, house );
 							$('#appTabs li:eq(0) a').tab('show');	// show first tab
 						}
 					}

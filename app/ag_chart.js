@@ -5,14 +5,27 @@ var autoGEO = (function ($, my) {
 	my.chart = function() {
 		var divShieldChart$;
 		var tableChartTable$;
+		var knownMothers;
+		var houseOfQuesited = 0;		// default case, no house selected
+		var houseOfQuesitor = 1;		// default case, 1st house 
+		var house = [17];				// Will hold the built chart + reconciler
+
+		function reset() {
+			var i = 0;
+
+			knownMothers = 0;
+
+			for (i = 0; i < 17; i += 1) {
+				house[i] = 99;			// reset contents of each house & reconciler
+			}
+		}
+
 
 		function init() {
+			reset();			// set defaults
 			// 1. Get access to html elements..
 			var localHeaderCache$ = my.data.uiElt$['header'];	// header cached in app.js, first thing on startup
 
-			divShieldChart$ = localHeaderCache$.find('#shieldChart');
-
-			// 2. Build the HTML from a (ugly) string, then inject it...
 			/*jshint multistr: true */
 			var schart = '<table id="ChartTable"><tr>\
 				<td></td><td class="house" id="chart8"><img src="./img/figempty.png" alt="8th House"></td>\
@@ -35,9 +48,10 @@ var autoGEO = (function ($, my) {
 				<td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>\
 				<td class="house judge" id="chart15"><img src="./img/figempty.png" alt="The Judge"></td><td></td><td></td><td></td><td></td><td></td><td></td>\
 				<td class="house" id="chart16"><img src="./img/figempty.png" alt="The Reconciler" width="60%"></td>\
-				<td></td></tr></table>';
+				<td></td></tr></table>';	// TODO: ugly string to inject... is there a better way?
 
-			divShieldChart$.append(schart);		// Inject the html
+			divShieldChart$ = localHeaderCache$.find('#shieldChart');
+			divShieldChart$.append(schart);							// Inject the html to build chart
 
 			tableChartTable$ = localHeaderCache$.find('#ChartTable');
 
@@ -46,7 +60,6 @@ var autoGEO = (function ($, my) {
 				divShieldChart$.hide();  // initView() unhides them
 				divShieldChart$.css('visibility', 'visible' ).fadeIn(3000);
 			}
-
 
 			activateHandlers();
 
@@ -57,8 +70,8 @@ var autoGEO = (function ($, my) {
 		} // init()
 
 
-		function activateHandlers() {
 
+		function activateHandlers() {
 			// Add over effect on houses, if shift-click to tab
 			tableChartTable$.find('.house').hover(
 				function() {
@@ -87,11 +100,13 @@ var autoGEO = (function ($, my) {
 					if ( house < 13 ) {
 						if (e.ctrlKey) {
 							// House of Quesitor Changed
-							alert('ctrl held in here');
+							setQHouse(false, house, $(this));
+							my.log('l', 'House of Quesitor chosen,  double click on : ' + house);
 						}
 						else {
 							my.log('l', 'House of Quesited chosen,  double click on : ' + house);
-							setQuesitedHouse(house, $(this));
+							// setQuesitedHouse(house, $(this));
+							setQHouse(true, house, $(this));
 						}
 					}
 				}
@@ -113,44 +128,167 @@ var autoGEO = (function ($, my) {
 		}
 
 
-		function reset() {
 
+		// generateChart() - Given four mothers are already in data structure, generate rest of chart + reconciler
+		// - at this point only called by newMother()
+		// - array house is not 0 based, house[0] is the reconciler, house[1] is house 1, etc...
+		function generateChart() {
+			function isValidGeoFigure(n) {		// n is between 0 and 15, 0 is populus...
+				if ( (n < 16)  && (n > -1) ) { return true; }
+				else {
+					my.log("err", "Got some funky Figure number : " + n);
+					return false;
+				}
+			}
+
+			// Check if nth geomantic figures' xth line from top is a 1; return false if not 
+			// If x==1, then we're checking the top (fire) line, etc...
+			function isLineOne(x, n) {
+				var comparator;
+
+				if ( !isValidGeoFigure(n) || (x < 1) || (x > 4) ) {
+					my.log("err", isLineOne(" + x + ", " + n + ")+ " invalid!");
+				}
+				else {
+					comparator = Math.pow(2, (x-1));	// comparator will be either 1, 2, 4, or 8
+					return ( n & comparator );
+				}
+			}
+
+			// Combine two geomantic figures to produce a new one, return the new one
+			// Combining involving XOR between each of the four lines in a figure
+			function combineFigures(a, b) {
+				if ( !isValidGeoFigure(a) || !isValidGeoFigure(b)) {
+					my.log("err", "combineFigures(" + a + ", " + b + ")");
+				}
+				else {
+					return ( a ^ b );
+				}
+			}
+
+			// Code for Generating houses from mothers starts here...
+			// Assert : houses 1-4 are filled with figures
+			if ( house[1] > 15 || house[2] > 15 || house[3] > 15 || house[4] > 15 ) {
+				my.log('err', 'In generateChart(), one of the 4 mothers doesnt seem to be valid.');
+			}
+			else {	// ok, looks like we've got real figures in there...
+				house[5] =	( isLineOne(1, house[1]) ? 1 : 0 ) + ( isLineOne(1, house[2]) ? 2 : 0 ) + ( isLineOne(1, house[3]) ? 4 : 0 ) + ( isLineOne(1, house[4]) ? 8 : 0 );
+				house[6] =	( isLineOne(2, house[1]) ? 1 : 0 ) + ( isLineOne(2, house[2]) ? 2 : 0 ) + ( isLineOne(2, house[3]) ? 4 : 0 ) + ( isLineOne(2, house[4]) ? 8 : 0 );
+				house[7] =	( isLineOne(3, house[1]) ? 1 : 0 ) + ( isLineOne(3, house[2]) ? 2 : 0 ) + ( isLineOne(3, house[3]) ? 4 : 0 ) + ( isLineOne(3, house[4]) ? 8 : 0 );
+				house[8] =	( isLineOne(4, house[1]) ? 1 : 0 ) + ( isLineOne(4, house[2]) ? 2 : 0 ) + ( isLineOne(4, house[3]) ? 4 : 0 ) + ( isLineOne(4, house[4]) ? 8 : 0 );
+				house[9] = combineFigures(house[1], house[2]);
+				house[10] = combineFigures(house[3], house[4]);
+				house[11] = combineFigures(house[5], house[6]);
+				house[12] = combineFigures(house[7], house[8]);
+				house[13] = combineFigures(house[9], house[10]);				// Right Witness
+				house[14] = combineFigures(house[11], house[12]);				// Left Witness
+				house[15] = combineFigures(house[13], house[14]);				// Judge
+				house[0] = combineFigures(house[houseOfQuesitor || 1], house[15]);	// Reconciler
+			}
 		}
 
-		// setQuesitedHouse(house, house$) - called by dblclick handler of chart or click on questions list
-		//			house - number of house selected for house of quested to set.
-		//			house$ - optional argument;  (for quesited house selection from questions list)
-		function setQuesitedHouse(house, house$) {
-			my.audio.play('whoosh1', 0.2);
 
-			// If quesited House has been previously set, get rid of UI effect
-			if ( my.data.quesitedHouse !== 0 ) {
-				var $t = tableChartTable$.find('#chart' + my.data.quesitedHouse );
-				$t.removeClass('gradient4');
+		// newMother(figure, showImmediately)
+		//		figure - geomantic figure that was either just double-clicked on or cast with space-bar; 0 is populus...
+		//		showImmediately - true if we want it to show; false will wait until chart is generated to show all
+		function newMother(figure, showImmediately) {
+			var i;		// for iteration 
+
+			// builds image tag for geo figure passed in 
+			function img(n) {
+				return '<img src="' + my.data.figs[n].src + '" alt="' + my.data.figs[n].name + '"></img>';
 			}
+
+			if ( tableChartTable$ === undefined ) {
+				my.log('err', 'In chart object, looks like init() wasnt called before newMother()!');
+			} else {
+				if ( knownMothers < 4 ) {	// as long as we don't have all 4 mothers chosen...
+					knownMothers += 1;
+
+					// if flag to show now... 
+					if ( showImmediately === true ) {
+						// Put image of mother in next available place 
+						tableChartTable$.find( '#chart' + ( knownMothers ) ).html(img(figure));
+					}
+
+					// fill chart data structure
+					house[knownMothers] = figure;		// house[0] is reconciler to be handled later
+					my.log("log", "Figure : " + figure + " " + my.data.figs[figure].name + " chosen for House " + knownMothers, false);
+
+					my.audio.play('whoosh4', 0.1);		// sound
+
+					// if we have all four mothers, 
+					if ( knownMothers > 3 ) {
+						generateChart();
+						my.audio.play('chime2', 0.1);					// sound
+						my.statusMsg("Chart derived!");
+
+						for (i = 1; i < 16; i += 1) {
+							tableChartTable$.find( '#chart' + i ).html(img(house[i]));
+						}
+						tableChartTable$.find('#chart16').html(img(house[0]));			// reconciler
+						tableChartTable$.find('#chart16 img').attr('width', '65%');		// reduce its size
+						my.log('log', "newMother() finished generating chart");
+					}
+				}
+			}
+		}
+
+
+		// setQHouse(isQuesited, house, house$)
+		//		isQuesited - boolean, true for Quesited, false for Quesitor
+		//		house - set house of quesitor/quesited to this
+		//		house$ - optional, click handler for double click has it so why search again, except if we come form questions list
+		function setQHouse(isQuesited, house, house$) {
+			var highlightClass;
+			var $oldHouse;
+			var msg;
+			var icon;
 
 			// if 2nd arg is not passed in, search for and find the html element of the house selected
 			if ( house$ === undefined ) {
 				house$ = tableChartTable$.find('#chart' + house );
 			}
 
-			house$.addClass('gradient4');
-			my.data.quesitedHouse = house;
-			my.statusMsg('House of Quesited Set : ' + house);
+			if ( isQuesited ) {		// House of QUESITED
+				highlightClass = 'gradient4';
+				if ( houseOfQuesited !== 0 ) {
+					$oldHouse = tableChartTable$.find('#chart' + houseOfQuesited);
+				}
+				houseOfQuesited = house;
+				icon = 'icon-question-sign';
+				msg = 'House of QUESITED set : ';
+			}
+			else {					// House of QUESITOR
+				highlightClass = 'gradient5';
+				$oldHouse = tableChartTable$.find('#chart' + houseOfQuesitor);
+				houseOfQuesitor = house;
+				icon = 'icon-user';
+				msg = 'House of QUESITOR set : ';
+
+			}
+
+			my.audio.play('whoosh1', 0.2);
+			house$.addClass(highlightClass);
+			if ( $oldHouse ) { $oldHouse.removeClass(highlightClass); }
+			my.statusMsg(msg + house, false, icon);
 		}
 
 
 		return {
-			init: init,
-			activateHandlers: activateHandlers,
-			reset: reset,
-			setQuesitedHouse: setQuesitedHouse
+			houseOfQuesited	: function() { return houseOfQuesited; },
+			houseOfQuesitor : function() { return houseOfQuesitor; },
+			init : init,							// public functions
+			activateHandlers : activateHandlers,
+			reset : reset,
+			newMother : newMother,
+			setQHouse: setQHouse
 		};
-	}();
+	}();				// my.chart
 
 
 
-
+/*
 
 	// passed in n corresponds to geomantic figure and should be between 0 and 15
 	function isValidGeoFigure(n) {
@@ -286,30 +424,7 @@ var autoGEO = (function ($, my) {
 			// TODO: all figures chosen, should probably unbind the double-click form the figure images or something
 		}
 	};
-
-
-	// setQuesitedHouse(house, house$) - called by dblclick handler of chart or click on questions list
-	//			house - number of house selected for house of quested to set.
-	//			house$ - optional argument;  (for quesited house selection from questions list)
-	my.setQuesitedHouse = function(house, house$) {
-		my.audio.play('whoosh1', 0.2);
-
-		// If quesited House has been previously set, get rid of UI effect
-		if ( my.data.quesitedHouse !== 0 ) {
-			var $t = my.data.uiElt$['ChartTable'].find('#chart' + my.data.quesitedHouse );
-			$t.removeClass('gradient4');
-		}
-
-		// if 2nd arg is not passed in, search for and find the html element of the house selected
-		if ( house$ === undefined ) {
-			house$ = my.data.uiElt$['ChartTable'].find('#chart' + house );
-		}
-
-		house$.addClass('gradient4');
-		my.data.quesitedHouse = house;
-		my.statusMsg('House of Quesited Set : ' + house);
-		// my.log('i', 'House of Quesited set: ' + house);
-	};
+*/
 
 
     return my;

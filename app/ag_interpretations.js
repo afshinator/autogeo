@@ -421,6 +421,31 @@ var autoGEO = (function ($, my) {
 
 
 	//
+	// Modes of Perfection --
+	interptStatus[8].interpret = function() {
+		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
+		var html = "";					// what is going to be returned as results/html to inject		
+		var i;
+
+//		if ( my.data.quesitedHouse === 0 ) {
+		if ( my.chart.houseOfQuesited() === 0 ) {
+			html += 'No house selected as the Quesited House.  This is the house where the answer mainly lies and is necessary for this interpretation.';
+			return html;
+		}
+		else {
+
+		}
+
+
+
+		return html;
+	};
+
+
+
+
+
+	//
 	// Set up handling click on interpt radio buttons.  called by initTabs()
 	// Click on interpt radio btn should show description, but not do the interpt if house isnt derived
 	my.initInterpretations = function() {
