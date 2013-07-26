@@ -8,14 +8,8 @@ var autoGEO = (function ($, my) {
 	my.data = {
 		name : "afshin",
 		shiftKeyDown : false,						// will be set to true if shift key is being held down, for bypassing startup modal, ...
-//		presets : {},								// key:value --> app presets like audio/geolocation/... ?
 		uiElt$ : {},								// key:html elts  --> val: jquery selections; for cross app quick access
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
-		knownMothers: 0,							// # of chart mothers that have been divined/entered...
-		quesitorHouse : 1,							// Defaults the Quesitor is in house 1
-		quesitedHouse : 0,							// will hold the # of the House of Quesited
-//		audio : true,								// will be tied to UI checkbox, preset
-//		geolocation: true,							// will be tied to UI checkbox, preset
 		now: undefined,								// time right now updated by the clock, moment object
 		latitude: undefined,						// Result of geolocation
 		longitude: undefined,						// Result of geolocation
@@ -23,11 +17,8 @@ var autoGEO = (function ($, my) {
 		sunsettoday: undefined,						//		used to divide day and night into 12 sections....
 		sunrise2moro: undefined,					//		will be Date() objects
 		snapshot: undefined,						// url pointing to google pic of geolocation define area
-//		sounds : {},								// will hold howler sounds loaded from file.
-		chart: [],									// Will hold the built chart
 		figs : []
-	};
-
+	}; // my.data.chart
 
 	// logPanel[] will contain JQuery selections of the logs elements, set in initLog()
 	var	logPanel = [];								// global to this module (file)

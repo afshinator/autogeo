@@ -36,7 +36,6 @@ var autoGEO = (function ($, my) {
 	// puer, laeticia, cap draco, albus, via, amissio, reub, 
 	// trist, f minor, carcer, conjunct, fmajor, caud d, puella, acquisitio
 	interptStatus[0].interpret = function() {
-		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
 		var html = "";					// what is going to be returned as results/html to inject
 		var i;							// iteration
 
@@ -45,8 +44,8 @@ var autoGEO = (function ($, my) {
 		// assert(stdByWhichToMeasure.length === 15)
 
 		for ( i=0; i < 15; i += 1 ) {
-			if ( chart[i] === stdByWhichToMeasure[i] ) {
-				html += ( '<p>' + my.data.figs[chart[i]].name + ' correctly placed in House ' + (i+1) + '.</p>' );
+			if ( my.chart.house(i+1) === stdByWhichToMeasure[i] ) {
+				html += ( '<p>' + my.data.figs[my.chart.house(i+1)].name + ' correctly placed in House ' + (i+1) + '.</p>' );
 			}
 		}
 
@@ -59,33 +58,32 @@ var autoGEO = (function ($, my) {
 	//
 	// The Way of the Points (Via Puncti) --
 	interptStatus[1].interpret = function() {
-		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
 		var html = "";					// what is going to be returned as results/html to inject
 		var house;						// house of figure where and if way of points ends, will be located in top row so 0-7
 		var fig;						// figure in that house
 
 
 		// the witnesses top line is the same but they dont match the judges top line
-		if ( ( isFireLineActive( chart[12] ) === isFireLineActive( chart[13] ) ) && ( isFireLineActive( chart[13] ) !== isFireLineActive( chart[14] ) ) ){
+		if ( ( isFireLineActive( my.chart.house(13) ) === isFireLineActive( my.chart.house(14) ) ) && ( isFireLineActive( my.chart.house(14) ) !== isFireLineActive( my.chart.house(15) ) ) ){
 			html += '<p>For the way of the points, top line of judge is different from top lines of the witnesses - so no way up the chart.  The chart is saying either there is <em>no root cause, or many root causes, but not one particular root cause</em>.</p>';
 		}
 		else {	// There is a way up, ...
-			if ( isFireLineActive( chart[14] ) === true ) {
+			if ( isFireLineActive( my.chart.house(15) ) === true ) {
 				html += '<p>A judge with an active top(fire) line always results in one root cause, located in top row.';
-				if ( isFireLineActive( chart[12] ) === true ) {	// right witness
-					if ( isFireLineActive( chart[8] ) === true ) {
-						house = ( isFireLineActive( chart[0] ) === true ) ? 0 : 1;
-					} else { // chart[9] === true
-						house = ( isFireLineActive( chart[2] ) === true ) ? 2 : 3;
+				if ( isFireLineActive( my.chart.house(13) ) === true ) {	// right witness
+					if ( isFireLineActive( my.chart.house(9) ) === true ) {
+						house = ( isFireLineActive( my.chart.house(1) ) === true ) ? 0 : 1;
+					} else { // my.chart.house(10) === true
+						house = ( isFireLineActive( my.chart.house(3) ) === true ) ? 2 : 3;
 					}
-				} else { // chart[13] === true
-					if ( isFireLineActive( chart[11] ) === true ) {
-						house = ( isFireLineActive( chart[7] ) === true ) ? 7 : 6;
-					} else { // chart[10] === true
-						house = ( isFireLineActive( chart[5] ) === true ) ? 5 : 4;
+				} else { // my.chart.house(14) === true
+					if ( isFireLineActive( my.chart.house(12) ) === true ) {
+						house = ( isFireLineActive( my.chart.house(8) ) === true ) ? 7 : 6;
+					} else { // my.chart.house(11) === true
+						house = ( isFireLineActive( my.chart.house(6) ) === true ) ? 5 : 4;
 					}
 				}
-				html += 'The way of points ends house ' + (house+1) + ', with figure ' + my.data.figs[chart[house]].name + '.</p>';
+				html += 'The way of points ends house ' + (house+1) + ', with figure ' + my.data.figs[my.chart.house(house+1)].name + '.</p>';
 			} else {
 				html += '<p>A judge with an inactive top(fire) line has multiple root causes.</p>';
 			}
@@ -101,14 +99,13 @@ var autoGEO = (function ($, my) {
 	//
 	// The Judge and Witnesses --
 	interptStatus[2].interpret = function() {
-		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
 		var html = "";					// what is going to be returned as results/html to inject
 		var i;							// iteration
 
 		var stable = [ 0, 4, 8, 9, 10, 12, 13, 14 ];			// The stable figures
-		var judge = chart[14];
-		var rw = chart[12];
-		var lw = chart[13];
+		var judge = my.chart.house(15);
+		var rw = my.chart.house(13);
+		var lw = my.chart.house(14);
 
 		html += '<p><strong>The Judge and Witnesses</strong> - By looking at the Stable/Mobile Quality of each of the figures in these houses, you can get a sense of whether the situation is fixed or changing.</p><ul>';
 
@@ -141,9 +138,9 @@ var autoGEO = (function ($, my) {
 		// Quick and dirty way to find out whether judge, lw, rw are stable or mobile figures.
 		var judgeStable = false, rwStable = false, lwStable = false;
 		for (i=0 ; i < stable.length ; i += 1) {
-			if ( stable[i] === chart[14] ) { judgeStable = true; }
-			if ( stable[i] === chart[12] ) { rwStable = true; }
-			if ( stable[i] === chart[13] ) { lfStable = true; }
+			if ( stable[i] === my.chart.house(15) ) { judgeStable = true; }
+			if ( stable[i] === my.chart.house(13) ) { rwStable = true; }
+			if ( stable[i] === my.chart.house(14) ) { lfStable = true; }
 		}
 
 		// Right now we are just outputing in 3 cases, 1.) whether all are stable
@@ -283,7 +280,6 @@ var autoGEO = (function ($, my) {
 	//
 	// The Index & Part of Fortune --
 	interptStatus[6].interpret = function() {
-		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
 		var html = "";					// what is going to be returned as results/html to inject		
 		var i, index = 0;
 		var partOfFortune = 0;
@@ -292,7 +288,7 @@ var autoGEO = (function ($, my) {
 		// Index is all the 1's in the chart, mod 12
 		// Part of Fortune is all and 1's and 2's added up, mod 12]
 		for ( i = 0; i < 12; i += 1) {
-			figure = chart[i];
+			figure = my.chart.house(i+1);
 			if (figure === 0) {
 				partOfFortune += 8;
 			} else if (figure === 1) {
@@ -348,7 +344,6 @@ var autoGEO = (function ($, my) {
 	//
 	// Essential Dignities --
 	interptStatus[7].interpret = function() {
-		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
 		var html = "";					// what is going to be returned as results/html to inject		
 		var i;
 		var figure;
@@ -385,9 +380,9 @@ var autoGEO = (function ($, my) {
 
 		html += '<small><ul>';
 		for ( i = 0; i < 12; i += 1) {
-			figure = chart[i] + '';					// get figure in the house and turn it into a string
+			figure = my.chart.house(i+1) + '';					// get figure in the house and turn it into a string
 			dignity = dignityList[figure][i];		// 
-			html += '<li>House ' + (i+1) + ': ' + my.data.figs[chart[i]].name + ' ';
+			html += '<li>House ' + (i+1) + ': ' + my.data.figs[my.chart.house(i+1)].name + ' ';
 
 			if ( dignity === 0 ) {
 				html += 'is neutral in this house.</li>';
@@ -423,11 +418,9 @@ var autoGEO = (function ($, my) {
 	//
 	// Modes of Perfection --
 	interptStatus[8].interpret = function() {
-		var chart = my.data.chart;		// vars are cheap!  Using this for shorthand
 		var html = "";					// what is going to be returned as results/html to inject		
 		var i;
 
-//		if ( my.data.quesitedHouse === 0 ) {
 		if ( my.chart.houseOfQuesited() === 0 ) {
 			html += 'No house selected as the Quesited House.  This is the house where the answer mainly lies and is necessary for this interpretation.';
 			return html;
@@ -476,7 +469,7 @@ var autoGEO = (function ($, my) {
 
 	// used locally to make code more readable!
 	function chartIsDerived() {
-		return ( ( my.data.knownMothers > 3 ) ? true : false );
+		return ( ( my.chart.knownMothers() > 3 ) ? true : false );
 	}
 
 

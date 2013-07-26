@@ -308,7 +308,7 @@ var autoGEO = (function ($, my) {
 
 
 		function abortCasting() {
-			my.data.knownMothers = 0;
+			my.chart.reset();
 			reset();
 			abortedCast = true;
 			castingInProgress = false;
@@ -337,7 +337,6 @@ var autoGEO = (function ($, my) {
 			el$.on('focus', function() {
 				my.log('log', "Space bar input field received focus.");
 
-//				if ( my.data.quesitedHouse === 0 ) {
 				if ( my.chart.houseOfQuesited() === 0 ) {
 					my.log('log', "Space bar input field received focus for manual divination, but no House of the quesited selected.  Its ok.");
 					my.audio.play('notify2', 0.5);

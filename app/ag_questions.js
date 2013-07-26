@@ -32,7 +32,7 @@ var autoGEO = (function ($, my) {
 						var q = $(this).text();		// get questions that was clicked on
 						var house = $(this).closest('ul').data('id');
 
-						if (my.data.knownMothers < 4) {				// dont do if chart is already derived
+						if (my.chart.knownMothers() < 4) {				// dont do if chart is already derived
 							my.log('l', 'Question chosen from house: ' + house + ", setting house of quesited.");
 							my.log('l', 'Question is:' + q);
 							my.data.uiElt$['questionBox'].val(q);	// put question in textarea on home tab
