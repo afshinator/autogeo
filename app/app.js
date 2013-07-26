@@ -274,8 +274,6 @@ var autoGEO = (function ($, my) {
 
 	my.data.uiElt$['statusMsg'] = localHeaderCache$.find('#statusMsg');
 	my.data.uiElt$['geoFigures'] = localHeaderCache$.find('#geoFigures');
-	// my.data.uiElt$['shieldChart'] = localHeaderCache$.find('#shieldChart');
-	// my.data.uiElt$['ChartTable'] = localHeaderCache$.find('#ChartTable');
 	my.data.uiElt$['geoloc_btn'] = localHeaderCache$.find('#geoloc_btn');
 	my.data.uiElt$['planetlist'] = localHeaderCache$.find('.planetlist');	// In the header
 	my.data.uiElt$['audio_toggle'] = localHeaderCache$.find("#audio_toggle");
@@ -284,7 +282,6 @@ var autoGEO = (function ($, my) {
 
 	my.data.uiElt$['home'] = localBelowHeader$.find('#home');				// Home tab
 	my.data.uiElt$['questionBox'] = my.data.uiElt$['home'].find('#questionBox');	// Textarea on home tab where questions are entered
-	// my.data.uiElt$['castingInput'] = my.data.uiElt$['home'].find('#castingInput');	// input area on home tab for space-bar presses
 
 	// Tab related elements put into my.data.uiElt$ in the view
 

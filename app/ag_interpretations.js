@@ -463,7 +463,7 @@ var autoGEO = (function ($, my) {
 		}
 		else {
 			html += '<ul>';
-			
+
 			// OCCUPATION - same figure in houses of querent & quesited
 			if ( quesitedFig === querentFig ) {
 				html += '<li>OCCUPATION Found! The strongest Mode Of Perfection.';
