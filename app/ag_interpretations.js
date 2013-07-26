@@ -420,16 +420,68 @@ var autoGEO = (function ($, my) {
 	interptStatus[8].interpret = function() {
 		var html = "";					// what is going to be returned as results/html to inject		
 		var i;
+		var houseOfQuesited = my.chart.houseOfQuesited();
+		var houseOfQuesitor = my.chart.houseOfQuesitor();
+		var quesitedFig = my.chart.house(houseOfQuesited);
+		var querentFig = my.chart.house(houseOfQuesitor);
 
-		if ( my.chart.houseOfQuesited() === 0 ) {
-			html += 'No house selected as the Quesited House.  This is the house where the answer mainly lies and is necessary for this interpretation.';
-			return html;
+		function neighbor(before, me) {
+			var x;
+
+			if ( before === true ) {		// neighbor before me 
+				me -= 1;
+			} else {						// neighbor after me 
+				me += 1;
+			}
+			x = my.mod(me, 12);				// use my negative-safe modulus fx
+			if ( x === 0 ) { x = 12; }		// my.mod(0,12) returns 0 
+			return x;
+		}
+
+		function checkNeighborsOfQ(quesited) {	// quesited is true then houseof Quesited, else house of Querent
+			var houseToCheckAround = ( quesited === true ) ? houseOfQuesited : houseOfQuesitor;
+			var targetFigure = ( quesited === true ) ? quesitedFig : querentFig;
+			var otherQFigure = ( quesited === true ) ? querentFig : quesitedFig; // opposite of above
+
+			var houseBeforeTarget = neighbor(true, houseToCheckAround);
+			var houseAfterTarget = neighbor(false, houseToCheckAround);
+			var figInHouseBeforeTarget = my.chart.house(houseBeforeTarget);
+			var figInHouseAfterTarget = my.chart.house(houseAfterTarget);
+
+			if ( figInHouseBeforeTarget === otherQFigure ) {		// house before target
+				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' has behind house  ' + houseToCheckAround + '.</li>';
+				// TODO: highlight houses
+			}
+			if ( figInHouseAfterTarget === otherQFigure ) {			// house after target
+				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' has passed in front of house  ' + houseToCheckAround + '.</li>';
+			}
+		}
+
+
+		if ( houseOfQuesited === 0 ) {
+			html += 'No house selected as the Quesited House.  This interpretation relies on comparing the Quesited and Quesitor.';
 		}
 		else {
+			html += '<ul>';
+			
+			// OCCUPATION - same figure in houses of querent & quesited
+			if ( quesitedFig === querentFig ) {
+				html += '<li>OCCUPATION Found! The strongest Mode Of Perfection.';
+				html += 'The quesited ' + my.data.figs[quesitedFig].name + ' in house ' + houseOfQuesited + ', is also in House of Quesitor ' + houseOfQuesitor + '.</li';
+				// TODO: insert bells and whistles here
+			} else {
+				html += '<li>No Occupation possible - ' + my.data.figs[quesitedFig].name + ' is not ' + my.data.figs[querentFig].name + '.</li>';
+			}
 
+
+			// CONJUNCTION - either querent or quesited pass to a house next to each other
+			checkNeighborsOfQ(true);		// check neighbors of House of Quesited
+			checkNeighborsOfQ(false);		// check neighbors of House of Querent
+
+
+
+			html += '</ul>';
 		}
-
-
 
 		return html;
 	};

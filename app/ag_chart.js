@@ -8,7 +8,7 @@ var autoGEO = (function ($, my) {
 		var knownMothers;
 		var houseOfQuesited = 0;		// default case, no house selected
 		var houseOfQuesitor = 1;		// default case, 1st house 
-		var house = [17];				// Will hold the built chart + reconciler
+		var house = [];				// Will hold the built chart + reconciler
 
 		function reset() {
 			var i = 0;
@@ -236,7 +236,7 @@ var autoGEO = (function ($, my) {
 
 
 		// setQHouse(isQuesited, house, house$)
-		//		isQuesited - boolean, true for Quesited, false for Quesitor
+		//		isQuesited - boolean, true for Quesited, false for Quesitor (aka querent)
 		//		house - set house of quesitor/quesited to this
 		//		house$ - optional, click handler for double click has it so why search again, except if we come form questions list
 		function setQHouse(isQuesited, house, house$) {
@@ -277,7 +277,7 @@ var autoGEO = (function ($, my) {
 
 		return {
 			houseOfQuesited	: function() { return houseOfQuesited; },
-			houseOfQuesitor : function() { return houseOfQuesitor; },
+			houseOfQuesitor : function() { return houseOfQuesitor; },	// aka querent
 			knownMothers : function() { return knownMothers; },
 			init : init,							// public functions
 			activateHandlers : activateHandlers,
