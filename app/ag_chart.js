@@ -111,7 +111,7 @@ var autoGEO = (function ($, my) {
 					}
 				}
 			});
-
+/*
 			// one-time event to show instructions on chart
 			divShieldChart$.one("mouseover", function() {
 				var that = $(this);
@@ -124,7 +124,7 @@ var autoGEO = (function ($, my) {
 										}
 								);
 			});
-
+*/
 		}
 
 

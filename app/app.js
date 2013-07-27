@@ -267,6 +267,8 @@ var autoGEO = (function ($, my) {
 	// referece to them now and store it away so it can provide quick acess later.
 
 	// These are basic divisions to speed up caching other elements later
+	my.data.uiElt$['overlay'] = $('#overlay');
+	my.data.uiElt$['myModal'] = $('#myModal');	
 	my.data.uiElt$['header'] = $('header');
 	my.data.uiElt$['belowHeader'] = $('#belowHeader');
 
@@ -282,6 +284,7 @@ var autoGEO = (function ($, my) {
 
 	my.data.uiElt$['home'] = localBelowHeader$.find('#home');				// Home tab
 	my.data.uiElt$['questionBox'] = my.data.uiElt$['home'].find('#questionBox');	// Textarea on home tab where questions are entered
+
 
 	// Tab related elements put into my.data.uiElt$ in the view
 

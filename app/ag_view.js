@@ -423,7 +423,9 @@ var autoGEO = (function ($, my) {
 		};
 	};
 
+	my.screenOverlay = function() {
 
+	};
 
 	//  only called upon app startup
 	my.initView = function() {
@@ -454,10 +456,20 @@ var autoGEO = (function ($, my) {
 
 			if ( my.data.shiftKeyDown === true ) {
 				my.log('log', 'Shift key pressed, skipping startup modal dialog.');
+
+				// Show big screen overlay with beginning instructions
+				my.data.uiElt$['overlay']
+					.addClass('bkgdOverlayIntro')
+					.css('pointer-events', 'auto')
+					.one('click', function() { 				// get rid of it upon clicking anywhere...
+						$(this).fadeOut(1500).css('pointer-events', 'none');
+						});
 			}
 			else {
-				$('#myModal').modal('show');
+				my.data.uiElt$['myModal'].modal('show');
+	
 			}
+
 		});
 
 
