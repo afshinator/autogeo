@@ -62,9 +62,8 @@ var autoGEO = (function ($, my) {
             wheelStep: 10
         };
 
+		//my.data.uiElt$['home'].find('div').slimScroll( defaults );
 		my.data.uiElt$['interpts'].find('#interptText').slimScroll( defaults );
-
-		// About tab
 		my.data.uiElt$['about'].find('div').slimScroll( defaults ); // had trouble with attaching slimscroll to tab div, but it works attached to inner
 
 		my.initInterpretations();
@@ -423,6 +422,7 @@ var autoGEO = (function ($, my) {
 		};
 	};
 
+
 	my.screenOverlay = function(bkgdOverlayClass) {
 		if ( typeof bkgdOverlayClass !== 'string' ) {	// this is a hack because on no argument, fx was being invoked with an object, so || default value technique failed
 			bkgdOverlayClass = 'bkgdOverlayIntro';
@@ -469,9 +469,9 @@ var autoGEO = (function ($, my) {
 				my.progressBar.end();
 
 				if ( my.data.shiftKeyDown === true ) {
-					my.log('log', 'Shift key pressed, skipping startup modal dialog.');
+					my.log('log', 'Shift key pressed, skipping startup effects.');
 
-					my.screenOverlay('bkgdOverlayIntro');
+					//my.screenOverlay('bkgdOverlayIntro');
 				}
 				else {
 					my.data.uiElt$['myModal'].modal('show');

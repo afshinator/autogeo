@@ -225,7 +225,11 @@ var autoGEO = (function ($, my) {
 						my.statusMsg("Chart derived!");
 
 						for (i = 1; i < 16; i += 1) {
-							tableChartTable$.find( '#chart' + i ).html(img(house[i]));
+							tableChartTable$.find( '#chart' + i )
+									.html(img(house[i]))
+									.find('img')
+										.hide()
+										.fadeIn(3000);
 						}
 						tableChartTable$.find('#chart16').html(img(house[0]));			// reconciler
 						tableChartTable$.find('#chart16 img').attr('width', '65%');		// reduce its size
