@@ -268,7 +268,7 @@ var autoGEO = (function ($, my) {
 
 	// These are basic divisions to speed up caching other elements later
 	my.data.uiElt$['overlay'] = $('#overlay');
-	my.data.uiElt$['myModal'] = $('#myModal');	
+	my.data.uiElt$['myModal'] = $('#myModal');
 	my.data.uiElt$['header'] = $('header');
 	my.data.uiElt$['belowHeader'] = $('#belowHeader');
 
@@ -290,32 +290,25 @@ var autoGEO = (function ($, my) {
 
 	// Set up event handlers for shift-key being pressed down
 	$(document).keydown(function(e) {
-		if (e.shiftKey) {
+		if ( (my.data.shiftKeyDown !== true) && e.shiftKey ) {
 			my.data.shiftKeyDown = true;
 		}
 	}).keyup(function(e) {
-		if (e.shiftKey) {
-			my.data.shiftKeyDown = false;
-
-		}
+		// e not used; keyup always happens once after a keydown
+		my.data.shiftKeyDown = false;
 	});
+
 
 	if ( my.initView === undefined ){
 		my.log("err", "Inside App.js, initView not yet defined!", true);
 	} else {
 
-		if ( my.data.shiftKeyDown === false ) {
-			// Hide the chart and figures table so loading ugliness wont show
-			// my.data.uiElt$['shieldChart'].hide();  // initView() unhides them
-			my.data.uiElt$['geoFigures'].hide();
-		}
+		my.data.uiElt$['geoFigures'].hide();
+		my.progressBar.init();									my.progressBar.increase();
+		initLog();	my.progressBar.increase();	// Put together logging system for program output, app events, & errors
 
-		my.progressBar.init();
-			my.progressBar.increase();
-		initLog();						// Put together logging system for program output, app events, & errors
-			my.progressBar.increase();
-		my.initBrowser();				// Find browser make/version, Get app presets for Audio & Geolocation		
-			my.progressBar.increase();
+		my.initBrowser();	my.progressBar.increase();	// Find browser make/version, Get app presets for Audio & Geolocation		
+
 		my.initView();
 	}
 

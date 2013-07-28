@@ -10,6 +10,7 @@ var autoGEO = (function ($, my) {
 		var houseOfQuesitor = 1;		// default case, 1st house 
 		var house = [];				// Will hold the built chart + reconciler
 
+
 		function reset() {
 			var i = 0;
 
@@ -220,7 +221,7 @@ var autoGEO = (function ($, my) {
 					// if we have all four mothers, 
 					if ( knownMothers > 3 ) {
 						generateChart();
-						my.audio.play('chime2', 0.1);					// sound
+						my.audio.play('arrival_horns', 0.1);					// sound
 						my.statusMsg("Chart derived!");
 
 						for (i = 1; i < 16; i += 1) {

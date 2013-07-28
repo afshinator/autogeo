@@ -423,9 +423,25 @@ var autoGEO = (function ($, my) {
 		};
 	};
 
-	my.screenOverlay = function() {
+	my.screenOverlay = function(bkgdOverlayClass) {
+		if ( typeof bkgdOverlayClass !== 'string' ) {	// this is a hack because on no argument, fx was being invoked with an object, so || default value technique failed
+			bkgdOverlayClass = 'bkgdOverlayIntro';
+		}
 
+		// Show big screen overlay with beginning instructions
+		my.data.uiElt$['overlay']
+			.addClass(bkgdOverlayClass)
+			.css('pointer-events', 'auto')
+			.one('click', function() {				// get rid of it upon clicking anywhere...
+				$(this).fadeOut(1500, function() {
+					$(this).removeClass(bkgdOverlayClass);
+					my.audio.play('chime2', 0.2);       // Play startup sound
+					my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
+				}).css('pointer-events', 'none');
+		});
 	};
+
+
 
 	//  only called upon app startup
 	my.initView = function() {
@@ -436,9 +452,7 @@ var autoGEO = (function ($, my) {
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
 			my.progressBar.increase();
 		initClockAndTime();					// Date and Time, geolocation in header
-			my.progressBar.increase(5);
-		// initChart();						// Set up handlers inside the chart
-			my.progressBar.increase(5);
+			my.progressBar.increase(10);
 		initGeomanticFigures();				// Load the geomantic figures
 			my.progressBar.increase(5);
 
@@ -449,29 +463,24 @@ var autoGEO = (function ($, my) {
 		my.data.uiElt$['geoFigures'].css('visibility', 'visible' ).fadeIn(3500, function() {
 			my.data.uiElt$['audio_toggle'].css('visibility', 'visible');
 			my.data.uiElt$['geoloc_btn'].css('visibility', 'visible');
-			$('.invisible').css('opacity', '1.0').css('visibility', 'visible').fadeIn(6000);	// css class invisible are all the other elements I want to show after app startup
-			my.progressBar.increase(5);
-			my.progressBar.end();
-			my.statusMsg("Welcome.  AutoGeomancy is ready!", false, "icon-ok");		// Status Message was initialized by the browser.
+			// fade in .invisible : audio & tab content
+			$('.invisible').css('opacity', '1.0').css('visibility', 'visible').fadeIn(6000, function() {
+				my.progressBar.increase(5);
+				my.progressBar.end();
 
-			if ( my.data.shiftKeyDown === true ) {
-				my.log('log', 'Shift key pressed, skipping startup modal dialog.');
+				if ( my.data.shiftKeyDown === true ) {
+					my.log('log', 'Shift key pressed, skipping startup modal dialog.');
 
-				// Show big screen overlay with beginning instructions
-				my.data.uiElt$['overlay']
-					.addClass('bkgdOverlayIntro')
-					.css('pointer-events', 'auto')
-					.one('click', function() { 				// get rid of it upon clicking anywhere...
-						$(this).fadeOut(1500).css('pointer-events', 'none');
-						});
-			}
-			else {
-				my.data.uiElt$['myModal'].modal('show');
-	
-			}
+					my.screenOverlay('bkgdOverlayIntro');
+				}
+				else {
+					my.data.uiElt$['myModal'].modal('show');
+					my.data.uiElt$['myModal'].on('hidden', my.screenOverlay);
+				}
 
+
+			});	// css class invisible are all the other elements I want to show after app startup
 		});
-
 
 	};
 

@@ -217,9 +217,6 @@ var autoGEO = (function ($, my) {
         if ( presetKeyVals.audio === true ) {
             my.log('l', 'APP PRESETS: for AUDIO is ON - kicking off initAudio()...');
             my.audio.init(false);                   // Load Audio files & get them ready for play
-            if ( my.data.shiftKeyDown === false ) { // No startup sound if shift key is pressed
-                my.audio.play('arrival_horns', 0.2);       // Play startup sound
-            }
             my.audio.play('klik1', 0.2);       // cache
             my.audio.play('tick6', 0.2);       // cache the sound
 
