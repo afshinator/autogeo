@@ -2,8 +2,8 @@
 
 var autoGEO = (function ($, my) {
 	var lengthOfAnHour = 0;
-	var dayHours = [];
-	var nightHours = [];
+	//var dayHours = [];
+	//var nightHours = [];
 
 	var currentTimeSlot$ = null;		// Will be set in initGeoTimeDivisions() to indicate the 'hour' we are in now
 	var currentTSlot = 0;				// same as above but indexed 1-12 for day, 13-24 for night hours
@@ -50,8 +50,8 @@ var autoGEO = (function ($, my) {
 			}
 		}
 
-		divideTimeIntoTwelveSlots(secsInOneDayHour, 1, moment(a));		// 'day' hours - from sunrise to sunset
-		divideTimeIntoTwelveSlots(secsInOneNightHour, 13, moment(b));	// 'night' hours - from sunset today until sunrise the next day
+		divideTimeIntoTwelveSlots(secsInOneDayHour, 1, a);		// 'day' hours - from sunrise to sunset
+		divideTimeIntoTwelveSlots(secsInOneNightHour, 13, b);	// 'night' hours - from sunset today until sunrise the next day
 
 		// currentTimeSlot$ should have been set in either the day or night divisions...
 		if ( currentTimeSlot$ === null ) {
@@ -152,8 +152,10 @@ var autoGEO = (function ($, my) {
 			var img = new Image();
 			img.src = my.data.snapshot;
 			$("#testpic").append(img);
-
-			// Get sunrise and sundown times for today...
+//
+// END OF THE GEOLOCATION CODE
+//
+			// Derive & get sunrise and sundown times for today...
 			$("#suntimes").html(my.prepareSunTimes());
 
 			initGeoTimeDivisions();

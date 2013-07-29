@@ -2,6 +2,12 @@
 
 var autoGEO = (function ($, my) {
 
+    // Return negative-number safe x modulus y math operation
+    // Need this fx because modulus negative numbers is broken in JS
+    my.mod = function(x, y) {
+        return ( ( x % y ) + y ) % y;
+    };
+
 
     // 
     // Wrap txt with a <span> for Bootstrap class that format the text nicely
@@ -103,13 +109,41 @@ var autoGEO = (function ($, my) {
     }();
 
 
+    //
+    //
+    my.timeWatcher = function() {
+        var clock$;
+        var haveSuntimes = false;       // set to true when geolocation & sunset/rise are done
+        var timeNow;                    // updated current time, moment object available as public property
 
 
-    // Return negative-number safe x modulus y math operation
-    // Need this fx because modulus negative numbers is broken in JS
-    my.mod = function(x, y) {
-        return ( ( x % y ) + y ) % y;
-    };
+        var updateTime = function() {
+            timeNow = moment();             // Get & save current time
+
+            var now = '<i class="icon-time"></i> ' + timeNow.format('dddd MMMM Do YYYY, h:mm a');   // bootstrap icons
+            now = my.label("default", now);                         // bootstrap styling "labels"
+
+            clock$.html(now);       // Put up the new time
+        };
+
+        function init() {
+            if (clock$ === undefined) {                 // the very first time
+                clock$ = $("#currenttime");
+                my.data.uiElt$['currenttime'] = clock$; // cache it as part of the 'global' my object.
+                my.log('l', "Clock initialized");
+            }
+
+            updateTime();                           // Put up the current time
+            setInterval(updateTime, 10000);         // Set up a timer to update the time every 10 seconds            
+        }
+
+        return {
+            now     : function() { return timeNow; },
+            init : init
+        };
+    }();
+
+
 
 
 

@@ -135,20 +135,6 @@ var autoGEO = (function ($, my) {
 	//
 	// initButtonsAndControls() - Event handlers for Geolocation button and Audio On/Off checkbox
 	function initButtonsAndControls() {
-/*
-		// Click handler for AUDIO on/off checkbox
-		audioChkbx$.click(function() {
-			if ( $(this).is(':checked') ) {	// Audio toggled  on
-				my.settings.set('audio', true);			// my.data.audio = true;
-				my.audio.unmute().play('spring1', 0.2);
-			}
-			else
-			{								// Audio toggled off
-				my.settings.set('audio', false);			// my.data.audio = false;
-				my.audio.mute();
-			}
-		});
-*/
 
 		// Click handler for GEOLOCATION button
 		my.data.uiElt$['geoloc_btn'].click(function(e) {
@@ -156,6 +142,9 @@ var autoGEO = (function ($, my) {
 			my.audio.play('klik1', 0.2);
 //			my.log('l', "Geolocation button was pressed");
 			my.doGeolocationAndSuntimes(my.data.uiElt$['geoloc_btn']);
+
+			my.data.uiElt$['belowHeader'].find('#appTabs a[href="#time"]').tab('show'); // Activate Time transits & Rulers tab
+			// my.data.uiElt$['belowHeader'].find('#appTabs li:eq(3)').fadeOut().fadeIn(1000);
 		});
 
 			my.progressBar.increase();
@@ -451,7 +440,7 @@ var autoGEO = (function ($, my) {
 			my.progressBar.increase();
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
 			my.progressBar.increase();
-		initClockAndTime();					// Date and Time, geolocation in header
+		my.timeWatcher.init();	//initClockAndTime();					// Date and Time, geolocation in header
 			my.progressBar.increase(10);
 		initGeomanticFigures();				// Load the geomantic figures
 			my.progressBar.increase(5);
@@ -470,14 +459,12 @@ var autoGEO = (function ($, my) {
 
 				if ( my.data.shiftKeyDown === true ) {
 					my.log('log', 'Shift key pressed, skipping startup effects.');
-
 					//my.screenOverlay('bkgdOverlayIntro');
 				}
 				else {
 					my.data.uiElt$['myModal'].modal('show');
 					my.data.uiElt$['myModal'].on('hidden', my.screenOverlay);
 				}
-
 
 			});	// css class invisible are all the other elements I want to show after app startup
 		});

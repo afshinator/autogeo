@@ -66,10 +66,10 @@ var autoGEO = (function ($, my) {
 
     // Return true if the time right now is within 'real Today' instead of 'geo Today' ?
     // Geo today is defined from sunrise on one day until sunrise the next day, so it crosses 'real day' boundaries
-    // Assumes my.data.now has been initialized, and Geolocation has run.
+    // Assumes my.timeWatcher has been initialized, and Geolocation has run.
     my.isNowWithinRealToday = function() {
         var sunrise = new Date();                       // set to now, real-today
-        var now = my.data.now;
+        var now = my.timeWatcher.now();
 
         findAndSetSuntimeOnDate(sunrise, true, sunrise);      // Set to sunrise time for real-today      
 

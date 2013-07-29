@@ -10,7 +10,6 @@ var autoGEO = (function ($, my) {
 		shiftKeyDown : false,						// will be set to true if shift key is being held down, for bypassing startup modal, ...
 		uiElt$ : {},								// key:html elts  --> val: jquery selections; for cross app quick access
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
-		now: undefined,								// time right now updated by the clock, moment object
 		latitude: undefined,						// Result of geolocation
 		longitude: undefined,						// Result of geolocation
 		sunrisetoday: undefined,					// All 3 derived after geolocation, in ag_sunrisesunset.js
@@ -302,13 +301,10 @@ var autoGEO = (function ($, my) {
 	if ( my.initView === undefined ){
 		my.log("err", "Inside App.js, initView not yet defined!", true);
 	} else {
-
 		my.data.uiElt$['geoFigures'].hide();
 		my.progressBar.init();									my.progressBar.increase();
 		initLog();	my.progressBar.increase();	// Put together logging system for program output, app events, & errors
-
 		my.initBrowser();	my.progressBar.increase();	// Find browser make/version, Get app presets for Audio & Geolocation		
-
 		my.initView();
 	}
 
