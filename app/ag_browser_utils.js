@@ -109,8 +109,10 @@ var autoGEO = (function ($, my) {
     }();
 
 
+
     //
-    //
+    // timeWatcher - Track and put up the current time, 
+    //               handle the 24 hourly rulers of the day when geolocation & suntimes are derived
     my.timeWatcher = function() {
         var clock$;
         var haveSuntimes = false;       // set to true when geolocation & sunset/rise are done
@@ -124,6 +126,10 @@ var autoGEO = (function ($, my) {
             now = my.label("default", now);                         // bootstrap styling "labels"
 
             clock$.html(now);       // Put up the new time
+
+            if ( haveSuntimes === true ) {
+                // tell geomanticTime to check ranges...
+            }
         };
 
         function init() {
@@ -138,12 +144,12 @@ var autoGEO = (function ($, my) {
         }
 
         return {
-            now     : function() { return timeNow; },
+            now     : function() { return timeNow; },                   // moment object
+            geomanticTimeReady : function() { haveSuntimes = true; },   // Time divisions in 12 day & night hours are done
             init : init
+
         };
     }();
-
-
 
 
 

@@ -220,7 +220,7 @@ var autoGEO = (function ($, my) {
 
 					// if we have all four mothers, 
 					if ( knownMothers > 3 ) {
-						generateChart();
+						generateChart();										// generate chart data structure
 						my.audio.play('arrival_horns', 0.1);					// sound
 						my.statusMsg("Chart derived!");
 
@@ -233,7 +233,10 @@ var autoGEO = (function ($, my) {
 						}
 						tableChartTable$.find('#chart16').html(img(house[0]));			// reconciler
 						tableChartTable$.find('#chart16 img').attr('width', '65%');		// reduce its size
-						my.log('log', "newMother() finished generating chart");
+
+						var currentTime = my.timeWatcher.now();
+						my.log('i', "Chart cast on " + currentTime.format('dddd') + ', ' + currentTime.format('MMMM Do YYYY, h:mm a'));
+						// now log the ruler information here
 					}
 				}
 			}
