@@ -1,12 +1,7 @@
 // 
 
 var autoGEO = (function ($, my) {
-	var lengthOfAnHour = 0;
-	//var dayHours = [];
-	//var nightHours = [];
-
 	var currentTimeSlot$ = null;		// Will be set in initGeoTimeDivisions() to indicate the 'hour' we are in now
-	var currentTSlot = 0;				// same as above but indexed 1-12 for day, 13-24 for night hours
 
 
 	//
