@@ -419,11 +419,21 @@ var autoGEO = (function ($, my) {
 	// Modes of Perfection --
 	interptStatus[8].interpret = function() {
 		var html = "";					// what is going to be returned as results/html to inject		
-		var i;
+		var i, j;
 		var houseOfQuesited = my.chart.houseOfQuesited();
 		var houseOfQuesitor = my.chart.houseOfQuesitor();
 		var quesitedFig = my.chart.house(houseOfQuesited);
 		var querentFig = my.chart.house(houseOfQuesitor);
+		var neighbors;			// for Mutation 
+		var qrentNeighbor;		// for Translation
+		var qsitdNeighbor;		// for Translation
+
+		function normalizeHouseNumber(n) {
+			var house = my.mod(n, 12);			// use my negative-safe modulus fx
+
+			if ( house === 0 ) { house = 12; } // my.mod(0,12) returns 0 
+			return house;
+		}
 
 		function neighbor(before, me) {
 			var x;
@@ -433,27 +443,35 @@ var autoGEO = (function ($, my) {
 			} else {						// neighbor after me 
 				me += 1;
 			}
-			x = my.mod(me, 12);				// use my negative-safe modulus fx
-			if ( x === 0 ) { x = 12; }		// my.mod(0,12) returns 0 
-			return x;
+			return normalizeHouseNumber(me);
 		}
 
+		function whatAreMyNeighbors(myHouse) {
+			var houseBeforeTarget = neighbor(true, myHouse);
+			var houseAfterTarget = neighbor(false, myHouse);
+
+			return {
+				before : my.chart.house(houseBeforeTarget),
+				after : my.chart.house(houseAfterTarget)
+			};
+		}
+
+
+		// For Conjuction
 		function checkNeighborsOfQ(quesited) {	// quesited is true then houseof Quesited, else house of Querent
 			var houseToCheckAround = ( quesited === true ) ? houseOfQuesited : houseOfQuesitor;
 			var targetFigure = ( quesited === true ) ? quesitedFig : querentFig;
 			var otherQFigure = ( quesited === true ) ? querentFig : quesitedFig; // opposite of above
 
-			var houseBeforeTarget = neighbor(true, houseToCheckAround);
-			var houseAfterTarget = neighbor(false, houseToCheckAround);
-			var figInHouseBeforeTarget = my.chart.house(houseBeforeTarget);
-			var figInHouseAfterTarget = my.chart.house(houseAfterTarget);
+			var myNeighbors = whatAreMyNeighbors(houseToCheckAround); 
+			var who = ( quesited === true ) ? 'Quesited House' : 'Querent House';
 
-			if ( figInHouseBeforeTarget === otherQFigure ) {		// house before target
-				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' has behind house  ' + houseToCheckAround + '.</li>';
+			if ( myNeighbors.before === otherQFigure ) {		// house before target
+				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' passes behind ' + who + ' into house ' + normalizeHouseNumber( houseToCheckAround-1) + '.</li>';
 				// TODO: highlight houses
 			}
-			if ( figInHouseAfterTarget === otherQFigure ) {			// house after target
-				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' has passed in front of house  ' + houseToCheckAround + '.</li>';
+			if ( myNeighbors.after === otherQFigure ) {			// house after target
+				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' passes in front of ' + who + ' in house ' + normalizeHouseNumber( houseToCheckAround+1) + '.</li>';
 			}
 		}
 
@@ -466,11 +484,11 @@ var autoGEO = (function ($, my) {
 
 			// OCCUPATION - same figure in houses of querent & quesited
 			if ( quesitedFig === querentFig ) {
-				html += '<li>OCCUPATION Found! The strongest Mode Of Perfection.';
-				html += 'The quesited ' + my.data.figs[quesitedFig].name + ' in house ' + houseOfQuesited + ', is also in House of Quesitor ' + houseOfQuesitor + '.</li';
+				html += '<li>OCCUPATION Found! The strongest Mode Of Perfection.  ';
+				html += 'The quesited ' + my.data.figs[quesitedFig].name + ' in house ' + houseOfQuesited + ', is also in House of Quesitor ' + houseOfQuesitor + '.</li>';
 				// TODO: insert bells and whistles here
 			} else {
-				html += '<li>No Occupation possible - ' + my.data.figs[quesitedFig].name + ' is not ' + my.data.figs[querentFig].name + '.</li>';
+				html += '<li>No Occupation -  ' + my.data.figs[quesitedFig].name + ' is a different figure than ' + my.data.figs[querentFig].name + '.</li>';
 			}
 
 
@@ -479,6 +497,27 @@ var autoGEO = (function ($, my) {
 			checkNeighborsOfQ(false);		// check neighbors of House of Querent
 
 
+			// MUTATION - querent & quesited both pass next to each other elsewhere in the chart
+			// Start from the house after the house of querent and go through every house, 		
+			i = normalizeHouseNumber(houseOfQuesitor + 1);
+			j = i + 10; 		// i+10 will be house behind querents; not modulus-ing it on purpose
+
+			for (; i < j ; i += 1) {			
+				if ( my.chart.house(normalizeHouseNumber(i)) === querentFig ) {
+					neighbors = whatAreMyNeighbors(i);	// no need for normalizeHouseNumber on i
+					if ( neighbors.before === quesitedFig ) {
+						html += '<li>MUTATION Found! - Quesited & Querent next to each other in houses ' + normalizeHouseNumber(i) + ' and ' + normalizeHouseNumber(i-1) + '.</li>';
+					}
+					if  ( neighbors.after === quesitedFig ) {
+						html += '<li>MUTATION Found! - Quesited & Querent next to each other in houses ' + normalizeHouseNumber(i) + ' and ' + normalizeHouseNumber(i+1) + '.</li>';						
+					}
+				}
+			}
+
+
+			// TRANSLATION - A figure other than that of querent or quesited appears next to both.
+			qrentNeighbor = whatAreMyNeighbors(houseOfQuesitor);
+			qsitdNeighbor = whatAreMyNeighbors(houseOfQuesited);
 
 			html += '</ul>';
 		}

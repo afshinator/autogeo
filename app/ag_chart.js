@@ -292,7 +292,7 @@ var autoGEO = (function ($, my) {
 			reset : reset,
 			newMother : newMother,
 			setQHouse: setQHouse,
-			house : function(n) { return house[n]; }
+			house : function(n) { return house[n]; }  // house array is not zero based, I mean house[0] is the reconciler
 		};
 	}();				// my.chart
 

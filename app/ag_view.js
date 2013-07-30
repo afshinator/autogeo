@@ -174,34 +174,6 @@ var autoGEO = (function ($, my) {
 
 
 
-	//
-	// initClockAndTime() -  Get the clock up
-	function initClockAndTime() {
-		var clock$ = my.data.uiElt$['currenttime'];
-
-		var updateTime = function() {
-			my.data.now = moment();				// Get & save current time
-
-			var now = '<i class="icon-time"></i> ' + my.data.now.format('dddd MMMM Do YYYY, h:mm a');	// bootstrap icons
-			now = my.label("default", now);							// bootstrap styling "labels"
-
-			clock$.html(now);		// Put up the new time, clock$ available through closure
-			// my.log('i', "clock updated! " + now);
-		};
-
-
-		if (clock$ === undefined) {					// the very first time
-			clock$ = $("#currenttime");
-			my.data.uiElt$['currenttime'] = clock$;	// cache it as part of the 'global' my object.
-			my.log('l', "Clock initialized");
-		}
-
-		updateTime();							// Put up the current time
-		setInterval(updateTime, 10000);			// Set up a timer to update the time every 10 seconds
-	}
-
-
-
 	// called by function initGeomanticFigures() 
 	// Load Geomantic figures image files and put them in the Figures Panel, to be clicked on...
 	// Assusmes we already read in the the figures data info from json 
@@ -440,7 +412,7 @@ var autoGEO = (function ($, my) {
 			my.progressBar.increase();
 		initButtonsAndControls();			// Audio checkbox and Geolocation button handlers
 			my.progressBar.increase();
-		my.timeWatcher.init();	//initClockAndTime();					// Date and Time, geolocation in header
+		my.timeWatcher.init();				// Date and Time, geolocation in header
 			my.progressBar.increase(10);
 		initGeomanticFigures();				// Load the geomantic figures
 			my.progressBar.increase(5);
