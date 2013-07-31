@@ -44,8 +44,8 @@ var autoGEO = (function ($, my) {
 		// assert(stdByWhichToMeasure.length === 15)
 
 		for ( i=0; i < 15; i += 1 ) {
-			if ( my.chart.house(i+1) === stdByWhichToMeasure[i] ) {
-				html += ( '<p>' + my.data.figs[my.chart.house(i+1)].name + ' correctly placed in House ' + (i+1) + '.</p>' );
+			if ( my.chart.figInHouse(i+1) === stdByWhichToMeasure[i] ) {
+				html += ( '<p>' + my.data.figs[my.chart.figInHouse(i+1)].name + ' correctly placed in House ' + (i+1) + '.</p>' );
 			}
 		}
 
@@ -64,26 +64,26 @@ var autoGEO = (function ($, my) {
 
 
 		// the witnesses top line is the same but they dont match the judges top line
-		if ( ( isFireLineActive( my.chart.house(13) ) === isFireLineActive( my.chart.house(14) ) ) && ( isFireLineActive( my.chart.house(14) ) !== isFireLineActive( my.chart.house(15) ) ) ){
+		if ( ( isFireLineActive( my.chart.figInHouse(13) ) === isFireLineActive( my.chart.figInHouse(14) ) ) && ( isFireLineActive( my.chart.figInHouse(14) ) !== isFireLineActive( my.chart.figInHouse(15) ) ) ){
 			html += '<p>For the way of the points, top line of judge is different from top lines of the witnesses - so no way up the chart.  The chart is saying either there is <em>no root cause, or many root causes, but not one particular root cause</em>.</p>';
 		}
 		else {	// There is a way up, ...
-			if ( isFireLineActive( my.chart.house(15) ) === true ) {
+			if ( isFireLineActive( my.chart.figInHouse(15) ) === true ) {
 				html += '<p>A judge with an active top(fire) line always results in one root cause, located in top row.';
-				if ( isFireLineActive( my.chart.house(13) ) === true ) {	// right witness
-					if ( isFireLineActive( my.chart.house(9) ) === true ) {
-						house = ( isFireLineActive( my.chart.house(1) ) === true ) ? 0 : 1;
-					} else { // my.chart.house(10) === true
-						house = ( isFireLineActive( my.chart.house(3) ) === true ) ? 2 : 3;
+				if ( isFireLineActive( my.chart.figInHouse(13) ) === true ) {	// right witness
+					if ( isFireLineActive( my.chart.figInHouse(9) ) === true ) {
+						house = ( isFireLineActive( my.chart.figInHouse(1) ) === true ) ? 0 : 1;
+					} else { // my.chart.figInHouse(10) === true
+						house = ( isFireLineActive( my.chart.figInHouse(3) ) === true ) ? 2 : 3;
 					}
-				} else { // my.chart.house(14) === true
-					if ( isFireLineActive( my.chart.house(12) ) === true ) {
-						house = ( isFireLineActive( my.chart.house(8) ) === true ) ? 7 : 6;
-					} else { // my.chart.house(11) === true
-						house = ( isFireLineActive( my.chart.house(6) ) === true ) ? 5 : 4;
+				} else { // my.chart.figInHouse(14) === true
+					if ( isFireLineActive( my.chart.figInHouse(12) ) === true ) {
+						house = ( isFireLineActive( my.chart.figInHouse(8) ) === true ) ? 7 : 6;
+					} else { // my.chart.figInHouse(11) === true
+						house = ( isFireLineActive( my.chart.figInHouse(6) ) === true ) ? 5 : 4;
 					}
 				}
-				html += 'The way of points ends house ' + (house+1) + ', with figure ' + my.data.figs[my.chart.house(house+1)].name + '.</p>';
+				html += 'The way of points ends house ' + (house+1) + ', with figure ' + my.data.figs[my.chart.figInHouse(house+1)].name + '.</p>';
 			} else {
 				html += '<p>A judge with an inactive top(fire) line has multiple root causes.</p>';
 			}
@@ -103,9 +103,9 @@ var autoGEO = (function ($, my) {
 		var i;							// iteration
 
 		var stable = [ 0, 4, 8, 9, 10, 12, 13, 14 ];			// The stable figures
-		var judge = my.chart.house(15);
-		var rw = my.chart.house(13);
-		var lw = my.chart.house(14);
+		var judge = my.chart.figInHouse(15);
+		var rw = my.chart.figInHouse(13);
+		var lw = my.chart.figInHouse(14);
 
 		html += '<p><strong>The Judge and Witnesses</strong> - By looking at the Stable/Mobile Quality of each of the figures in these houses, you can get a sense of whether the situation is fixed or changing.</p><ul>';
 
@@ -138,9 +138,9 @@ var autoGEO = (function ($, my) {
 		// Quick and dirty way to find out whether judge, lw, rw are stable or mobile figures.
 		var judgeStable = false, rwStable = false, lwStable = false;
 		for (i=0 ; i < stable.length ; i += 1) {
-			if ( stable[i] === my.chart.house(15) ) { judgeStable = true; }
-			if ( stable[i] === my.chart.house(13) ) { rwStable = true; }
-			if ( stable[i] === my.chart.house(14) ) { lfStable = true; }
+			if ( stable[i] === my.chart.figInHouse(15) ) { judgeStable = true; }
+			if ( stable[i] === my.chart.figInHouse(13) ) { rwStable = true; }
+			if ( stable[i] === my.chart.figInHouse(14) ) { lfStable = true; }
 		}
 
 		// Right now we are just outputing in 3 cases, 1.) whether all are stable
@@ -288,7 +288,7 @@ var autoGEO = (function ($, my) {
 		// Index is all the 1's in the chart, mod 12
 		// Part of Fortune is all and 1's and 2's added up, mod 12]
 		for ( i = 0; i < 12; i += 1) {
-			figure = my.chart.house(i+1);
+			figure = my.chart.figInHouse(i+1);
 			if (figure === 0) {
 				partOfFortune += 8;
 			} else if (figure === 1) {
@@ -333,8 +333,8 @@ var autoGEO = (function ($, my) {
 		my.log('log', 'index:' + index + ' -- pof:'+ partOfFortune);
 
 		html += '<ul>';
-		html += '<li><strong>Index - The hidden factor in the situation is in house #' + index + '</strong></li>';
-		html += '<li><strong>Part of Fortune - House #' + partOfFortune + '</strong>.</li>';
+		html += '<li><strong>Index</strong> - The hidden factor in the situation is in house #' + index + '.</li>';
+		html += '<li><strong>Part of Fortune</strong> - House #' + partOfFortune + '.</li>';
 		html += '</ul>';
 		return html;
 	};
@@ -380,9 +380,9 @@ var autoGEO = (function ($, my) {
 
 		html += '<small><ul>';
 		for ( i = 0; i < 12; i += 1) {
-			figure = my.chart.house(i+1) + '';					// get figure in the house and turn it into a string
+			figure = my.chart.figInHouse(i+1) + '';					// get figure in the house and turn it into a string
 			dignity = dignityList[figure][i];		// 
-			html += '<li>House ' + (i+1) + ': ' + my.data.figs[my.chart.house(i+1)].name + ' ';
+			html += '<li>House ' + (i+1) + ': ' + my.data.figs[my.chart.figInHouse(i+1)].name + ' ';
 
 			if ( dignity === 0 ) {
 				html += 'is neutral in this house.</li>';
@@ -416,17 +416,18 @@ var autoGEO = (function ($, my) {
 
 
 	//
-	// Modes of Perfection --
+	// Modes of Perfection -- Occupation, Conjunction, Mutation, & Translation
 	interptStatus[8].interpret = function() {
 		var html = "";					// what is going to be returned as results/html to inject		
 		var i, j;
 		var houseOfQuesited = my.chart.houseOfQuesited();
 		var houseOfQuesitor = my.chart.houseOfQuesitor();
-		var quesitedFig = my.chart.house(houseOfQuesited);
-		var querentFig = my.chart.house(houseOfQuesitor);
+		var quesitedFig = my.chart.figInHouse(houseOfQuesited);
+		var querentFig = my.chart.figInHouse(houseOfQuesitor);
 		var neighbors;			// for Mutation 
 		var qrentNeighbor;		// for Translation
 		var qsitdNeighbor;		// for Translation
+		var perfectionFound = false;	// reused between the 4 checks; so will NOT indicate if any of four checks are true
 
 		function normalizeHouseNumber(n) {
 			var house = my.mod(n, 12);			// use my negative-safe modulus fx
@@ -451,8 +452,8 @@ var autoGEO = (function ($, my) {
 			var houseAfterTarget = neighbor(false, myHouse);
 
 			return {
-				before : my.chart.house(houseBeforeTarget),
-				after : my.chart.house(houseAfterTarget)
+				before : my.chart.figInHouse(houseBeforeTarget),
+				after : my.chart.figInHouse(houseAfterTarget)
 			};
 		}
 
@@ -467,11 +468,13 @@ var autoGEO = (function ($, my) {
 			var who = ( quesited === true ) ? 'Quesited House' : 'Querent House';
 
 			if ( myNeighbors.before === otherQFigure ) {		// house before target
-				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' passes behind ' + who + ' into house ' + normalizeHouseNumber( houseToCheckAround-1) + '.</li>';
+				html += '<li><strong>CONJUNCTION</strong> Found! Figure ' + my.data.figs[otherQFigure].name + ' passes behind ' + who + ' into house ' + normalizeHouseNumber( houseToCheckAround-1) + '.</li>';
+				perfectionFound = true;
 				// TODO: highlight houses
 			}
 			if ( myNeighbors.after === otherQFigure ) {			// house after target
-				html += '<li>CONJUNCTION Found! Figure ' + my.data.figs[otherQFigure].name + ' passes in front of ' + who + ' in house ' + normalizeHouseNumber( houseToCheckAround+1) + '.</li>';
+				html += '<li><strong>CONJUNCTION</strong> Found! Figure ' + my.data.figs[otherQFigure].name + ' passes in front of ' + who + ' in house ' + normalizeHouseNumber( houseToCheckAround+1) + '.</li>';
+				perfectionFound = true;
 			}
 		}
 
@@ -481,43 +484,80 @@ var autoGEO = (function ($, my) {
 		}
 		else {
 			html += '<ul>';
-
+			//
 			// OCCUPATION - same figure in houses of querent & quesited
 			if ( quesitedFig === querentFig ) {
-				html += '<li>OCCUPATION Found! The strongest Mode Of Perfection.  ';
+				html += '<li><strong>OCCUPATION</strong> Found! The strongest Mode Of Perfection.  ';
 				html += 'The quesited ' + my.data.figs[quesitedFig].name + ' in house ' + houseOfQuesited + ', is also in House of Quesitor ' + houseOfQuesitor + '.</li>';
 				// TODO: insert bells and whistles here
 			} else {
-				html += '<li>No Occupation -  ' + my.data.figs[quesitedFig].name + ' is a different figure than ' + my.data.figs[querentFig].name + '.</li>';
+				html += '<li>No Occupation possible.</li>';
 			}
 
-
+			//
 			// CONJUNCTION - either querent or quesited pass to a house next to each other
+			perfectionFound = false;
 			checkNeighborsOfQ(true);		// check neighbors of House of Quesited
 			checkNeighborsOfQ(false);		// check neighbors of House of Querent
+			if ( perfectionFound === false ) {
+				html += '<li>No Conjunction found.</li>';
+			}
 
-
+			//
 			// MUTATION - querent & quesited both pass next to each other elsewhere in the chart
 			// Start from the house after the house of querent and go through every house, 		
 			i = normalizeHouseNumber(houseOfQuesitor + 1);
 			j = i + 10; 		// i+10 will be house behind querents; not modulus-ing it on purpose
+			perfectionFound = false;
 
-			for (; i < j ; i += 1) {			
-				if ( my.chart.house(normalizeHouseNumber(i)) === querentFig ) {
+			for (; i < j ; i += 1) {
+//my.log('l', 'i' + i + ' --normalizeHouseNumber(i)'+normalizeHouseNumber(i)+'--the fig '+ my.chart.figInHouse(normalizeHouseNumber(i))+ ' querentFig'+querentFig);
+				if ( my.chart.figInHouse(normalizeHouseNumber(i)) === querentFig ) {
 					neighbors = whatAreMyNeighbors(i);	// no need for normalizeHouseNumber on i
 					if ( neighbors.before === quesitedFig ) {
-						html += '<li>MUTATION Found! - Quesited & Querent next to each other in houses ' + normalizeHouseNumber(i) + ' and ' + normalizeHouseNumber(i-1) + '.</li>';
+						if ( normalizeHouseNumber(i-1) === houseOfQuesited ) {
+							// Conjunction
+						} else {
+// my.log('l', 'i' + i + ' -- neBefore' + neighbors.before );
+							html += '<li><strong>MUTATION</strong> found! - Quesited & Querent next to each other in houses ' + normalizeHouseNumber(i) + ' and ' + normalizeHouseNumber(i-1) + '.</li>';
+							perfectionFound = true;
+						}
+
 					}
 					if  ( neighbors.after === quesitedFig ) {
-						html += '<li>MUTATION Found! - Quesited & Querent next to each other in houses ' + normalizeHouseNumber(i) + ' and ' + normalizeHouseNumber(i+1) + '.</li>';						
+						if ( normalizeHouseNumber(i+1) !== houseOfQuesited) {
+							html += '<li><strong>MUTATION</strong> found! - Quesited & Querent next to each other in houses ' + normalizeHouseNumber(i) + ' and ' + normalizeHouseNumber(i+1) + '.</li>';						
+							perfectionFound = true;
+						} else {
+							// Conjunction
+						}
 					}
 				}
 			}
-
+			if ( perfectionFound === false ) {
+				html += '<li>No Mutation found.</li>';
+			}
 
 			// TRANSLATION - A figure other than that of querent or quesited appears next to both.
 			qrentNeighbor = whatAreMyNeighbors(houseOfQuesitor);
 			qsitdNeighbor = whatAreMyNeighbors(houseOfQuesited);
+
+			i = 0; j = 0;		// reuse these iteration variables as flags here
+
+			i = (qrentNeighbor.before === qsitdNeighbor.before) || ( qrentNeighbor.before === qsitdNeighbor.after );
+			j = (qrentNeighbor.after === qsitdNeighbor.after) || ( qrentNeighbor.after === qsitdNeighbor.before );
+
+			if ( (i === false) && (j === false) ) {
+					html += '<li>No Translation found.</li>';
+			} else {
+				if ( i === true ) {
+					html += '<li><strong>TRANSLATION</strong> found! - ' + my.data.figs[qrentNeighbor.before].name + ' next to both Querent & Quesited.</li>';
+				}
+
+				if ( j === true ) {
+					html += '<li><strong>TRANSLATION</strong> found! - ' + my.data.figs[qrentNeighbor.after].name + ' next to both Querent & Quesited.</li>';
+				}
+			}
 
 			html += '</ul>';
 		}
