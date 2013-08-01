@@ -8,7 +8,8 @@ var autoGEO = (function ($, my) {
 		var knownMothers;
 		var houseOfQuesited = 0;		// default case, no house selected
 		var houseOfQuesitor = 1;		// default case, 1st house 
-		var house = [];				// Will hold the built chart + reconciler
+		var house = [];					// Will hold the built chart + reconciler
+		var lastEffect =[];				// will hold last effect ran in that house number
 
 
 		function reset() {
@@ -188,17 +189,16 @@ var autoGEO = (function ($, my) {
 			}
 		}
 
+		// builds image tag for geo figure passed in 
+		function img(n) {
+			return '<img src="' + my.data.figs[n].src + '" alt="' + my.data.figs[n].name + '"></img>';
+		}
 
 		// newMother(figure, showImmediately)
 		//		figure - geomantic figure that was either just double-clicked on or cast with space-bar; 0 is populus...
 		//		showImmediately - true if we want it to show; false will wait until chart is generated to show all
 		function newMother(figure, showImmediately) {
 			var i;		// for iteration 
-
-			// builds image tag for geo figure passed in 
-			function img(n) {
-				return '<img src="' + my.data.figs[n].src + '" alt="' + my.data.figs[n].name + '"></img>';
-			}
 
 			if ( tableChartTable$ === undefined ) {
 				my.log('err', 'In chart object, looks like init() wasnt called before newMother()!');
@@ -220,19 +220,12 @@ var autoGEO = (function ($, my) {
 
 					// if we have all four mothers, 
 					if ( knownMothers > 3 ) {
-						generateChart();										// generate chart data structure
+						generateChart();
+																// generate chart data structure
 						my.audio.play('arrival_horns', 0.1);					// sound
 						my.statusMsg("Chart derived!");
 
-						for (i = 1; i < 16; i += 1) {
-							tableChartTable$.find( '#chart' + i )
-									.html(img(house[i]))
-									.find('img')
-										.hide()
-										.fadeIn(3000);
-						}
-						tableChartTable$.find('#chart16').html(img(house[0]));			// reconciler
-						tableChartTable$.find('#chart16 img').attr('width', '65%');		// reduce its size
+						displayChart();
 
 						var currentTime = my.timeWatcher.now();
 						my.log('i', "Chart cast on " + currentTime.format('dddd') + ', ' + currentTime.format('MMMM Do YYYY, h:mm a'));
@@ -241,6 +234,40 @@ var autoGEO = (function ($, my) {
 				}
 			}
 		}
+
+
+
+		function displayChart() {
+			var i;
+
+			for (i = 1; i < 16; i += 1) {
+				tableChartTable$.find( '#chart' + i )
+						.html(img(house[i]));
+
+				animateHouse(i, 'tada'); 
+/*						.find('img')
+						.addClass('animated tada');
+					*/
+			}
+
+			tableChartTable$.find('#chart16').html(img(house[0]));			// reconciler
+			tableChartTable$.find('#chart16 img').attr('width', '65%');		// reduce its size
+		}
+
+
+		function animateHouse(house, whichEffect) {
+			var house$ = tableChartTable$.find('#chart' + house + ' img');
+
+			whichEffect = whichEffect || 'tada';
+my.log('l', house + ' last effect : ' + lastEffect[house]);
+			if ( lastEffect[house] !== undefined ) {
+				house$.removeClass('animated ' + lastEffect[house]);
+			}
+
+			house$.addClass( 'animated ' + whichEffect );
+			lastEffect[house] = whichEffect;
+		}
+
 
 
 		// setQHouse(isQuesited, house, house$)
@@ -283,6 +310,7 @@ var autoGEO = (function ($, my) {
 		}
 
 
+
 		return {
 			houseOfQuesited	: function() { return houseOfQuesited; },
 			houseOfQuesitor : function() { return houseOfQuesitor; },	// aka querent
@@ -291,7 +319,8 @@ var autoGEO = (function ($, my) {
 			activateHandlers : activateHandlers,
 			reset : reset,
 			newMother : newMother,
-			setQHouse: setQHouse,
+			setQHouse:  setQHouse,
+			animateHouse: animateHouse,
 			figInHouse : function(n) { return house[n]; }  // house array is not zero based, I mean house[0] is the reconciler
 		};
 	}();				// my.chart

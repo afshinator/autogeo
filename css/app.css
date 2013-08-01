@@ -399,4 +399,18 @@ filter: progid:DXImage-moz-transform.Microsoft.gradient( startColorstr='#eaefb5'
     border-radius: 6px; 
 }
 
+/*
+.house {
+    -webkit-animation-duration: 3s;
+        -moz-animation-duration: 3s;
+        animation-duration: 3s;
+    -webkit-animation-delay: 2s;    
+        -moz-animation-delay: 2s;
+        -animation-delay: 2s;
+
+    -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -animation-iteration-count: infinite;
+}
+*/
 /*  ********************************************************   */

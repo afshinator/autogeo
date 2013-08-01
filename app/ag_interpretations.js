@@ -18,7 +18,7 @@ var autoGEO = (function ($, my) {
 		{ 'done' : false, 'desc' : '<h5>The Index and Part of Fortune</h5><small><p><strong>The Index </strong>represents the hidden factor at work in the situation.  Its derived couting the number of single points in the first 12 houses.</p><p><strong>The Part of Fortune</strong> indicates a house from which the querent can expect good fortune to   come in the situation.  It is derived from adding all the points in the   first 12 houses together.</p></small>'},
 		{ 'done' : false, 'desc' : '<h5>Essential Dignities</h5><small><p>The different figures are either empowered or weakened by their placement in the different houses. On a 5-tier scale from strongest to weakest, each figure is influenced by the house it winds up in. These relationships are   derived from  taking the planet corresponding to the figure,   and reconciling with its astrological aspect to the house it gets found in.</p><p>A figure is </p></small><ul>  <li><small><em>strongest</em> in its own house,</small></li><li><small><em>very strong</em> when in its Exaltation, </small></li><li><small><em>strong</em> in its Triplicity, </small></li><li><small><em>weak</em> in its Fall, </small></li> <li><small><em>weakest</em> in its Detriment.</li></ul></small>'},
 		{ 'done' : false, 'desc' : '<h5>Modes of Perfection</h5><small>For this interpretation you must have selected a house where your question falls: the house of the quesited. In this interpretation we check 4 particular patterns that are positive indicators and <strong>"perfect" the chart</strong>.  One of the basic meanings of a perfected chart is that the querent will be able to accomplish their goal. Listed here from the most strongest/positive to least:</small></p><small><p><strong>Occupation</strong> - Same figure appears in house of both querent &amp; quesited.</p><p><strong>Conjunction</strong> - Either the querent or quesited figure passes to a house next to the other.</p><p><strong>Mutation</strong> - Querent &amp; quesited both pass to adjacent houses elsewhere in chart.</p><p><strong>Translation</strong> - A figure other than that of querent or quesited appears next to both.</p></small>'},
-		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 10'},
+		{ 'done' : false, 'desc' : '<h5>Aspects Between Houses</h5><p>Aspects come from the angles in astrology between each house in the chart.  They represent indirect factors   bearing on the question.A favorable aspect perfects the chart and stands for success through some indirect means.  If there are favorable and unfavorable aspects then the issue is not decided yet.</p><p>In this   interpretation, we look at if either the Querent or Quesited pass into   another house, and then check to see the aspects between that house it   passed to and the other significator.   Dexter aspects refer to houses before/behind the house used for comparison, while sinister means houses counting forward.  Dexter aspects are stronger influences.</p><p>The first 2 aspects listed complete the chart (positive answer), and the next two negate it.</p><p><strong>Sextile</strong>- planets are at 60 degress, or 1 houses between them.</p><p><strong>Trine</strong>- planets are at 120 degrees, or 3 houses between them.</p><p><strong>Square</strong>- planets are at 90 degrees, or 2 houses betwee them.</p><p><strong>Opposition</strong>- planets are at 180 degrees, or 5 houses between them.</p>'},
 		{ 'done' : false, 'desc' : '<i>Sorry dear Charlie</i>, this interpt has yet to be implemented :-( 11'}
 	];
 
@@ -45,6 +45,7 @@ var autoGEO = (function ($, my) {
 
 		for ( i=0; i < 15; i += 1 ) {
 			if ( my.chart.figInHouse(i+1) === stdByWhichToMeasure[i] ) {
+				my.chart.animateHouse(i+1, 'wiggle' );
 				html += ( '<p>' + my.data.figs[my.chart.figInHouse(i+1)].name + ' correctly placed in House ' + (i+1) + '.</p>' );
 			}
 		}
@@ -69,21 +70,29 @@ var autoGEO = (function ($, my) {
 		}
 		else {	// There is a way up, ...
 			if ( isFireLineActive( my.chart.figInHouse(15) ) === true ) {
+				my.chart.animateHouse(15, 'bounce');
 				html += '<p>A judge with an active top(fire) line always results in one root cause, located in top row.';
 				if ( isFireLineActive( my.chart.figInHouse(13) ) === true ) {	// right witness
+					my.chart.animateHouse(13, 'bounce');
 					if ( isFireLineActive( my.chart.figInHouse(9) ) === true ) {
+						my.chart.animateHouse(9, 'bounce');
 						house = ( isFireLineActive( my.chart.figInHouse(1) ) === true ) ? 0 : 1;
 					} else { // my.chart.figInHouse(10) === true
+						my.chart.animateHouse(10, 'bounce');
 						house = ( isFireLineActive( my.chart.figInHouse(3) ) === true ) ? 2 : 3;
 					}
 				} else { // my.chart.figInHouse(14) === true
+					my.chart.animateHouse(14, 'bounce');
 					if ( isFireLineActive( my.chart.figInHouse(12) ) === true ) {
+						my.chart.animateHouse(12, 'bounce');
 						house = ( isFireLineActive( my.chart.figInHouse(8) ) === true ) ? 7 : 6;
 					} else { // my.chart.figInHouse(11) === true
+						my.chart.animateHouse(11, 'bounce');
 						house = ( isFireLineActive( my.chart.figInHouse(6) ) === true ) ? 5 : 4;
 					}
 				}
-				html += 'The way of points ends house ' + (house+1) + ', with figure ' + my.data.figs[my.chart.figInHouse(house+1)].name + '.</p>';
+				my.chart.animateHouse(house+1, 'bounce');
+				html += 'The way of points ends at house ' + (house+1) + ', with figure ' + my.data.figs[my.chart.figInHouse(house+1)].name + '.</p>';
 			} else {
 				html += '<p>A judge with an inactive top(fire) line has multiple root causes.</p>';
 			}
@@ -270,11 +279,15 @@ var autoGEO = (function ($, my) {
 	};
 
 
+
 	//
 	// The Querent & the Quesited --
 	interptStatus[5].interpret = function() {
 
+		my.chart.animateHouse(my.chart.houseOfQuesited(), 'wobble');
+		my.chart.animateHouse(my.chart.houseOfQuesitor(), 'wobble');
 	};
+
 
 
 	//
