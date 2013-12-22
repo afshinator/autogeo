@@ -1,12 +1,17 @@
 AutoGeo 
-Automated Geomantic Divination and Interpretation
 =======
 
-by Afshin Mokhtari
-v2
+Automated Geomantic Divination & Interpretation
+![alt text][logo]
+
+##### By: [Afshin Mokhtari](https://github.com/afshinator), July 2013, v2
+[Click here](http://) to check it out!
+
+----
+### What does it do?
 
 
-Lets the user do a divination session.  Classical Geomantic divination uses 
+Automates a divination session.  Classical Geomantic divination uses 
 lines drawn on sand or paper to generate the letters from which meanings are
 driven.   This program lets you either enter already-derived letters, or
 generate a session from scratch by tapping the space-bar in place of drawing
