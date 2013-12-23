@@ -6,7 +6,7 @@ var autoGEO = (function ($, my) {
 
 	// share variable across the app via autoGEO.data.name
 	my.data = {
-		name : "afshin",
+		// name : "afshin",
 		shiftKeyDown : false,						// will be set to true if shift key is being held down, for bypassing startup modal, ...
 		uiElt$ : {},								// key:html elts  --> val: jquery selections; for cross app quick access
 		containerWidth : $(".container").width(),	// Containing div drawing area width, modified by window resize
@@ -17,7 +17,7 @@ var autoGEO = (function ($, my) {
 		sunrise2moro: undefined,					//		will be Date() objects
 		snapshot: undefined,						// url pointing to google pic of geolocation define area
 		figs : []
-	}; // my.data.chart
+	};
 
 	// logPanel[] will contain JQuery selections of the logs elements, set in initLog()
 	var	logPanel = [];								// global to this module (file)
@@ -263,9 +263,8 @@ var autoGEO = (function ($, my) {
 	// ------ Main Program Execution 
 
 	// Some html elements will be accessed over and over again, and across the app, so get the
-	// referece to them now and store it away so it can provide quick acess later.
+	// referece to them now and store it away so it can provide quick access later.
 
-	// These are basic divisions to speed up caching other elements later
 	my.data.uiElt$['overlay'] = $('#overlay');
 	my.data.uiElt$['myModal'] = $('#myModal');
 	my.data.uiElt$['header'] = $('header');
