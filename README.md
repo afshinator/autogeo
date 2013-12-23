@@ -42,7 +42,9 @@ This program automates the manual process of casting a reading, and also helps i
 - The most difficult part is interpretation.  There are many styles but there are also many commonalities in the various styles.  I've tried to build in these commonalities.
 
 - Some practitioners like to take into account the 'planetary rulers' for timing the castings.  <b>I've automated derivation of the current rulers based on time and your spot on the planet </b>(via geolocation).  You have to understand that sunrise to sunset (and vice-versa) is divided into 12 equal time segments (which of course vary depending on the particular day) in the traditional view... all this is taken into account, you can just hit the geolocation button and look on the chart to see which rulers rule what times on that day.
+
 ---
+
 This is a work in progress, but its almost done, and very usable/useful at this point.
 
 
