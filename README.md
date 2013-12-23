@@ -1,27 +1,40 @@
 AutoGeo 
 =======
 
-Automated Geomantic Divination & Interpretation
-![alt text][logo]
+Automated [Geomantic Divination] & Interpretation.
+
+Geomantic divination was for hundreds of years practiced by people from all social classes throughout Europe (especially prized by the ruling classes and the Church - until they outlawed it for commoners to use), Asia, and Africa.  While most people have heard of its Chinese counterpart, the [Yi Jing] (I Ching), this version has largely escaped attention in the modern world.
+
+This program automates the manual process of casting a session, and also helps interpret the results; however, its no substitute for a knowledgable practitioner - but should be fun to play with nontheless!
+
+![alt text][snapshot]
 
 ##### By: [Afshin Mokhtari](https://github.com/afshinator), July 2013, v2
-[Click here](http://) to check it out!
+[Click here](http://www.acuafshin.com/autogeo2/) to check it out!
 
 ----
-### What does it do?
+### Purpose:
+- I wanted to automate castings & interpretation as much as possible.
+- I wanted to build a SPA - a Single Page Application based on javascript
 
+#### Tools:
+- Javascript, HTML, CSS
+- Twitters bootstrap
+- Misc little helper libraries (jquery, jquery UI, [moment.js], [howler.js])
 
-Automates a divination session.  Classical Geomantic divination uses 
-lines drawn on sand or paper to generate the letters from which meanings are
-driven.   This program lets you either enter already-derived letters, or
-generate a session from scratch by tapping the space-bar in place of drawing
-lines.
+#### Neat stuff included:
+- Geolocation to derive current 'planetary rulers'
+- Localstorage for app presets
+- Error and App event logging
+- Misc UI goodies
 
-Various classic interpretations are given.
+---
+### Some Details:
 
-You can also use the geolocation feature to generate the 'Heavenly Rulers' if
-you wish that style.
+Comments and criticisms welcome.
 
-
-See http://en.wikipedia.org/wiki/Geomancy
-for a general intro to the art.
+[Geomantic Divination]:http://en.wikipedia.org/wiki/Geomancy
+[Yi Jing]:http://en.wikipedia.org/wiki/I_Ching
+[snapshot]:http://www.acuafshin.com/wp-content/uploads/autogeo-snap1.jpg "AutoGeo snapshot"
+[moment.js]:http://momentjs.com
+[howler.js]:http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library
