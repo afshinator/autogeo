@@ -53,6 +53,6 @@ Comments and criticisms welcome.
 [Geomantic Divination]:http://en.wikipedia.org/wiki/Geomancy
 [Feng Shui]: http://en.wikipedia.org/wiki/Feng_shui
 [Yi Jing]:http://en.wikipedia.org/wiki/I_Ching
-[snapshot]:http://www.acuafshin.com/wp-content/uploads/autogeo-snap1.jpg "AutoGeo snapshot"
+[snapshot]:http://res.cloudinary.com/techblogpics/image/upload/v1389573334/320-autogeo1_hh79zi.jpg "AutoGeo snapshot"
 [moment.js]:http://momentjs.com
 [howler.js]:http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library
