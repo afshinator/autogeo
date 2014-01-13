@@ -4,7 +4,7 @@ AutoGeo
 Automated [Geomantic Divination] & Interpretation.
 
 ##### By: [Afshin Mokhtari](https://github.com/afshinator), July 2013, v2
-[Click here](http://www.acuafshin.com/autogeo2/) to check it out!
+[Click here](http://www.drivelinemoto.com/autogeo2/) to check it out!
 
 Today, when you hear the word geomancy most people relate it to   [Feng Shui], the art of placement.  Historically though, it had an entirely different meaning.
 
